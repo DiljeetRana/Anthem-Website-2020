@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewData["Title"] = "ContentManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<h5 style="color: #626262; float: left" runat="server">Manage Static Pages</h5>
+<div style="margin-left: 1100px; margin-top: 10px; height: 40px;">
+    <p runat="server" id="pusers" style="font-size: medium; color: #003366; font-weight: 600;"></p>
+</div>
+
+<form runat="server" style="margin-top:38px;">
+    <div class="row" style="width: 100%">
+        <div class="col-md-6">
+
+            <fieldset>
+                <legend>Page1</legend>
+                <label id="lblpage1tit" class="pagetitlbl" Style="font-size: 15px;font-weight:bold;">Title</label>
+                <input type="text" id="txtpage1tit" maxlength="20" class="pagetittxt form-control" value="@Model.Page1Title" />
+                <br />
+                @if (@Model.Page1Status == true)
+                {
+                    <input type="checkbox" id="chkpage1" class="pagetittxt pagevisibletxt" style="margin-left:140px;" checked />
+                }
+                else
+                {
+                    <input type="checkbox" id="chkpage1" class="pagetittxt pagevisibletxt" style="margin-left:140px;" />
+                }
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;margin-left: 5px;">Make this page visible</label>
+                <br />
+                <label id="lblpage1content" class="pagecontentlbl" style="font-size: 15px;font-weight:bold;">Content</label>
+                <textarea id="txtpage1content" class="pagecontenttxt form-control">@Model.Page1Content</textarea>
+            </fieldset>
+
+
+        </div>
+        <div class="col-md-6">
+
+            <fieldset>
+                <legend>Page2</legend>
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;font-weight:bold;">Title</label>
+                <input type="text" id="txtpage2tit" maxlength="20" class="pagetittxt form-control" value="@Model.Page2Title" />
+                <br />
+                @if (@Model.Page2Status == true)
+                {
+                    <input type="checkbox" id="chkpage2" class="pagetittxt pagevisibletxt" style="margin-left:140px;" checked />
+                }
+                else
+                {
+                    <input type="checkbox" id="chkpage2" class="pagetittxt pagevisibletxt" style="margin-left:140px;" />
+                }
+
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;margin-left: 5px;">Make this page visible</label>
+                <br />
+                <label id="lblpage2content" class="pagecontentlbl" style="font-size: 15px;font-weight:bold;">Content</label>
+                <textarea id="txtpage2content" class="pagecontenttxt form-control">@Model.Page2Content</textarea>
+
+            </fieldset>
+
+        </div>
+
+
+        <div class="col-md-6" style="margin-top: 10px">
+
+            <fieldset>
+                <legend>Page3</legend>
+                <label id="lblpage3tit" class="pagetitlbl" Style="font-size: 15px;font-weight:bold;">Title</label>
+                <input type="text" id="txtpage3tit" maxlength="20" class="pagetittxt form-control" value="@Model.Page3Title" />
+                <br />
+                @if (@Model.Page3Status == true)
+                {
+                    <input type="checkbox" id="chkpage3" class="pagetittxt pagevisibletxt" style="margin-left:140px;" checked />
+                }
+                else
+                {
+                    <input type="checkbox" id="chkpage3" class="pagetittxt pagevisibletxt" style="margin-left:140px;" />
+                }
+
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;margin-left: 5px;">Make this page visible</label>
+                <br />
+                <label id="lblpage3content" class="pagecontentlbl" style="font-size: 15px;font-weight:bold;">Content</label>
+                <textarea id="txtpage3content" class="pagecontenttxt form-control">@Model.Page3Content</textarea>
+
+
+            </fieldset>
+
+        </div>
+        <div class="col-md-6" style="margin-top: 10px">
+            <fieldset>
+                <legend>Page4</legend>
+                <label id="lblpage4tit" class="pagetitlbl" Style="font-size: 15px;font-weight:bold;">Title</label>
+                <input type="text" id="txtpage4tit" maxlength="20" class="pagetittxt form-control" value="@Model.Page4Title" />
+                <br />
+                @if (@Model.Page4Status == true)
+                {
+                    <input type="checkbox" id="chkpage4" class="pagetittxt pagevisibletxt" style="margin-left:140px;" checked />
+                }
+                else
+                {
+                    <input type="checkbox" id="chkpage4" class="pagetittxt pagevisibletxt" style="margin-left:140px;" />
+                }
+
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;margin-left: 5px;">Make this page visible</label>
+                <br />
+                <label id="lblpage4content" class="pagecontentlbl" style="font-size: 15px;font-weight:bold;">Content</label>
+                <textarea id="txtpage4content" class="pagecontenttxt form-control">@Model.Page4Content</textarea>
+                <br />
+            </fieldset>
+        </div>
+
+        <div class="col-md-6" style="margin-top: -9px">
+            <fieldset>
+                <legend>Page5</legend>
+                <label id="lblpage5tit" class="pagetitlbl" Style="font-size: 15px;font-weight:bold;">Title</label>
+                <input type="text" id="txtpage5tit" maxlength="20" class="pagetittxt form-control" value="@Model.Page5Title" />
+                <br />
+                @if (@Model.Page5Status == true)
+                {
+                    <input type="checkbox" id="chkpage5" class="pagetittxt pagevisibletxt" style="margin-left:140px;" checked />
+                }
+                else
+                {
+                    <input type="checkbox" id="chkpage5" class="pagetittxt pagevisibletxt" style="margin-left:140px;" />
+                }
+
+                <label id="lblpage2tit" class="pagetitlbl" Style="font-size: 15px;margin-left: 5px;">Make this page visible</label>
+                <br />
+                <label id="lblpage5content" class="pagecontentlbl" style="font-size: 15px;font-weight:bold;">Content</label>
+                <textarea id="txtpage5content" class="pagecontenttxt form-control">@Model.Page5Content</textarea>
+            </fieldset>
+        </div>
+
+    </div>
+    <div style="margin: 10px 0 0 101px; padding-left: 43px;">
+        <input type="button" id="SubmitButton" class="btn btn-primary" value="Submit" />
+        @*<asp:Button runat="server" ID="SubmitButton" class="btn btn-primary" Text="Submit" OnClick="submitbutton_click" InsertText="Browse Files (Max 7M)"
+            ShowCheckBoxes="False" RemoveButtonBehavior="None" />*@
+
+    </div>
+
+
+
+    <br />
+    <br />
+
+    <br />
+    <br />
+    <br />
+
+    <br />
+    <br />
+    <br />
+    <div style="margin-left: 880px;">
+    </div>
+
+</form>
+
+<script type="text/javascript"
+        src="~/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        tinyMCE.init({
+            // General options
+            mode: "specific_textareas",
+            theme: "advanced",
+            editor_selector: "pagecontenttxt",
+            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups"
+
+        });
+    });
+</script>
+<style>
+
+    legend {
+        margin-bottom: 0px;
+        width: auto;
+        border: none;
+    }
+
+    fieldset {
+        padding: 15px;
+        margin-left: 25px;
+        border: 2px solid #e5e5e5;
+    }
+
+    .thumbnail {
+        margin-left: 25px;
+    }
+
+    .form-control {
+        display: inline;
+    }
+
+    label {
+        margin-left: 5px;
+        margin-top: 10px;
+        font-weight: 400;
+    }
+
+    .pagecontenttxt {
+        height: 124px;
+        margin-left: 228px;
+        width: 420px;
+    }
+
+    .pagecontentlbl {
+        margin-left: 25px;
+        position: absolute;
+        margin-top: 10px;
+    }
+
+    .pagetitlbl {
+        margin-left: 25px;
+    }
+
+    .pagetittxt {
+        margin-left: 79px;
+    }
+
+    .pagevisiblelbl {
+        margin-left: 72px;
+    }
+
+    .pagevisibletxt {
+        margin-left: 138px;
+    }
+</style>

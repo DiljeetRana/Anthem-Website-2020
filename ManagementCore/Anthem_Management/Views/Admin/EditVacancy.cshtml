@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "EditVacancy";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+    .row {
+        margin-bottom: 7px;
+    }
+</style>
+<div id="footerOuterSeparator"></div>
+
+<h3 style="margin-left:115px;color:#626262;float:left">Edit Vacancy</h3>
+<div style="margin-left:1170px;margin-top:0px;height:40px;">
+    <p runat="server" id="puser" style="font-size:medium;color:#003366;font-weight:600;"></p>
+</div>
+<link type="text/css" href="~/css/summernote.css" rel="stylesheet" />
+<link type="text/css" href="~/css/jquery.multiselect.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="~/cssStyle/style.css" rel="stylesheet" />
+<script type="text/javascript" src="~/js/home-index.js"></script>
+<script type="text/javascript" src="~/js/summernote.js"></script>
+<script type="text/javascript" src="~/js/jquery.multiselect.js"></script>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+
+<form class="form-horizontal" runat="server" id="EditVacancy" defaultbutton="btnsubmit" method="post">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <label runat="server" id="lblmessage" style="color: red; margin-left: 320px; margin-bottom: 5px; margin-top: 0px;"></label>
+    <div class="borderdiv" style="width: 1000px; margin-top: 20px; margin-left: 115px;">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <label for="lblVacancyTitle" class="control-label" style="margin-right: -10px;">Vacancy Title</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" id="txtVacancyTitle" class="form-control" style="width:100%;" value="@Model.JobTitle" />
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <label for="lblVacancyContent" class="control-label" style="margin-right: -10px;">Vacancy Content</label>
+            </div>
+            <div class="col-md-8">
+                <div id="summernote">
+                    @Html.Raw(@Model.Content)
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-2">
+                <button id="btnsubmit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+            <div class="col-md-2">
+                <button id="btnClear" class="btn btn-primary btn-block">Clear</button>
+            </div>
+            <div class="col-md-2">
+                <a href="\Admin\ManageVacancies" id="btnBack" class="btn btn-primary btn-block" style="color:white;margin-left:30px;">Back</a>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#navManagement").addClass("active").siblings().removeClass("active");
+        $('#summernote').summernote();
+        $('#summernote').summernote({
+            height: 900,       //  set editor height
+            minHeight: null,   //  set minimum height of editor
+            maxHeight: null,   //  set maximum height of editor
+            focus: true        //  set focus to editable area after initializing summernote
+        });
+        $('.note-editor').addClass('Metro');
+        $('.note-editable').css("height", "200px");
+    });
+</script>

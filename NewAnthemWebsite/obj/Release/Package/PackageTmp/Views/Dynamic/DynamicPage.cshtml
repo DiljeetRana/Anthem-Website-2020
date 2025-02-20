@@ -1,0 +1,36 @@
+﻿@model AnthemEntites.Project
+
+@{
+    ViewBag.Title = "DynamicPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<style>
+    /*.viewp {
+        
+        margin-left: -1px;
+        color: #626262;
+    }*/
+</style>
+
+<form>
+  
+    <div class="container">
+
+            @*<div class="col-md-12" style="margin-top: 26px; margin-bottom: 10px;">
+                <h1 style="color:#626262;margin-left: -2px; ">
+                    @Html.DisplayFor(model => model.PageName, null, new { @class = "form-control viewp" })
+                </h1>
+            </div>*@
+
+            <div class="col-md-12">
+                
+                    @Html.Raw(Model.Description)
+
+                    @*@Html.DisplayFor(model => model.Description, null, new { @class = "form-control" })*@
+               
+            </div>
+        </div>
+</form>

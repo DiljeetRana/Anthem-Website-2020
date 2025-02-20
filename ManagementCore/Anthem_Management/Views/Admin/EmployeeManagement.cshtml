@@ -1,0 +1,306 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeeManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #0e5da0;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .Robust-text {
+        font-family: Impact;
+        font-size: 32px;
+        font-weight: normal;
+    }
+
+    .Less-Robust-text {
+        font-family: sans-serif;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $('.scrollToTop').css('left', '1292px');
+    });
+
+    function ShowProgress() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading");
+            loading.show();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+
+
+    //$('form').live("submit", function () {
+    //    ShowProgress();
+    //});
+
+
+    //function ActiveFilterAction() {
+    //    debugger;
+    //    var xhttp;
+
+    //    xhttp = new XMLHttpRequest();
+    //    var Checked = $('#ActiveFilter_Switch:checkbox:checked').length > 0;
+    //    if (Checked)
+    //        xhttp.open("GET", "employeemanagement.aspx?q=" + "ShowActiveEmployees", true);
+    //    else
+    //        xhttp.open("GET", "employeemanagement.aspx?q=" + "HideActiveEmployees", true);
+    //    xhttp.send();
+    //}
+
+
+</script>
+<style>
+    .firstCapital {
+        text-transform: capitalize;
+    }
+
+    .loading {
+        font-family: Arial;
+        font-size: 10pt;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        width: 100%;
+        height: 100%;
+        display: none;
+        position: fixed;
+        background-color: black;
+        z-index: 999;
+        padding: 173px;
+    }
+</style>
+<div id="footerOuterSeparator"></div>
+<div class="loading" align="center" id="popup" runat="server">
+    <br />
+    <br />
+    <img src="~/image/ajax_loader_blue_512.gif" alt="" height="150" />
+</div>
+<h5 style="margin-left: 115px; color: #626262; float: left">Employee Management</h5>
+<div style="margin-left: 1170px; margin-top: 10px; height: 40px;">
+    <p runat="server" id="puser" style="font-size: medium; color: #003366; font-weight: 600;"></p>
+</div>
+<form class="form-horizontal" id="loginform" method="post" action="\Admin\EmployeeManagement" style="min-height: 497px">
+    <div style="margin-left: 11px; margin-right: 33px; float: right;">
+        <div style="margin-left: -121px; padding-left: 0px; width: 100%; height: 20px; float: right;">
+            <p id="pdownloadmessage" runat="server" style="font-size: 16px"></p>
+        </div>
+        <label style="margin-bottom: -10px">Show Active Employees</label>
+        <input type="checkbox" id="ActiveFilter_Switch" value="checked" name="Checkbox">
+        <span class="slider round"></span>
+        <input type="button" id="btnsendemail" class="btn btn-primary" style="margin-left: 0px; margin-bottom: 5px; padding: 5px 15px 5px 15px; font-family: Verdana; font-size: 16px" value="Send Email" runat="server" onserverclick="btnsendemail_ServerClick" />
+        <input type="button" id="btndownload" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 5px; padding: 5px 15px 5px 15px; font-family: Verdana; font-size: 16px" value="Download Employee Reports" runat="server" onserverclick="btndownload_ServerClick" />
+        <input type="button" id="btnaddnew" class="btn btn-primary" style="margin-left: 20px; margin-bottom: 5px; padding: 5px 15px 5px 15px; font-family: Verdana; font-size: 16px" value="Add New Employee" runat="server" onserverclick="btnaddnew_ServerClick" />
+    </div>
+    <div class="form-group" style="margin-left: 22px; width: 1292px;">
+        <table id="example" ForeColor="#333333" Font-Size="Small">
+            <thead>
+                <tr>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Code</th>
+                    <th style="width:190px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Name</th>
+                    <th style="width:180px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Gender</th>
+                    <th style="width:190px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Designation</th>
+                    <th style="width:160px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Joining Date</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Contact Number</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Status</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Birthday</th>
+                    <th style="width:110px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Email Id</th>
+                    <th style="width:110px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Verifed</th>
+                    <th style="width:110px;background-color:#0097E3;font-size:small;text-align:center;color:white;">IsActive</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">Edit</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">Delete</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.EmpCode</td>
+                    <td>@Model.Name</td>
+                    <td>@Model.Gender</td>
+                    <td>@Model.Designation</td>
+                    <td>@Model.JoiningDate</td>
+                    <td>@Model.ContactNumber</td>
+                    <td>@Model.Status</td>
+                    <td>@Model.Birthday</td>
+                    <td>@Model.OfficeEmail</td>
+                    <td>@Model.IsVerified</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        @*<asp:GridView ID="gdvemployee" runat="server" BorderWidth="0px" AutoGenerateColumns="False" CellPadding="4" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" DataKeyNames="EmployeeId" OnRowCommand="gdvemployee_RowCommand" AllowPaging="True" OnPageIndexChanging="gdvemployee_PageIndexChanging" ForeColor="#333333" OnSelectedIndexChanged="gdvemployee_SelectedIndexChanged" PageSize="50">
+                <AlternatingRowStyle BackColor="White" />
+                <Columns>
+                    <asp:BoundField DataField="EmployeeId" Visible="false" HeaderText="Employee Id">
+                        <HeaderStyle Width="100px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="EmpCode" HeaderText="Code">
+                        <HeaderStyle Width="190px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Name" HeaderText="Name">
+                        <ItemStyle CssClass="firstCapital" />
+                        <HeaderStyle Width="248px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Gender" HeaderText="Gender">
+                        <HeaderStyle Width="55px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Designation" HeaderText="Designation">
+                        <HeaderStyle Width="187px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="JoiningDate" HeaderText="Joining Date" DataFormatString="{0:dd/MM/yyyy}">
+                        <HeaderStyle Width="140px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="ContactNumber" HeaderText="Contact Number">
+                        <HeaderStyle Width="190px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Status" HeaderText="Status" Visible="False">
+                        <HeaderStyle Width="100px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Birthday" HeaderText="Birthday" DataFormatString="{0:dd/MM/yyyy}" Visible="False">
+                        <HeaderStyle Width="110px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="OfficeEmail" HeaderText="Email Id">
+                        <HeaderStyle Width="200px" HorizontalAlign="Center" Font-Size="Small" />
+                    </asp:BoundField>
+
+
+                    <asp:BoundField DataField="Isverified" HeaderText="Verifed" Visible="False" />
+                    <asp:TemplateField HeaderText="IsVerified">
+
+                        <ItemTemplate>
+                            <asp:Label ID="lblverified" runat="server" Visible='<%# Check2((string)Eval("IsVerified")) %>' Text="Verified"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Visible='<%# Check3((string)Eval("IsVerified")) %>' Text=""></asp:Label>
+                            <asp:LinkButton ID="btnverifed" CommandName="GeneratePassword" CommandArgument='<%#Eval("EmployeeId") %>' CssClass="btn btn-primary" OnClientClick="return confirm('Are you sure to verify this employee ?')" Visible='<%# Check((string)Eval("IsVerified"))  %>' runat="server" Text="Verify" Style="margin-left: 0px;" />
+
+
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="ActiveId" HeaderText="IsActive" Visible="False" />
+                    <asp:TemplateField HeaderText="Activate or Block">
+
+                        <ItemTemplate>
+                            <asp:Label ID="lblnull" runat="server" Visible='<%# Null((int)Eval("ActiveId")) %>' Text=""></asp:Label>
+                            <asp:LinkButton ID="btnactivate" CommandName="Activate" CommandArgument='<%#Eval("EmployeeId") %>' CssClass="btn btn-primary" Visible='<%# Check4((int)Eval("ActiveId"))  %>' OnClientClick="return confirm('Are you sure to activate account of this employee ?')" runat="server" Text="Activate" Style="margin-left: 0px;">
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="btnblocked" runat="server" ToolTip="Block" Text="Block" CommandName="Block" CommandArgument='<%#Eval("EmployeeId") %>' Visible='<%# Check5((int)Eval("ActiveId"))  %>' OnClientClick="return confirm('Are you sure to block account of this employee ?')" CssClass="btn btn-danger" Style="margin-left: 0px; padding: 6px 20px;">
+                            </asp:LinkButton>
+                            <%--<asp:Button ID="btnblocked" CommandName="Block" CommandArgument='<%#Eval("EmployeeId") %>' CssClass="btn btn-danger" Visible='<%# Check5((int)Eval("ActiveId"))  %>' OnClientClick="return confirm('Are you sure to block account of this employee ?')" runat="server" Text="Block" Style="margin-left: 0px; padding: 6px 20px;" />--%>
+                        </ItemTemplate>
+                        <HeaderStyle Width="215px" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnbedit" runat="server" ToolTip="Edit" Text="" CommandName="EditRow" CommandArgument='<%#Eval("EmployeeId") %>'>
+                                <img src="image/edit.jpg" style="cursor:pointer;height:20px;" id="imgeditbtn" />
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="50px" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Delete">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnbdelete" runat="server" ToolTip="Delete" OnClientClick="return confirm('Are you sure to delete this employee ?')" Text="" CommandName="DeleteRow" CommandArgument='<%#Eval("EmployeeId") %>'>
+                                <img src="image/delete.jpg" style="cursor:pointer;height:20px;" id="imgDeleteBtn" />
+                            </asp:LinkButton>
+
+                        </ItemTemplate>
+                        <HeaderStyle Width="50px" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="View">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="btnview" runat="server" ToolTip="View" Text="" CommandName="GetId" CommandArgument='<%#Eval("EmployeeId") %>'>
+                                <img src="image/view.jpg" style="cursor:pointer;height:20px;" id="imgviewbtn" />
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="50px" />
+                    </asp:TemplateField>
+                </Columns>
+                <EditRowStyle BackColor="WhiteSmoke" />
+                <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+                <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+                <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+                <HeaderStyle BackColor="#0097E3" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+                <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+                <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+                <SortedAscendingHeaderStyle BackColor="#0097E3" />
+                <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+                <SortedDescendingHeaderStyle BackColor="#0097E3" />
+            </asp:GridView>*@
+    </div>
+
+</form>
+<style>
+    span {
+        padding-left: 10px;
+    }
+</style>

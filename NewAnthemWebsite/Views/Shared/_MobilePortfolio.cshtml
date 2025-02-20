@@ -1,0 +1,40 @@
+﻿@model List<AnthemEntites.Projects>
+
+    @{
+        int count = 1;
+        int maxRender = 0;
+    }
+    @if (Model.Count <= 8)
+    {
+        maxRender = 8;
+    }
+
+
+    @foreach (var item in Model)
+    {
+        if (count <= maxRender)
+        {
+               <div class=" app hover-bg col-md-3  work-item" style="position:relative;margin: 20px 0px 20px 10px;padding:6px;text-align:justify;">
+                   <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                   <p style="height:81px;">
+                       @item.SmallDesciption
+                   </p>
+
+                   <center>
+                       <div class="sample work-item-image-container" style="width:fit-Content;">
+
+                           <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" style="height:125px;" />
+                       </div>
+                   </center>
+                   <div class="hover-text work-item-overlay">
+                       <div class="port-hover">
+                           <h4 style="font-size:18px;">@item.ProjectName</h4>
+                           <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                       </div>
+                   </div>
+
+               </div>
+            count++;
+        }
+    }

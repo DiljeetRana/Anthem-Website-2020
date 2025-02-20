@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeeReport";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+    .dropdowndiv {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 40px;
+    }
+
+    .dropdown1 {
+        width: 190px;
+    }
+
+    .gridview {
+        margin-left: 70px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        width: 1200px;
+        word-break: break-all;
+    }
+
+    .display1 {
+        display: none;
+    }
+
+    .btn1 {
+        float: left;
+        margin-right: 10px;
+        background-color: whitesmoke;
+        color: black;
+        border-color: lightsteelblue;
+    }
+</style>
+<script type="text/javascript">
+
+        function ShowHideDiv() {
+            var ddlPassport = document.getElementById("<%= ddlMonths.ClientID %>");
+                var dvPassport = document.getElementById("<%= ddlDay.ClientID %>");
+                dvPassport.style.display = ddlPassport.value == "13" ? "none" : "inline";
+
+                var ddlMonth = document.getElementById("<%=ddlMonths.ClientID%>");
+                var ddlYear = document.getElementById("<%=ddlYears.ClientID%>");
+                var ddlDay = document.getElementById("<%=ddlDay.ClientID%>");
+                var y = ddlYear.options[ddlYear.selectedIndex].value;
+                var m = ddlMonth.options[ddlMonth.selectedIndex].value != 0;
+                if (ddlMonth.options[ddlMonth.selectedIndex].value != 0 && ddlYear.options[ddlYear.selectedIndex].value != 0) {
+                    var dayCount = 32 - new Date(ddlYear.options[ddlYear.selectedIndex].value, ddlMonth.options[ddlMonth.selectedIndex].value - 1, 32).getDate();
+                    ddlDay.options.length = 0;
+                    AddOption(ddlDay, "--Select Day--", "0");
+                    for (var i = 1; i <= dayCount; i++) {
+                        AddOption(ddlDay, i, i);
+                    }
+                }
+            }
+
+            function AddOption(ddl, text, value) {
+                var opt = document.createElement("OPTION");
+                opt.text = text;
+                opt.value = value;
+                ddl.options.add(opt);
+            }
+
+            function Validate(sender, args) {
+                var ddlMonth = document.getElementById("<%=ddlMonths.ClientID%>");
+    var ddlYear = document.getElementById("<%=ddlYears.ClientID%>");
+    var ddlDay = document.getElementById("<%=ddlDay.ClientID%>");
+    args.IsValid = (ddlDay.selectedIndex != 0 && ddlMonth.selectedIndex != 0 && ddlYear.selectedIndex != 0)
+}
+</script>
+<form id="form1" runat="server" style="min-height: 80%;">
+    <div class="dropdowndiv">
+        <p id="puser" style="font-size: medium; color: #003366; margin-left: 1160px; font-weight: 600;"></p>
+        @Html.DropDownList("EmployeeId", new SelectList(ViewBag.EmpList, "EmployeeId", "Name"), "All Employees", new { @id = "employeelist", @class = "dropdown1", @autocomplete = "off" })
+        <select name="ddlYears" id="ddlYears" class="dropdown1">
+            <option selected="selected" value="0">--Select Year--</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+
+        </select>
+        <select name="ddlMonths" id="ddlMonths" class="dropdown1">
+            <option selected="selected" value="0">--Select Month--</option>
+            <option value="13">All Months</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+
+        </select>
+
+        <select name="ddlDay" id="ddlDay" class="dropdown1">
+            <option value="0">--Select Day--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+        </select>
+       
+        <button id="btnSubmit" class="btn btn-primary">Search</button>
+        <button id="btnToday" class="btn btn-primary " style="float: left!important; background-color: whitesmoke!important; color: black!important;">Today</button>
+    </div>
+    <div style="margin-left: 70px; font-weight: bold; margin-bottom: 1px;">
+        <label id="lblStatus"></label>
+    </div>
+    <div class="gridview">
+        @*<asp:GridView ID="dtgWorkReport" runat="server" AutoGenerateColumns="False" CellPadding="3" AllowPaging="true" ForeColor="#333333" GridLines="None" Width="1200px" OnPageIndexChanging="dtgWorkReport_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" PageSize="<%$ appSettings:GridPageSize %>" ShowFooter="true">
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:BoundField HeaderText="Employee" HeaderStyle-Width="13%" ItemStyle-Width="13%" DataField="Name" />
+                <asp:BoundField HeaderText="Checked In At" HeaderStyle-Width="14%" ItemStyle-Width="14%" NullDisplayText="Missed" DataField="CheckInTime" />
+                <asp:BoundField HeaderText="Checked Out At" HeaderStyle-Width="14%" ItemStyle-Width="14%" NullDisplayText="Missed" DataField="CheckOutTime" />
+                <asp:BoundField HeaderText="Status" NullDisplayText="Not Filled" DataField="WorkReport" />
+            </Columns>
+            <EmptyDataRowStyle BackColor="#EFEFEF"
+                               ForeColor="Red" />
+            <EmptyDataTemplate>
+                <asp:Image ID="NoDataImage"
+                           ImageUrl="~/Images/no-record-found.jpg"
+                           AlternateText="No Record Found"
+                           runat="server" Style="margin-left: 450px;" />
+            </EmptyDataTemplate>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#6886C4" ForeColor="White" Height="5px" />
+            <HeaderStyle BackColor="#6886C4" Font-Bold="True" ForeColor="White" />
+            <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" Visible="True" PageButtonCount="5" />
+            <PagerStyle ForeColor="#3A5795" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        </asp:GridView>*@
+    </div>
+</form>

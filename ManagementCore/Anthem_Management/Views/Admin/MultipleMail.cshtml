@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewData["Title"] = "MultipleMail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+        .Grid {
+            height: 399px;
+            overflow: auto;
+        }
+
+        .common {
+        }
+
+        .Metro {
+            left: 102px;
+            width: 171%;
+        }
+
+        .manage-text {
+            text-transform: capitalize;
+        }
+
+        .blink {
+            animation-duration: 0.1s;
+            animation-name: blink;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+
+        
+</style>
+<form action="\Admin\MultipleMail" method="post">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <link href="~/cssStyle/style.css" rel="stylesheet" />
+    @*<asp:HiddenField runat="server" ID="textarea" Value="" />*@
+    <input type="hidden" id="textarea" value="" />
+    <div class="container">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3 style="margin-top: 10px; margin-bottom: 10px; margin-left: -5px;">Send Bulk Emails</h3>
+                </div>
+                <div class="col-md-6">
+                    @*<div id="Email_Status" style="display:block!important;">*@
+                       <label id="labelMsg" class="blink"></label>
+                    @*</div>*@
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <table>
+                        <tr>
+                            <td>
+                                <label id="Label1" class="label label-default">To</label>
+                            </td>
+
+                            <td>
+                                <textarea id="To" class="form-control To" name="To" onkeyup="javascript:splittextvalues()" Style="margin: 0px 290px 0px 30px; width: 474px; height: 55px; position: relative; left: 13px;"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label id="Label2" class="label label-default">Subject</label>
+                            </td>
+
+                            <td style="padding-top:8px;">
+                                <input type="text" id="Subject" class="form-control" name="Subject" onKeyUp="" Style="margin: 0px 290px 0px 30px; width: 474px; position: relative; left: 13px;" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="col-lg-6">
+                        <label id="Label4" class="label label-default" Style="left: 7px; top: 171px; position: relative;">Message</label>
+                        <div id="summernote">
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <label id="Label3" class="label label-default">Attach File</label>
+                            </td>
+                            <td>
+                                <input type="file" id="File" name="File" class="form-control" onKeyUp="" Style="width: 477px" /> 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Please, Select/Add the employees or clients to send email.
+                    </p>
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#Employees">Employees</a></li>
+                        <li><a data-toggle="tab" href="#Clients">Clients</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="Employees" class="tab-pane fade in active">
+                            <div id="Div1" class="Grid">
+                                <table id="gdv_Members" class="table table-striped table-bordered table-hover" style="color:#333333;font-size:small;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:220px">Name</th>
+                                            <th style="">Send Mail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.EmpList)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                               <td>
+                                                   <label class="btn btn-primary mail" id="Mail_Button">
+                                                       Add
+                                                   </label>
+                                                   <input type="hidden" id="email" value="@item.Email" />
+                                               </td>
+
+                                            </tr>
+
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                               
+                            </div>
+                        </div>
+                        <div id="Clients" class="tab-pane fade">
+                            <div id="Div2" class="Grid">
+                                <table id="gdv_Clients" class="table table-striped table-bordered table-hover" style="color:#333333;font-size:small;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:220px">Name</th>
+                                            <th style="">Send Mail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.ClientList)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>
+                                                    <label class="btn btn-primary mail" id="Mail_Button">
+                                                        Add
+                                                    </label>
+                                                    <input type="hidden" id="email" value="@item.Email" />
+                                                </td>
+
+                                            </tr>
+
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="text-center" style="margin: 10px;">
+                        <button class="btn btn-primary" style="width:20%;" onclick="return SendEmail()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+        $(document).ready(function () {
+            $('#Email_Status').fadeOut(5000);
+
+            $('#summernote').summernote();
+
+            $('#summernote').summernote({
+                height: 900,       //  set editor height
+                minHeight: null,   //  set minimum height of editor
+                maxHeight: null,   //  set maximum height of editor
+                focus: true        //  set focus to editable area after initializing summernote
+            });
+
+
+
+            $('.note-editor').addClass('Metro');
+            $('.note-editable').css("height", "293px");
+
+        });
+</script>
+<script>
+        function splittextvalues() {
+            var regex_SingleEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s"]+(\.[^<>()\[\]\\.,;:\s"]+)*)|(".+"))((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/);
+            var regex_MultipleEmail = new RegExp(/(^[a-z]([a-z_\.]*)([a-z_\.]*)([.][a-z]{3})$)|(^[a-z]([a-z_\.]*)([a-z_\.]*)(\.[a-z]{3})(\.[a-z]{2})*$)/i);
+            var value = $('.To').val();
+            debugger;
+            var EmailArray = value.split(';');
+            if (value.match(regex_SingleEmail)) {
+                $('.To').val(value + ';');
+            }
+
+            else {
+
+                if (EmailArray.length > 1) {
+                    var next = EmailArray.length - 1;
+                    if ((EmailArray[next].replace(/\s/g, '')).match(regex_SingleEmail)) {
+                        $('.To').val(value + ';');
+                    }
+                }
+            }
+        }
+        $('.mail').click(function () {
+            debugger;
+            if ($(this).text() == 'Add') {
+                $(this).removeClass();
+                $(this).addClass('btn btn-danger mail');
+                $(this).html('');
+                $(this).html('Remove');
+
+                var Email = $(this).siblings().val();
+                if ($('#To').val() == '') {
+                    $('#To').val(Email);
+                }
+                else {
+                    var EmailArr = ($('#To').val()).split(';');
+                    EmailArr.push(Email);
+                    $('#To').val(EmailArr.join(';'));
+                }
+            }
+            else {
+                $(this).removeClass();
+                $(this).addClass('btn btn-primary mail');
+                $(this).html('');
+                $(this).html('Add');
+                var Email = $(this).siblings().val();
+                var EmailArray = $('#To').val().split(';');
+                for (i = 0; i <= EmailArray.length - 1; i++) {
+                    if (EmailArray[i] == Email) {
+                        EmailArray.splice(i, 1);
+                    }
+                }
+                $('#To').val(EmailArray.join(';'));
+            }
+        });
+        function GetEditorsText() {
+            debugger;
+            var textareaValue = $('#summernote').summernote('code');
+            $("#MultipleMail_textarea").val(textareaValue);
+        }
+</script>
+<script>
+    function SendEmail() {
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/MultipleMail',
+            data: {
+                'To': $("#To").val(),
+                'Subject': $("#Subject").val(),
+                'Message': $('.note-editable').text(),
+
+            },
+            async: false,
+            success: function (response) {
+                var JarrProperty = JSON.parse(response);
+                if (response == true) {
+                    $("#labelMsg").text('Email Sent Succesfully');
+                    $("#labelMsg").css("color", "green");
+                }
+                else {
+                    $("#labelMsg").text('Email Sending Failed');
+                    $("#labelMsg").css("color", "red");
+                }
+
+            }
+        });
+        return false;
+    }
+</script>

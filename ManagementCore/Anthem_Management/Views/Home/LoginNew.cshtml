@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: url(../Logimages/bg.png) repeat;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 300;
+        text-align: left;
+        text-decoration: none;
+    }
+    .login-form {
+        width: 300px;
+        position: relative;
+        z-index: 5;
+        background: #f3f3f3;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .img1 {
+        margin-left: 28px;
+    }
+
+
+    /* Second input field */
+    .login-form .content .password, .login-form .content .pass-icon {
+        margin-top: 25px;
+    }
+
+    .login-form .content .input:hover {
+        background: #dfe9ec;
+        color: #414848;
+    }
+
+    .login-form .content .input:focus {
+        background: #dfe9ec;
+        color: #414848;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+        -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+        -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+    }
+
+
+    /* Animation */
+    .input, .user-icon, .pass-icon, .button, .register {
+        transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+    }
+
+    .login-form .header {
+        padding: 25px 30px 30px 30px;
+    }
+
+    .user-icon, .pass-icon {
+        width: 46px;
+        height: 47px;
+        display: block;
+        position: absolute;
+        left: 0px;
+        margin-left: -47px;
+        padding-right: 2px;
+        z-index: 3;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+    }
+
+    .user-icon {
+        top: 214px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+        background: rgba(65,72,72,0.75) url(../Logimages/user-icon.png) no-repeat center;
+    }
+
+    .pass-icon {
+        top: 287px;
+        background: rgba(65,72,72,0.75) url(../Logimages/pass-icon.png) no-repeat center;
+    }
+</style>
+
+<div id="wrapper" style="margin-top:-250px!important;">
+    @if (ViewBag.message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.message");
+            };
+        </script>
+    }
+    <!--SLIDE-IN ICONS-->
+    @*<div class="user-icon"></div>
+        <div class="pass-icon"></div>*@
+    <!--END SLIDE-IN ICONS-->
+    <!--LOGIN FORM-->
+    <form class="login-form" runat="server" method="post" action="\Home\LoginNew">
+        <img src="~/Images/anthem-infotech.jpg" alt="Anthem infotech" title="Anthem Infotech" class="img1" width="80%" height="45px" />
+        <!--HEADER-->
+        <div class="header">
+            <!--DESCRIPTION-->
+            <span>
+                <b> Password Hint</b> : Concatenate ->Last 3 characters of your employee code | followed by  # character | followed by last 4 characters of your primary phone number | followed by  character | followed by year of your birth. In total 13 characters. i.e 001#2345@1997
+            </span>
+            <!--END DESCRIPTION-->
+        </div>
+        <!--END HEADER-->
+        <!--CONTENT-->
+        <div class="content">
+            <input name="username" type="text" class="input username" value="Username" onfocus="this.value=''" />
+            <input name="password" type="password" class="input password" value="Password" onfocus="this.value=''" />
+        </div>
+        <!--END CONTENT-->
+        <!--FOOTER-->
+
+        <div class="footer">
+
+            <input type="submit" name="submit" value="Login" class="button" />
+            <input type="submit" href="#" name="submit" value="Register" class="register" />
+            <img src="~/Logimages/back.png" style="height: 30px; width: 31px; margin-top: 7px;margin-left:-7PX;" />
+        </div>
+        <!--END FOOTER-->
+
+    </form>
+    <!--END LOGIN FORM-->
+
+</div>
+
+

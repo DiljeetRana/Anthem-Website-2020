@@ -1,0 +1,369 @@
+﻿
+@{
+    ViewData["Title"] = "AnthemNews";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+
+<style>
+    .common-padding {
+        width: auto;
+        height: 40px;
+    }
+
+    .val {
+        margin-left: -144px;
+        padding-left: 40px;
+    }
+
+    .drpo {
+        margin-left: 112px;
+    }
+
+    .drp {
+        width: 283px !important;
+        margin-left: -238px !important;
+    }
+
+    .width {
+        padding: 30px;
+    }
+
+    .marleft {
+        margin-left: 31px;
+    }
+
+    .AddB {
+        padding-right: 12px;
+        margin-left: -154px;
+    }
+
+    .UpdateB {
+        padding-right: 12px;
+        margin-left: -154px;
+    }
+
+    .cal1 {
+        margin-left: 30px;
+        width: 125px;
+    }
+
+    .cal2 {
+        width: 125px;
+        margin-left: -49px;
+    }
+
+    .grd {
+        margin-left: 162px;
+    }
+
+    th {
+        padding-left: 6px !important;
+        text-align: start;
+    }
+
+    .navbar {
+        margin-bottom: 0px !important;
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="~/dist/sweetalert.css" />
+<script src="~/dist/sweetalert.min.js"></script>
+<script src="~/dist/sweetalert-dev.js"></script>
+
+<form runat="server">
+    <div class="form-group">
+        <div runat="server" style="background-color: rgba(178, 178, 178, 0.62); padding: 4px 0; margin-bottom: 24px; padding-top: 4px;">
+            <div class="row">
+                <div class="col-md-12" style="margin-left: 11px;">
+                    <div class="col-md-4">
+                        <textarea ID="txtanthemnews1" ToolTip="Anthem News" runat="server" maxlength="250" onkeyup="return CountCharacter(this);" CssClass="form-control align textbox drpo" onchange="javascript:text_changed(this)" style="width:94% !important; height:31px;" required="required"></textarea><div style="text-align: right;margin-top:-19px"><span id="charcount" style="margin-right:-29px">0</span></div>
+
+                    </div>
+                    <div class="col-md-2 ">
+                        <div>
+                            @*<asp:Calendar OnKeyDown="return false;" runat="server" Visible="false" ID="datepicker3" OnSelectionChanged="datepicker_SelectionChanged" CssClass="width"></asp:Calendar>*@
+                        </div>
+                        <div>
+                            @*<asp:TextBox OnKeyDown="return false;" Height="31" runat="server" ID="calFromDate" CssClass="form-control common-padding align textbox firstCapital txtdate Common-class join cal1" CausesValidation="True" placeHolder="From Date" ToolTip="From Date" AutoComplete="off"></asp:TextBox>*@
+                            <input type="text" height="31" id="calFromDate" class="form-control align textbox firstCapital txtdate Common-class join cal1" placeHolder="From Date" title="From Date" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                            @*<asp:Calendar OnKeyDown="return false;" runat="server" Visible="false" ID="Calendar1" OnSelectionChanged="datepicker_SelectionChanged2"></asp:Calendar>*@
+                        </div>
+                        <div>
+                            <input type="text" height="31" id="calToDate" class="form-control align textbox firstCapital txtTodate Common-class join cal2" placeHolder="To Date" title="To Date" autocomplete="off" />
+                            @*<asp:TextBox OnKeyDown="return false;" Height="31" runat="server" ID="calToDate" CssClass="form-control common-padding align textbox firstCapital txtTodate Common-class join cal2" CausesValidation="True" placeHolder="To Date" ToolTip="To Date" AutoComplete="off"></asp:TextBox>*@
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="col-md-1">
+                            <input type="checkbox" id="CheckBox1" title="Continous" height="31" Style="margin-left: -240px; margin-top:-1px;" Class="form-control align textbox firstCapital Common-class exp common-padding" OnClick="oncheckchange();" />
+                        </div>
+                        <div class="col-md-1">
+                            <select name="ctl00$ContentPlaceHolder$Color2" id="ContentPlaceHolder_Color2" title="News Color" class="form-control align textbox firstCapital Common-class exp common-padding" style="height: 30px; margin-left: -194px; width: 143px;">
+                                <option value="#B22222" style="background-color:#B22222;color:white">Firebrick </option>
+                                <option value="#2E8B57" style="background-color:#2E8B57;color:white">Seagreen </option>
+                                <option value="#DAA520" style="background-color:#DAA520;color:white">Goldenrod </option>
+                                <option value="#A0522D" style="background-color:#A0522D;color:white">Sienna	</option>
+                                <option value="#A52A2A" style="background-color:#A52A2A;color:white">Brown	</option>
+                                <option value="#800000" style="background-color:#800000;color:white">Maroon	</option>
+                                <option value="#9370DB" style="background-color:#9370DB;color:white">Medium-Purple</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1 ">
+                            <input type="button" id="btnAddNewProject" height="29" style="margin-left:29px" Class="btn btn-primary AddB" value="Add News" onclick="return rolevalidate();" />
+                        </div>
+
+                        @*<div class="col-md-1 ">
+                                <input type="button" id="btnUpdateProject" height="29" style="margin-left:29px" Class="btn btn-primary UpdateB" value="Update" onclick="return rolevalidate();" disabled />
+                            </div>*@
+                        <div class="col-md-1 ">
+                            <input type="button" id="Button1" class="btn btn-primary UpdateB" Height="29" style="margin-left:115px" value="Clear" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container" style="text-align:center; margin-bottom:50px">
+            <div class="form-group">
+                <table id="example" ForeColor="#333333" Font-Size="Small">
+                    <thead>
+                        <tr>
+                            <th style="width:443px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">Message</th>
+                            <th style="width:100px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">From</th>
+                            <th style="width:100px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">To</th>
+                            <th style="width:92px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">Continuous</th>
+                            <th style="width:98px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">Publish Date</th>
+                            <th style="width:80px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">Color</th>
+                            <th style="width:56px;background-color:#3A5795;font-size:small;text-align:center;color:white;height:40px;">Edit</th>
+                            <th style="width:50px; background-color: #3A5795; font-size: small; text-align: center; color: white;height:40px;">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.News)
+                        {
+                            <tr>
+                                <td>@item.Message</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.Continuous</td>
+                                <td>@item.PublishDate</td>
+                                <td style="background-color:@item.Color"></td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @*<asp:GridView ID="GridAnthemNews" runat="server" BorderWidth="0px" AutoGenerateColumns="False" CellPadding="4" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" Font-Size="Small"
+                                  Font-Strikeout="False" Font-Underline="False"
+                                  ForeColor="#333333" CssClass="grd" OnRowCommand="cmdAnthemNews" OnRowDataBound="dm">
+                        <%--OnRowCommand="cmdEmployeeProject" OnRowDataBound="cmdEmployeeP"--%>
+
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="Message" HeaderText="Message ">
+                                <ItemStyle /><%-- Width="230px"--%>
+                                <HeaderStyle HorizontalAlign="Center" Width="443px" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="StartDate" HeaderText="From" dataformatstring="{0:dd/MM/yyyy}">
+                                <ItemStyle />
+                                <HeaderStyle Width="100px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="EndDate" HeaderText="To" dataformatstring="{0:dd/MM/yyyy}">
+                                <ItemStyle />
+                                <HeaderStyle Width="100px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Continuous" HeaderText="Continuous">
+                                <ItemStyle /><%--Width="340px"--%>
+                                <HeaderStyle Width="92px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PublishDate" HeaderText="Publish Date" dataformatstring="{0:dd/MM/yyyy}">
+                                <ItemStyle />
+                                <HeaderStyle Width="98px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Color" HeaderText="Color">
+                                <ItemStyle Width="5px" BorderWidth="1px" BorderColor="SkyBlue" />
+                                <HeaderStyle Width="5px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="Edit">
+                                <ItemTemplate>
+                                    <asp:LinkButton CssClass="" ID="btnEdit" runat="server" CommandName="Edit"
+                                                    Text="" CommandArgument='<%#Eval("MessageID")%>'>
+                                        <img src="image/edit.jpg" style="height: 20px; width: 20px; margin-left:4px;" />
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                                <HeaderStyle Width="50px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Delete">
+                                <ItemTemplate>
+                                    <asp:LinkButton runat="server" CssClass="" ID="lblDelete_Button" CommandName="DeleteRecord" OnClientClick="return deletealert(this, event);" CommandArgument='<%#Eval("MessageID")%>'>
+
+                                        <img src="image/delete.jpg" style="height: 20px; width: 20px; margin-left:14px;" />
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                                <HeaderStyle Width="56px" HorizontalAlign="Center" Font-Size="Small" />
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <EditRowStyle BackColor="WhiteSmoke" />
+                        <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+                        <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+                        <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+                        <HeaderStyle BackColor="#3A5795" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+                        <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+                        <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+                        <SortedAscendingHeaderStyle BackColor="#3A5795" />
+                        <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+                        <SortedDescendingHeaderStyle BackColor="#3A5795" />
+                    </asp:GridView>*@
+            </div>
+        </div>
+        <script>
+            function colorChanged(sender) {
+                debugger;
+                var colorname = sender.get_element().style.backgroundColor =
+                    "#" + sender.get_selectedColor();
+                //sender.get_element().style.backgroundColor =
+                //              "#" + sender.get_selectedColor();
+
+                //$("#SliderPlaceHolder_Color1").val("");
+            }
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {/*,maxDate: '0'*/
+                debugger;
+                var num_char = $("#SliderPlaceHolder_txtanthemnews1").val().length;
+                document.getElementById("charcount").textContent = num_char;
+                document.getElementById("charcount").textContent = num_char;
+
+
+                //   $(".txtdate").datepicker({ dateFormat: 'dd-mm-yy', changeYear: true, changeMonth: true, yearRange: '1920:2040',onSelect: function(selected) {
+                //$(".txtToDate").datepicker("option","minDate", selected)
+                $(".txtdate").datepicker({
+                    minDate: new Date(),
+                    dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '2018:2040'
+                }
+                    //  $(".txtdate").datepicker({ dateFormat: 'dd-mm-yy', changeYear: true, changeMonth: true, yearRange: '1920:2040',onSelect: function(selected) {
+                    //$(".txtToDate").datepicker("option","minDate", selected)
+
+                );
+
+                //$("#CancelDeleteImage").attr('disabled', 'disabled');
+            });
+        </script>
+
+        <script>
+            function deletealert(ctl, event) {
+                debugger;
+                // STORE HREF ATTRIBUTE OF LINK CTL (THIS) BUTTON
+                var defaultAction = $(ctl).prop("href");
+                // CANCEL DEFAULT LINK BEHAVIOUR
+                event.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this record!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel it!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal({ title: "Deleted!", text: "Your record has been deleted.", type: "success", confirmButtonText: "OK!", closeOnConfirm: false },
+                                function () {
+                                    // RESUME THE DEFAULT LINK ACTION
+                                    window.location.href = defaultAction;
+                                    return true;
+                                });
+                        } else {
+                            swal("Cancelled", "Your record is safe :)", "error");
+                            return false;
+                        }
+                    });
+            }
+
+        </script>
+        <script>
+            debugger;
+            function oncheckchange() {
+                var startdate = document.getElementById('SliderPlaceHolder_calFromDate');
+                var enddate = document.getElementById('SliderPlaceHolder_calToDate');
+                if (document.getElementById('SliderPlaceHolder_CheckBox1').checked) {
+                    //var startdate = document.getElementById('SliderPlaceHolder_calFromDate');
+                    //var enddate = document.getElementById('SliderPlaceHolder_calToDate');
+                    startdate.disabled = true;
+                    enddate.disabled = true;
+                    startdate.val("");
+                    enddate.val("");
+                }
+                else {
+                    startdate.disabled = false;
+                    enddate.disabled = false;
+                }
+            }
+        </script>
+
+
+        <script type="text/javascript">
+            debugger;
+            function rolevalidate() {
+                debugger;
+
+                if (document.getElementById("<%=calFromDate.ClientID%>").value == "" && document.getElementById("<%=calFromDate.ClientID%>").value == "" && document.getElementById("<%=CheckBox1.ClientID%>").checked == false) {
+                    alert("Please Select the dates or click on checkbox");
+                    return false;
+                }
+
+            }
+
+        </script>
+
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".txtTodate").datepicker({
+                    minDate: new Date(), dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '2018:2040'
+                });
+
+            });
+        </script>
+
+        <script>
+            function CountCharacter(ch) {
+                var char = ch.value;
+                document.getElementById("charcount").textContent = char.length
+            }
+        </script>
+
+        <script>
+
+            function text_changed(txtanthemnews) {
+                debugger;
+                txtanthemnews.value = txtanthemnews.value.charAt(0).toUpperCase() + txtanthemnews.value.slice(1);
+            }
+        </script>
+    </div>
+</form>

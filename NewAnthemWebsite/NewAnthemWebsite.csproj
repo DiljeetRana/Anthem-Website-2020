@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38FD0B20-3B2E-4E69-A274-688174A22C4D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewAnthemWebsite</RootNamespace>
+    <AssemblyName>NewAnthemWebsite</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="hbehr.recaptcha, Version=1.9.0.36338, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ReCaptcha-AspNet.1.9.0\lib\net46\hbehr.recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BrochureController.cs" />
+    <Compile Include="Controllers\CareerController.cs" />
+    <Compile Include="Controllers\DynamicController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OurWorkController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Arimo.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\master.css" />
+    <Content Include="Content\Roboto.css" />
+    <Content Include="css\accordian.css" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\backtotop.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrapValidator.css" />
+    <Content Include="css\captcha.css" />
+    <Content Include="css\Doc.css" />
+    <Content Include="css\easy-responsive-tabs.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\full-thumb-slider-hover-effect.css" />
+    <Content Include="css\hover.css" />
+    <Content Include="css\layers.css" />
+    <Content Include="css\master.css" />
+    <Content Include="css\mega-dropdown.css" />
+    <Content Include="css\navigation.css" />
+    <Content Include="css\NewCss.css" />
+    <Content Include="css\portfolio.css" />
+    <Content Include="css\preetyphoto.css" />
+    <Content Include="css\prettycs1.css" />
+    <Content Include="css\res-menu.css" />
+    <Content Include="css\settings.css" />
+    <Content Include="css\slick-theme.css" />
+    <Content Include="css\slick.css" />
+    <Content Include="css\stickyheader.css" />
+    <Content Include="css\Tab.css" />
+    <Content Include="css\Test.css" />
+    <Content Include="css\theme.css" />
+    <Content Include="css\tooltip-viewport.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="hover-effcect-script\css\default.css" />
+    <Content Include="hover-effcect-script\css\demo.css" />
+    <Content Include="hover-effcect-script\css\normalize.css" />
+    <Content Include="hover-effcect-script\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="hover-effcect-script\fonts\codropsicons\license.txt" />
+    <Content Include="hover-effcect-script\images\1.png" />
+    <Content Include="hover-effcect-script\images\2.png" />
+    <Content Include="hover-effcect-script\images\3.png" />
+    <Content Include="hover-effcect-script\images\4.png" />
+    <Content Include="hover-effcect-script\images\5.png" />
+    <Content Include="hover-effcect-script\images\6.png" />
+    <Content Include="hover-effcect-script\images\anthem-unit-converter.png" />
+    <Content Include="hover-effcect-script\images\athem-infotech-portfolio.png" />
+    <Content Include="hover-effcect-script\images\Dialog-Box-About.png" />
+    <Content Include="hover-effcect-script\images\FintrackFinancialServices.png" />
+    <Content Include="hover-effcect-script\images\max-match-magic.png" />
+    <Content Include="hover-effcect-script\images\max-math-magic.png" />
+    <Content Include="hover-effcect-script\images\sms-secure-backup.png" />
+    <Content Include="hover-effcect-script\images\ucab-icon.png" />
+    <Content Include="hover-effcect-script\images\ucab-logo.png" />
+    <Content Include="hover-effcect-script\images\User-Group.png" />
+    <Content Include="hover-effcect-script\images\View.png" />
+    <Content Include="hover-effcect-script\js\modernizr.custom.js" />
+    <Content Include="hover-effcect-script\js\toucheffects.js" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\css\component.css" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\css\demo.css" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\css\normalize.css" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\codropsicons\license.txt" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\icomoon\icomoon.svg" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\index.html" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\js\classie.js" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\js\modernizr.custom.js" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\js\progressButton.js" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\._index.html" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._codropsicons.svg" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._license.txt" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\icomoon\._icomoon.svg" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\js\._modernizr.custom.js" />
+    <Content Include="images\1599647835641.JPEG" />
+    <Content Include="images\2_2560x1170.jpg" />
+    <Content Include="images\3_2560x1170 %281%29.jpg" />
+    <Content Include="images\4_2560x1170 %281%29.jpg" />
+    <Content Include="images\4_2560x1170.jpg" />
+    <Content Include="images\5_2560x1170.jpg" />
+    <Content Include="images\6_2560x1170.jpg" />
+    <Content Include="images\7_2560x1170.jpg" />
+    <Content Include="images\anthem-infotech %282%29.jpg" />
+    <Content Include="images\avtar.jpg" />
+    <Content Include="images\backtotop.png" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\bullet-arrow-gray.png" />
+    <Content Include="images\business.jpg" />
+    <Content Include="images\custom_Software_1110x400.jpg" />
+    <Content Include="images\downArrow.png" />
+    <Content Include="images\favicon.png" />
+    <Content Include="images\Final-50-Text.png" />
+    <Content Include="images\Final-50-U.png" />
+    <Content Include="images\Final-50.png" />
+    <Content Include="images\Find-Us-Button1.png" />
+    <Content Include="images\footer.jpg" />
+    <Content Include="images\gray-pixel.png" />
+    <Content Include="images\home.png" />
+    <Content Include="images\icn-accordion-minus.jpg" />
+    <Content Include="images\icn-accordion-plus.jpg" />
+    <Content Include="images\icn-social-light.png" />
+    <Content Include="images\icn-social.png" />
+    <Content Include="images\leftArrow-hover - Copy.png" />
+    <Content Include="images\leftArrow-white.png" />
+    <Content Include="images\leftArrow.png" />
+    <Content Include="images\link.png" />
+    <Content Include="images\logo-white.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\Logo_25.png" />
+    <Content Include="images\Maintenance_1110x400.png" />
+    <Content Include="images\Mobile_1110x400.jpg" />
+    <Content Include="images\parallax-mobile-object %281%29.png" />
+    <Content Include="images\parallax-mobile-object.png" />
+    <Content Include="images\parallax-mobile-object2 %281%29.png" />
+    <Content Include="images\parallax-mobile-object2.png" />
+    <Content Include="images\parallaxbg1.jpg" />
+    <Content Include="images\PicsArt_09-01-03.19.33.png" />
+    <Content Include="images\processed %281%29.jpeg" />
+    <Content Include="images\processed.jpeg" />
+    <Content Include="images\quote-icn.png" />
+    <Content Include="images\select-arrow.png" />
+    <Content Include="images\SEO_1100x400.png" />
+    <Content Include="images\Services_1110x400.png" />
+    <Content Include="images\slide1.jpg" />
+    <Content Include="images\slide2.jpg" />
+    <Content Include="images\slide3.jpg" />
+    <Content Include="images\social-style-1.png" />
+    <Content Include="images\team-social.png" />
+    <Content Include="images\testimonials-arrow-icn.png" />
+    <Content Include="images\UIUX_1110x400.png" />
+    <Content Include="images\upArrow.png" />
+    <Content Include="images\WebsiteDesignDevelopment.jpg" />
+    <Content Include="images\zoom-icn.png" />
+    <Content Include="js1\js\application.js" />
+    <Content Include="js1\js\bootstrap-affix.js" />
+    <Content Include="js1\js\bootstrap-alert.js" />
+    <Content Include="js1\js\bootstrap-button.js" />
+    <Content Include="js1\js\bootstrap-carousel.js" />
+    <Content Include="js1\js\bootstrap-collapse.js" />
+    <Content Include="js1\js\bootstrap-dropdown.js" />
+    <Content Include="js1\js\bootstrap-modal.js" />
+    <Content Include="js1\js\bootstrap-popover.js" />
+    <Content Include="js1\js\bootstrap-scrollspy.js" />
+    <Content Include="js1\js\bootstrap-tab.js" />
+    <Content Include="js1\js\bootstrap-tooltip.js" />
+    <Content Include="js1\js\bootstrap-transition.js" />
+    <Content Include="js1\js\bootstrap-typeahead.js" />
+    <Content Include="js1\js\bootstrap.js" />
+    <Content Include="js1\js\bootstrap.min.js" />
+    <Content Include="js1\js\contact.js" />
+    <Content Include="js1\js\custom.js" />
+    <Content Include="js1\js\google-code-prettify\prettify.css" />
+    <Content Include="js1\js\google-code-prettify\prettify.js" />
+    <Content Include="js1\js\jquery.isotope.min.js" />
+    <Content Include="js1\js\jquery.js" />
+    <Content Include="js1\js\jquery.prettyPhoto.js" />
+    <Content Include="js1\js\superfish.js" />
+    <Content Include="js\accordian.js" />
+    <Content Include="js\animation.js" />
+    <Content Include="js\backtotop.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\bootstrapValidator.js" />
+    <Content Include="js\counter.js" />
+    <Content Include="js\easyResponsiveTabs.js" />
+    <Content Include="js\formValidation.js" />
+    <Content Include="js\function.js" />
+    <Content Include="js\function1.js" />
+    <Content Include="js\ie10-viewport-bug-workaround.js" />
+    <Content Include="js\isotope.js" />
+    <Content Include="js\jquery-1.11.2.js" />
+    <Content Include="js\jquery.popup.leanModal.min.js" />
+    <Content Include="js\jquery.portfolio.js" />
+    <Content Include="js\mega-dropdown.js" />
+    <Content Include="js\modernizr.js" />
+    <Content Include="js\number-counter.js" />
+    <Content Include="js\p-gallery.js" />
+    <Content Include="js\parallax.js" />
+    <Content Include="js\revoluation\jquery.themepunch.revolution.min.js" />
+    <Content Include="js\revoluation\jquery.themepunch.tools.min.js" />
+    <Content Include="js\revoluation\revoluationfunction.js" />
+    <Content Include="js\revoluation\revolution.extension.actions.min.js" />
+    <Content Include="js\revoluation\revolution.extension.carousel.min.js" />
+    <Content Include="js\revoluation\revolution.extension.kenburn.min.js" />
+    <Content Include="js\revoluation\revolution.extension.layeranimation.min.js" />
+    <Content Include="js\revoluation\revolution.extension.migration.min.js" />
+    <Content Include="js\revoluation\revolution.extension.navigation.min.js" />
+    <Content Include="js\revoluation\revolution.extension.parallax.min.js" />
+    <Content Include="js\revoluation\revolution.extension.slideanims.min.js" />
+    <Content Include="js\revoluation\revolution.extension.video.min.js" />
+    <Content Include="js\slick.js" />
+    <Content Include="js\stickyheader.js" />
+    <Content Include="js\tooltip-viewport.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="hover-effcect-script\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="hover-effcect-script\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="hover-effcect-script\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles.zip" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\icomoon\icomoon.eot" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\icomoon\icomoon.ttf" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\fonts\icomoon\icomoon.woff" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\ProgressButtonStyles\README.md" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\._.DS_Store" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\._css" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\._js" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\._README.md" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\css\._.DS_Store" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\._.DS_Store" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\._icomoon" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._.DS_Store" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._codropsicons.eot" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._codropsicons.ttf" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\codropsicons\._codropsicons.woff" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\icomoon\._icomoon.eot" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\icomoon\._icomoon.ttf" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\fonts\icomoon\._icomoon.woff" />
+    <Content Include="hover-effcect-script\Submit-Button-Effect\__MACOSX\ProgressButtonStyles\js\._.DS_Store" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Word Art.html" />
+    <Content Include="css\testing.scss" />
+    <Content Include="js1\js\README.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JqueryRevolutionSlider.min.js" />
+    <Content Include="Scripts\JqueryTouchSwipe.min.js" />
+    <Content Include="Scripts\Layeranimation.min.js" />
+    <Content Include="Scripts\Migration.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Navigation.min.js" />
+    <Content Include="Scripts\Parallax.min.js" />
+    <Content Include="Scripts\revolutionFunction.js" />
+    <Content Include="Scripts\Slideanims.js" />
+    <Content Include="tf-free-no.3\css\animate.css" />
+    <Content Include="tf-free-no.3\css\bootstrap.css" />
+    <Content Include="tf-free-no.3\css\bootstrap.min.css" />
+    <Content Include="tf-free-no.3\css\myyy.css" />
+    <Content Include="tf-free-no.3\css\owl.carousel.css" />
+    <Content Include="tf-free-no.3\css\owl.theme.css" />
+    <Content Include="tf-free-no.3\css\responsive.css" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="tf-free-no.3\fonts\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="tf-free-no.3\img\01.jpg" />
+    <Content Include="tf-free-no.3\img\02.png" />
+    <Content Include="tf-free-no.3\img\03.jpg" />
+    <Content Include="tf-free-no.3\img\04.jpg" />
+    <Content Include="tf-free-no.3\img\05.jpg" />
+    <Content Include="tf-free-no.3\img\client\01.png" />
+    <Content Include="tf-free-no.3\img\client\02.png" />
+    <Content Include="tf-free-no.3\img\client\03.png" />
+    <Content Include="tf-free-no.3\img\client\04.png" />
+    <Content Include="tf-free-no.3\img\client\05.png" />
+    <Content Include="tf-free-no.3\img\client\06.png" />
+    <Content Include="tf-free-no.3\img\client\07.png" />
+    <Content Include="tf-free-no.3\img\plasma-diet.png" />
+    <Content Include="tf-free-no.3\img\portfolio\01.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\02.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\03.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\04.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\05.png" />
+    <Content Include="tf-free-no.3\img\portfolio\06.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\07.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\08.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\9.jpg" />
+    <Content Include="tf-free-no.3\img\portfolio\anthem-unit-converter-app-icon.png" />
+    <Content Include="tf-free-no.3\img\portfolio\max-smart-pocket-app-icon.png" />
+    <Content Include="tf-free-no.3\img\portfolio\max-spell-app-icon.png" />
+    <Content Include="tf-free-no.3\img\portfolio\medical-website.png" />
+    <Content Include="tf-free-no.3\img\portfolio\plasma-app.png" />
+    <Content Include="tf-free-no.3\img\portfolio\sms-backup.png" />
+    <Content Include="tf-free-no.3\img\portfolio\ucab-app.png" />
+    <Content Include="tf-free-no.3\img\portfolio\xray-parts-website.png" />
+    <Content Include="tf-free-no.3\img\team\01.jpg" />
+    <Content Include="tf-free-no.3\img\team\02.jpg" />
+    <Content Include="tf-free-no.3\img\team\03.jpg" />
+    <Content Include="tf-free-no.3\img\team\04.jpg" />
+    <Content Include="tf-free-no.3\js\bootstrap.js" />
+    <Content Include="tf-free-no.3\js\bootstrap.min.js" />
+    <Content Include="tf-free-no.3\js\jquery.1.11.1.js" />
+    <Content Include="tf-free-no.3\js\jquery.isotope.js" />
+    <Content Include="tf-free-no.3\js\main.js" />
+    <Content Include="tf-free-no.3\js\modernizr.custom.js" />
+    <Content Include="tf-free-no.3\js\owl.carousel.js" />
+    <Content Include="tf-free-no.3\js\SmoothScroll.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Header.cshtml" />
+    <Content Include="Views\Home\_Footer.cshtml" />
+    <Content Include="Views\Home\__OurServices.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Shared\_TopEightProjects.cshtml" />
+    <Content Include="Views\Shared\_MobilePortfolio.cshtml" />
+    <Content Include="Views\Shared\_WebsitePortfoilio.cshtml" />
+    <Content Include="Views\OurWork\Index.cshtml" />
+    <Content Include="Views\Brochure\Brochure.cshtml" />
+    <Content Include="Views\Dynamic\DynamicPage.cshtml" />
+    <Content Include="Views\Email\SendEmail.cshtml" />
+    <Content Include="Views\Shared\_Clients.cshtml" />
+    <Content Include="Views\Career\Index.cshtml" />
+    <Content Include="Views\Career\SendEmail.cshtml" />
+    <Content Include="Views\Home\AspDotnetApplication.cshtml" />
+    <Content Include="Views\Home\SoftwareDevelopment.cshtml" />
+    <Content Include="Views\Home\SoftwareMaintenance.cshtml" />
+    <Content Include="Views\Home\SearchEngineOptimization.cshtml" />
+    <Content Include="Views\Home\MobileAppDevelopment.cshtml" />
+    <Content Include="Views\Home\WebsiteDesigningService.cshtml" />
+    <Content Include="Views\Home\ViewProject.cshtml" />
+    <Content Include="Views\Home\OurServices.cshtml" />
+    <Content Include="Views\Home\SendEmail.cshtml" />
+    <Content Include="Views\Home\Industries.cshtml" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\animated.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\core.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\fixed-width.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\font-awesome.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\icons.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\larger.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\list.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\mixins.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\path.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\stacked.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\less\variables.less" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_animated.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_core.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_icons.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_larger.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_list.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_mixins.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_path.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_stacked.scss" />
+    <Content Include="tf-free-no.3\fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="tf-free-no.3\fonts\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="tf-free-no.3\fonts\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="tf-free-no.3\fonts\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="tf-free-no.3\fonts\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="testing.scss" />
+    <Content Include="Views\Shared\_ASPPortfolio.cshtml" />
+    <Content Include="Views\Shared\_PHPPortfolio.cshtml" />
+    <Content Include="Views\Shared\_CMS.cshtml" />
+    <Content Include="Views\Shared\_Ecommerce.cshtml" />
+    <Content Include="Views\Shared\_Anderoid.cshtml" />
+    <Content Include="Views\Shared\_IOS.cshtml" />
+    <Content Include="Views\Shared\_Window.cshtml" />
+    <Content Include="Views\Shared\_HTML.cshtml" />
+    <Content Include="Views\Shared\_WEBSITE.cshtml" />
+    <Content Include="Views\Shared\_ShowAll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnthemDLL\AnthemDLL.csproj">
+      <Project>{efb4c28e-e767-4d18-a351-b1207c38edc0}</Project>
+      <Name>AnthemDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnthemEntities\AnthemEntities.csproj">
+      <Project>{c9bbe189-489f-47d1-b470-e465d237c38f}</Project>
+      <Name>AnthemEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnthermBLL\AnthermBLL.csproj">
+      <Project>{D84FE4EC-8023-45C3-975D-C4278B4D7307}</Project>
+      <Name>AnthermBLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51859</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51859/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

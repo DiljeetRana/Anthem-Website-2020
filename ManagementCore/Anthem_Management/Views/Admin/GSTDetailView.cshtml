@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "GSTDetailView";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .Label-design {
+        width: 10%;
+    }
+
+    .background-designer {
+        /*margin-top: 95px;*/
+        /*box-shadow: 0px 0px 20px 0px black;*/
+        border-width: 1px;
+        border-color: lightgrey;
+    }
+</style>
+<style>
+    .Label-design {
+        width: 10%;
+        font-weight: bold;
+    }
+
+    .background-designer {
+        /*margin-top: 95px;*/
+        /*margin-bottom: 37%;*/
+        /*box-shadow: 0px 0px 20px 0px black;*/
+        margin-right: 70px;
+        margin-left: 70px;
+    }
+
+    .inner-background {
+        border-width: 1px;
+        border-color: grey;
+        border: solid;
+    }
+
+    .borderfordiv {
+        border: solid;
+        border-color: grey;
+        border-width: 1px;
+        padding-bottom: 30px;
+        padding-left: 0;
+        padding-right: 30px;
+        padding-top: 30px;
+    }
+
+    .common-padding {
+        padding: 10px;
+    }
+</style>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<form id="AddGstForm" style="min-height:555px;">
+    <div style="margin-top:10px;margin-left:115px;">
+        <label id="lblheader" style="font-weight:bold;">View Gst Detail</label>
+    </div>
+
+    <div class="row" style="margin-top:30px;margin-left:115px;margin-right:150px;border:1px solid black;padding-bottom:20px;">
+        <div class="col-md-12">
+            <div class="col-md-2 text-right common-padding">
+                <label id="Name" class="Label-design">Entity Name:</label>
+            </div>
+            <div class="col-md-10 common-padding">
+                <input type="hidden" name="hfgstId" value="@ViewBag.GstId" />
+                <label id="lblClientName">@ViewBag.ClientName</label>
+            </div>
+
+            <div class="col-md-2 text-right common-padding">
+                <label id="GstNo" class="Label-design">GST No:</label>
+            </div>
+            <div class="col-md-10 common-padding">
+                <label id="lblClientName">@ViewBag.GstNumber</label>
+            </div>
+            <div class="col-md-2 text-right common-padding">
+                <label id="GstAddress" class="Label-design">GST Address:</label>
+            </div>
+            <div class="col-md-10 common-padding">
+                <label id="lblClientName">@ViewBag.GstAddress</label>
+            </div>
+            <div class="col-md-2 text-right common-padding">
+                <label id="VendorCode" class="Label-design">Vendor Code:</label>
+            </div>
+            <div class="col-md-10 common-padding">
+                <label id="lblClientName">@ViewBag.VendorCode</label>
+            </div>
+            <div class="col-md-2 text-right common-padding">
+                <label id="PONumber" class="Label-design">PO Number:</label>
+            </div>
+            <div class="col-md-10 common-padding">
+                <label id="lblClientName">@ViewBag.PONumber</label>
+            </div>
+
+            <div class="col-md-2 text-right common-padding">
+
+
+            </div>
+            <div class="col-md-10 common-padding">
+                <input type="button" class="btn btn-primary" style="margin-left: 0px;" value="Edit" />
+                <input type="button" class="btn btn-primary" style="margin-left: 10px;" value="Back" />
+            </div>
+        </div>
+    </div>
+
+</form>
+

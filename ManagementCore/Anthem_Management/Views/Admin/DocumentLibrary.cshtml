@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "DocumentLibrary";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div style="min-height: 537px;">
+    <h5 style="margin-left: 115px; color: #626262; float: left" runat="server">Document Library</h5>
+    <div style="margin-left: 1170px; margin-top: 10px; height: 40px;">
+        @*<p id="puser" style="font-size: medium; color: #003366; font-weight: 600;"></p>*@
+
+    </div>
+
+    <form runat="server" style="margin-top: 5px;">
+        <div style="margin-left: 115px; margin-bottom: 5px; float: left">
+            @*<label style="float: left; font-family: Verdana; font-size: 14px;"></label>
+            <p id="p1"  class="form-control"  style="float: left; width: 150px; text-align: center; margin-left: 18px;"></p>
+            <p id="pmessage"  style="color: red; float: left; width: 120px"></p>*@
+        </div>
+
+        <input type="button"  id="btnsubmit" class="btn btn-primary" value="Add New Document" style="font-size: 15px; font-family: Verdana; margin-bottom: 5px; margin-left: 242px" />
+
+
+
+        <div class="form-group" style="margin-left: 115px; float: left">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:220px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Document Name</th>
+                        <th style="width:250px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">File Name</th>
+                        <th style="width:145px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Date Uploaded</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Edit</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.DocumentsList)
+                    {
+
+                        <tr>
+                            <td>@item.DocName</td>
+                            <td>@item.FileName</td>
+                            <td>@item.DateUploaded</td>
+                            <td>
+                                <a>
+                                    <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                </a>
+                            </td>
+                        </tr>
+
+
+                    }
+
+                </tbody>
+            </table>
+            @*<asp:GridView ID="gdvdoc" runat="server" BorderWidth="0px" AutoGenerateColumns="False" CellPadding="4" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" DataKeyNames="DocId" OnRowCommand="gdvdoc_RowCommand" OnPageIndexChanging="gdvdoc_PageIndexChanging" ForeColor="#333333" AllowPaging="True" PageSize="15">
+            <%--Width="944px"--%>
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:BoundField DataField="DocId" HeaderText="DocId" Visible="False" />
+                <asp:BoundField DataField="DocName" HeaderText="Document Name">
+                    <HeaderStyle Width="220px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="FileName" HeaderText="File Name">
+                    <HeaderStyle Width="250px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="DateUploaded" HeaderText="Date Uploaded">
+                    <HeaderStyle Width="145px" />
+                </asp:BoundField>
+
+
+                <asp:TemplateField HeaderText="Edit">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnbedit" runat="server" ToolTip="Edit" Text="" CommandName="EditRow" CommandArgument='<%#Eval("DocId") %>'>
+                            <img src="image/edit.jpg" style="cursor:pointer;height:20px;" id="imgeditbtn" />
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                    <HeaderStyle Width="50px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnbdelete" runat="server" ToolTip="Delete" OnClientClick="return confirm('Are you sure to delete this document ?')" Text="" CommandName="DeleteDoc" CommandArgument='<%#Eval("DocId") %>'>
+                            <img src="image/delete.jpg" style="cursor:pointer;height:20px;" id="imgDeleteBtn" />
+                        </asp:LinkButton>
+
+                    </ItemTemplate>
+                    <HeaderStyle Width="50px" />
+                </asp:TemplateField>
+            </Columns>
+            <EditRowStyle BackColor="WhiteSmoke" />
+            <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+            <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+            <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+            <HeaderStyle BackColor="#0097E3" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+            <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+            <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+            <SortedAscendingHeaderStyle BackColor="#0097E3" />
+            <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+            <SortedDescendingHeaderStyle BackColor="#0097E3" />
+        </asp:GridView>*@
+        </div>
+
+
+        <div style="margin-left: 880px;">
+            <img src="~/image/anthem-infotecha.png" height="400" width="455" />
+        </div>
+
+    </form>
+
+</div>

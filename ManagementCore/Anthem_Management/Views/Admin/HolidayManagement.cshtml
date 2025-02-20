@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "HolidayManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div style="min-height:537px;">
+    <h5 style="margin-left:115px;color:#626262;float:left" runat="server">Holidays</h5>
+    <div style="margin-left:1170px;margin-top:10px;height:40px;">
+        <p id="puser" style="font-size:medium;color:#003366;font-weight:600;"></p>
+    </div>
+
+    <form runat="server" style="margin-top:5px; ">
+        <div style="margin-left:115px;margin-bottom:5px;float:left">
+            <label style="float:left;font-family:Verdana;font-size:14px;">Please Select Year for Holidays</label>
+            @*<asp:DropDownList ID="ddlyear" runat="server" CssClass="form-control" AutoPostBack="true" style="float:left;width:150px;text-align:center;margin-left:18px;"></asp:DropDownList>*@
+            <select id="ddlyear" class="form-control" style="float:left;width:150px;text-align:center;margin-left:18px;">@ViewBag.YearList</select>
+            <p id="pmessage" runat="server" style="color:red;float:left;width:120px"></p>
+
+        </div>
+        <a href="\Admin\AddHoliday" id="btnsubmit" class="btn btn-primary" value="" style="color:white;font-size:16px;padding:7px 20px 5px 20px;font-family:Verdana;margin-bottom:5px;margin-left:54px">Add Holiday</a> 
+       
+        <div class="form-group" style="margin-left:115px;float:left">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:200px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Holiday Date</th>
+                        <th style="width:220px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Holiday</th>
+                        <th style="width:100px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Day</th>
+                        <th style="width:100px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Edit</th>
+                        <th style="width:100px;background-color:#0097E3;font-weight:bold;height:40px;color:white;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.HolidayList)
+                    {
+                        @if (Convert.ToDateTime(item.FestivalDate) < DateTime.Now)
+                        {
+                            <tr style="text-decoration:line-through;">
+                                <td>@item.FestivalDate</td>
+                                <td>@item.FestivalName</td>
+                                <td>@item.FestivalDay</td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr style="font-weight:bold;">
+                                <td>@item.FestivalDate</td>
+                                <td>@item.FestivalName</td>
+                                <td>@item.FestivalDay</td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a>
+                                        <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+           
+        </div>
+
+
+        <div style="margin-left:880px;">
+            <img src="~/image/anthem-infotecha.png" height="400" width="455" />
+        </div>
+
+    </form>
+
+</div>
+

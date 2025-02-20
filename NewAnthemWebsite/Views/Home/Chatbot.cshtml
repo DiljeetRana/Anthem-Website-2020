@@ -1,0 +1,330 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <title>Chat GPT - Custom software development companies - Australian web development</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="description" content="Anthem Infotech Provides Web Designing Services HTML 5 ASP.Net Development Custom Software Development Desktop Applications Windows Applications SEO and Android Application.">
+    <meta name="keywords" content="designing services, ASP.net Development, Search Engine Optimization, custom Software Development, Desktop Applications, windows applications, SQL Server, application development,web development,mobile application development,iOS mobile applications,custom business solutions,Australian web development, website development australia, web design company australia, web development company in australia, website designing company in sydney, SEO companies india, Mobile app development company india, web development companies india, web design company india, custom software development companies ">
+    <meta name="google-site-verification" content="google1674954ae57ea5d3.html" />
+    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
+
+
+
+</head>
+<body>
+    <style>
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .message-item {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .outgoing .message-bubble {
+            background-color: #00609b;
+            color: white;
+            align-self: flex-end;
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .incoming .message-bubble {
+            background-color: #e2e2e2;
+            color: black;
+            align-self: flex-start;
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .sender {
+            font-weight: bold;
+        }
+
+        .content {
+            margin-top: 5px;
+        }
+
+        .typing-indicator {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        body {
+            background: #145ca6;
+            background-image: url("https://antheminfotech.com/images/backgroundchatgptimage.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+
+
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card" style="border-radius: 15px; margin-top: 20px; background-color: #FFFFFF;">
+                    <div class="card-header" style="text-align: center; font-family: monospace; font-weight: 600; font-size: larger; ">
+
+                        <div class="row header-data">
+                            <div class="col-md-6 col-xs-4 logo" style=" margin: auto;">
+                                <a href="/Home/Index"><img src="/images/Final-50-U.png" alt="Anthem Infotech Logo" style="height: 60px;"></a>
+                                <a href="/Home/Index"><img src="/images/Final-50-Text.png" alt="Anthem Infotech Pvt Ltd" style="height:42px;"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-header" style="text-align: center; font-family: monospace; font-weight: 600; font-size: larger; ">
+
+                        Welcome To <span style=" color: #145ca6; font-weight: 600;">Anthem</span> OpenAI &#x1F916;
+                    </div>
+                    <div id="message-list" class="card-body chat-container"></div>
+                    <div class="card-footer">
+                        <div class="input-group" >
+                            <input type="text" id="user-message" class="form-control" placeholder="Type your message..." style=" border-radius: 15px;" oninput="adjustHeight(this)">
+
+                            <div class="input-group-append">
+                                <a id="send-button">
+                                    <img src="~/images/send-message.png" alt="Image" style="height: 34px; margin-inline-start: 20px;">
+                                </a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="~/js/ChatGpt.js"></script>*@
+
+    <script>
+       
+// Rest of the code...
+
+
+        function adjustHeight(element) {
+            element.style.height = "auto";
+            element.style.height = (element.scrollHeight) + "px";
+        }
+        const API_URL = "https://api.openai.com/v1/chat/completions";
+        //const API_KEY = "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";
+        const API_KEY = "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";
+        const systemMessage = {
+            role: "system",
+            content: "Answer only information technology questions. If you have a different question, I'll give a sorry message."
+        };
+
+        const messages = [
+            {
+                message: "Hello, Ask me anything!",
+                sentTime: "just now",
+                sender: "ChatGPT"
+            }
+        ];
+  
+        async function sendMessage() {
+            const userMessage = document.getElementById("user-message").value;
+            document.getElementById("user-message").value = "";
+            //console.log('hy', userMessage)
+            const newMessage = {
+                //message: userMessage,
+                message: userMessage !== "" ? userMessage : "Empty",
+
+                direction: "outgoing",
+                sender: "user"
+            };
+
+
+            messages.push(newMessage);
+            renderMessages();
+            sendQuestion(userMessage);
+            // Check if the user's message contains the word "anthem" (case-insensitive)
+            const isAnthemQuestion = userMessage.toLowerCase().includes("anthem infotech");
+            if (isAnthemQuestion) {
+                // Respond directly to the anthem question
+                const anthemResponse = "We have been working in the industry since 2011. We are specialized mainly in Microsoft technologies (Asp.net/ Asp.net MVC/ Asp.net Core/ MS SQL Server/ .Net Framework / Azure / C#.Net). We thrive on building Enterprise Solutions, Software Products, B2B applications and lot more that help people and businesses to compete and perform better. Our approach is to understand requirements thoroughly, ask the suitable questions to prepare best plan, executing it in timely manner with customer feedback and to produce a best solution. Our Office Address is #11, Floor 11, Sushma Infinium, Chandigarh - Ambala Highway, Near Best Price Zirakpur, Punjab – 140603 India.";
+                const newMessageAnthem = {
+                    message: anthemResponse,
+                    sender: "ChatGPT"
+                };
+                messages.push(newMessageAnthem);
+                renderMessages();
+            } else {
+                // Proceed with the regular API call to ChatGPT for other questions
+                await processMessageToChatGPT(messages);
+            }
+        }
+
+
+
+        let isTyping = false;
+
+        async function processMessageToChatGPT(chatMessages) {
+            isTyping = true;
+            renderMessages();
+
+            const apiMessages = chatMessages.map((messageObject) => {
+                let role = "";
+                if (messageObject.sender === "ChatGPT") {
+                    role = "assistant";
+                } else {
+                    role = "user";
+                }
+                return { role: role, content: messageObject.message };
+            });
+
+            const apiRequestBody = {
+                model: "gpt-3.5-turbo",
+                messages: [systemMessage, ...apiMessages]
+            };
+
+            try {
+                const response = await $.ajax({
+                    url: API_URL,
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Bearer " + API_KEY);
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                    },
+                    data: JSON.stringify(apiRequestBody),
+                    dataType: 'json'
+                });
+
+                const newMessage = {
+                    message: response.choices[0].message.content,
+                    sender: "ChatGPT"
+                };
+
+                messages.push(newMessage);
+                isTyping = false;
+                renderMessages();
+            } catch (error) {
+                const errorMessage = {
+                    message: "An error occurred. Please try again later.",
+                    sender: "ChatGPT"
+                };
+                messages.push(errorMessage);
+                isTyping = false;
+                renderMessages();
+            }
+        }
+        function renderMessages() {
+            const messageList = document.getElementById("message-list");
+            messageList.innerHTML = "";
+
+            messages.forEach((message) => {
+                const messageItem = document.createElement("div");
+                messageItem.classList.add("message-item");
+
+                if (message.direction === "outgoing") {
+                    messageItem.classList.add("outgoing");
+                } else {
+                    messageItem.classList.add("incoming");
+                }
+
+                const messageBubble = document.createElement("div");
+                messageBubble.classList.add("message-bubble");
+                messageBubble.textContent = message.message;
+
+                messageItem.appendChild(messageBubble);
+                messageList.appendChild(messageItem);
+            });
+
+            if (isTyping) {
+                const typingIndicator = document.createElement("div");
+                typingIndicator.classList.add("typing-indicator");
+                typingIndicator.textContent = "Anthem Ai is typing...";
+
+                messageList.appendChild(typingIndicator);
+            }
+
+            messageList.scrollTop = messageList.scrollHeight;
+        }
+
+
+        document.getElementById("send-button").addEventListener("click", sendMessage);
+
+        document.getElementById("send-button").addEventListener("click", sendMessage);
+        document.getElementById("user-message").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        renderMessages();
+
+
+      
+        async function sendQuestion(userMessage) {
+
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+
+                console.log('ask', userMessage);
+
+                const formData = new FormData();
+                formData.append('IPAddress', data.ip);
+                formData.append('Question', userMessage);
+
+                await fetch('/Home/SendEmailforChatgpt', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                console.log('Saved');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        
+            //fetch('https://api.ipify.org?format=json')
+            //    .then((response) => response.json())
+            //    .then((data) => {
+            //        const userMessage1 = document.getElementById("user-message").value;
+            //        console.log('ask', userMessage1);
+
+            //        const formData = new FormData();
+            //        formData.append('IPAddress', data.ip);
+            //        formData.append('Question', userMessage1);
+
+            //        fetch('/Home/SendEmailforChatgpt', {
+            //            method: 'POST',
+            //            body: formData
+            //        })
+            //            .then((response) => {
+            //                console.log('Saved');
+            //            })
+            //            .catch((error) => {
+            //                console.error('Error sending data to the server:', error);
+            //            });
+            //    })
+            //    .catch((error) => {
+            //        console.error('Error fetching IP address:', error);
+            //    });
+        }
+
+    </script>
+</body>
+</html>

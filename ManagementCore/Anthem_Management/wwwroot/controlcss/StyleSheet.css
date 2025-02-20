@@ -1,0 +1,132 @@
+﻿h1 {
+    margin-top: 30px;
+    text-shadow: rgba(0, 0, 0, 0.0980392) 0px 3px 5px, rgba(255, 255, 255, 0.298039) 0px -5px 35px;
+    margin-left: 70px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: small;
+}
+
+#gridview {
+    clear: both;
+}
+
+.Addbutton {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    font-family: Arial;
+    color: black;
+    font-size: 18px;
+    background: #F8F8F8;
+    padding: 5px 20px 5px 20px;
+    text-decoration: none;
+    /*margin-left:20px;*/
+}
+
+    .Addbutton:hover {
+        background: #0097E3;
+        color: white;
+    }
+
+#left {
+    width: 450px;
+    float: left;
+}
+
+#right {
+    width: 450px;
+}
+
+.borderdiv {
+    margin: 20px 20px 20px 60px;
+    padding-top: 20px;
+    border-style: ridge;
+    border-color: gray;
+    border-width: thin;
+    text-align: left;
+    width: 1000px;
+}
+
+
+
+.MyCalendar .ajax__calendar_container {
+    border: 1px solid #646464;
+    background-color: lemonchiffon;
+    color: red;
+}
+
+    .MyCalendar .ajax__calendar_container th {
+        padding: 0px;
+    }
+
+    .MyCalendar .ajax__calendar_container td {
+        background-color: lemonchiffon;
+        padding: 0px;
+    }
+
+.MyCalendar .ajax__calendar_other .ajax__calendar_day, .MyCalendar .ajax__calendar_other .ajax__calendar_year {
+    color: black;
+}
+
+.MyCalendar .ajax__calendar_hover .ajax__calendar_day, .MyCalendar .ajax__calendar_hover .ajax__calendar_month, .MyCalendar .ajax__calendar_hover .ajax__calendar_year {
+    color: black;
+}
+
+.MyCalendar .ajax__calendar_active .ajax__calendar_day, .MyCalendar .ajax__calendar_active .ajax__calendar_month, .MyCalendar .ajax__calendar_active .ajax__calendar_year {
+    color: black;
+    font-weight: bold;
+}
+
+
+
+.buttonprimary {
+    width: auto;
+    height: 32px;
+    color: white;
+    background-color: #6886C4;
+    font-weight: 600;
+}
+
+    .buttonprimary:hover {
+        font-weight: normal;
+        width: auto;
+        height: 32px;
+        color: white;
+        background-color: #4364AB;
+    }
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.lbl {
+    float: left;
+    margin-right: 40px;
+}
+
+
+
+
+
+
+
+
+@keyframes blinkborder {
+    50% {
+        border-color: #e68a00;
+        border-width: 3px;
+    }
+}
+
+.div { /*or other element you want*/
+    animation: blinkborder .5s step-end infinite alternate;
+}
+@keyframes blink {
+    80% {
+        visibility: hidden;
+    }
+}

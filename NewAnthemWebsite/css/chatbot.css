@@ -1,0 +1,46 @@
+﻿
+#chatgptinput {
+    width: 250px;
+    margin-inline-start: 33px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#chatgptcontainer {
+    background-color: #f4f4f4;
+    border-radius: 25px;
+    height: 300px;
+}
+
+
+@media (min-width: 768px) {
+
+    #chatgptinput {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 500px;
+        margin-inline-start: 330px;
+        margin-top: 10px;
+    }
+
+
+    #chatgptcontainer {
+        background-color: #f4f4f4;
+        border-radius: 25px;
+        height: 170px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

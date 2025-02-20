@@ -1,0 +1,889 @@
+﻿
+@{
+    var segments = HttpContext.Current.Request.Url.Segments;
+    var lastSegment = segments.LastOrDefault();
+    var sectionName = lastSegment != null ? lastSegment.Trim('/') : null;
+
+}
+<!doctype html>
+@{
+
+    var All = (List<AnthemEntites.Projects>)ViewBag.AllProjects;
+    var RES = (List<AnthemEntites.Categories>
+    )ViewBag.Responsive;
+    var ASP = (List<AnthemEntites.Categories>
+        )ViewBag.ASPNetDevelopment;
+    var MVC = (List<AnthemEntites.Categories>
+        )ViewBag.MVC;
+    var WORD = (List<AnthemEntites.Categories>
+        )
+          ViewBag.WordPress;
+    var HTML5 = (List<AnthemEntites.Categories>
+        )
+      ViewBag.HTML5;
+    var Mobile = (List<AnthemEntites.Categories>
+        )ViewBag.Mobile;
+    var CSS = (List<AnthemEntites.Categories>
+        )ViewBag.CSS;
+    var JQuery = (List<AnthemEntites.Categories>
+        )ViewBag.JQuery;
+
+
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <title>PROJECTS - Mobile app development company India - website development Australia</title>
+    <meta name="description" content="Anthem Infotech Provides Web Designing Services HTML 5 ASP.Net Development Custom Software Development Desktop Applications Windows Applications SEO and Android Application.">
+    <meta name="keywords" content="designing services, ASP.net Development, Search Engine Optimization, custom Software Development, Desktop Applications, windows applications, SQL Server, application development,web development,mobile application development,iOS mobile applications,custom business solutions,Australian web development, website development australia, web design company australia, web development company in australia, website designing company in sydney, SEO companies india, Mobile app development company india, web development companies india, web design company india, custom software development companies ">
+    <meta name="google-site-verification" content="google1674954ae57ea5d3.html" />
+    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
+
+    @*<link href="~/css/fontfamily.css" rel="stylesheet" />
+        <link href="~/css/Roboto.css" rel="stylesheet" />
+        <link href="~/css/accordian.css" rel="stylesheet" />
+        <link href="~/css/animate.css" rel="stylesheet" />*@
+    <link href="~/css/backtotop.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/full-thumb-slider-hover-effect.css" rel="stylesheet" />
+    @*<link href="~/css/hover.css" rel="stylesheet" />*@
+    <link href="~/css/mega-dropdown.css" rel="stylesheet" />
+    @*<link href="~/css/layers.css" rel="stylesheet" />*@
+
+    <link href="~/css/res-menu.css" rel="stylesheet" />
+    <link href="~/css/portfolio.css" rel="stylesheet" />
+    <link href="~/css/settings.css" rel="stylesheet" />
+    @*<link href="~/css/slick.css" rel="stylesheet" />
+        <link href="~/css/slick-theme.css" rel="stylesheet" />*@
+    <link href="~/css/stickyheader.css" rel="stylesheet" />
+    <link href="~/css/theme.css" rel="stylesheet" />
+    @*<link href="~/css/tooltip-viewport.css" rel="stylesheet" />*@
+<style>
+        .pwdbyanthmbtns1 {
+            background-color: white;
+            background-image: -moz-linear-gradient(center top, hsl(213, 100%, 45%) 0%, hsl(195, 56%, 19%) 100%);
+            border: 1px solid hsl(0, 0%, 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 2px hsl(0, 0%, 73%), 0 0 1px hsl(0, 0%, 100%) inset;
+            /*color: hsl(0, 12%, 91%);*/
+            color: #009CFF;
+            font: bold 12px Arial, Helvetica, sans-serif;
+            padding: 2px 5px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .modal-header {
+            min-height: 16.43px;
+            padding: 40px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #009cff;
+        }
+
+        .innerpagetitle {
+            padding: 0px 0 0px;
+        }
+
+
+
+
+        .work-item:hover .work-item-overlay {
+            -webkit-transition: 0.4s ease-out;
+            -moz-transition: 0.4s ease-out;
+            -o-transition: 0.4s ease-out;
+            transition: 0.4s ease-out;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+        }
+
+        .work-item:hover .inner {
+            top: 50%;
+            -webkit-transition: 0.6s ease-out;
+            -moz-transition: 0.6s ease-out;
+            -o-transition: 0.6s ease-out;
+            transition: 0.6s ease-out;
+        }
+
+        .btn-success {
+            color: #fff;
+            background-color: rgba(0,0,0,.4) !important;
+            border: none;
+            border-radius: 0;
+        }
+
+        div a h4 {
+            margin-top: 23px;
+        }
+
+        .span4 {
+            min-height: 410px;
+        }
+
+        label {
+            display: inline-block !important;
+        }
+
+        .col-6 {
+            width: 19%;
+            float: left;
+            margin-right: .5%;
+        }
+    .spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 40px; /* Adjust size as needed */
+        height: 40px; /* Adjust size as needed */
+        border-radius: 50%;
+        border: 4px solid #yourPrimaryColor; /* Replace 'yourPrimaryColor' with your desired color */
+        border-top-color: transparent;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+    }
+
+    .blur {
+        filter: blur(5px); /* Adjust blur amount as needed */
+        pointer-events: none;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+    <header class="styleheader1">
+        <div class="col-md-offset-3 col-sm-offset-3 header-top header-top styleheader2">
+            <div class="container">
+                <div class="row">
+                    <div class="topinfo pull-left styleheader3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5"><i class="fa fa-phone fa-x icons-white"></i><a href="tel:+91 9815-34-0123">+91 9815-34-0123</a></div>
+                        <div class="col-md-6"><i class="fa fa-envelope fa-x icons-white"></i><a href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="header-white">
+            <div class="container">
+                <div class="row header-data">
+                    <div class="col-md-3 col-xs-2 logo">
+                        <a href="/Home/Index"><img src="/images/NewAnthemLogo.png" alt="Anthem Infotech Pvt Ltd" style="height:50px;"></a>
+                    </div>
+                    <div class="col-md-9 pull-right header-position">
+                        <section class="top-bar-section">
+                            <ul id="menu-main-menu-2" class="right">
+                                <li><a href="/Home/Index">Home</a></li>
+                                <li class="megamenu has-children has-dropdown">
+                                    <a href="/Home/OurServices"><span>Services</span><i class=""></i></a>
+                                    <ul class="dropdown fullwidhtdropdown" style="width: 536px !important; right: -388px !important;">
+                                        <li class="fullwidth">
+                                            <ul>
+                                                <li><a href="/Home/AspDotnetApplication"><i class="fa fa-angle-right fa-2x-before"></i><span>Website Design </span></a></li>
+                                                <li><a href="/Home/SoftwareMaintenance"><i class="fa fa-angle-right fa-2x-before"></i><span>Web Software Maintenance</span></a></li>
+
+
+                                            </ul>
+                                            <ul>
+                                                <li><a href="/Home/SoftwareDevelopment"><i class="fa fa-angle-right fa-2x-before"></i><span>Custom Software</span></a></li>
+                                                <li><a href="/Home/MobileAppDevelopment"><i class="fa fa-angle-right fa-2x-before"></i><span>Mobile App & Development</span></a></li>
+                                            </ul>
+                                            <ul>
+
+                                                <li><a href="/Home/SearchEngineOptimization"><i class="fa fa-angle-right fa-2x-before"></i><span>Digital Marketing (SEO)</span></a></li>
+                                                <li><a href="/Home/WebsiteDesigningService"><i class="fa fa-angle-right fa-2x-before"></i><span>UI/UX </span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="megamenu has-children has-dropdown">
+                                    <a href="/Home/Industries"><span>Industries</span><i class=""></i></a>
+                                    <ul class="dropdown fullwidhtdropdown" style="width: 1140px; right: -556.922px;">
+                                        <li class="fullwidth">
+                                            <ul>
+                                                <li><a href="#" onclick="FoodOrdering()"><i class="fa fa-angle-right fa-2x-before"></i><span>Food Ordering</span></a></li>
+                                                <li><a href="#" onclick="HOAAutomation()"><i class="fa fa-angle-right fa-2x-before"></i><span>HOA Automation</span></a></li>
+                                                <li><a href="#l" onclick="FinancialAdvisory()"><i class="fa fa-angle-right fa-2x-before"></i><span>Financial Advisory</span></a></li>
+                                                <li><a href="#" onclick="Tourism()"><i class="fa fa-angle-right fa-2x-before"></i><span>Tourism</span></a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="#" onclick="InformationTechnology()"><i class="fa fa-angle-right fa-2x-before"></i><span>Information Technology</span></a></li>
+                                                <li><a href="#" onclick="Travel()"><i class="fa fa-angle-right fa-2x-before"></i><span>Travel</span></a></li>
+                                                <li><a href="#" onclick="Construction()"><i class="fa fa-angle-right fa-2x-before"></i><span>Construction</span></a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="#" onclick="BusinessPromotions()"><i class="fa fa-angle-right fa-2x-before"></i><span>Business Promotions</span></a></li>
+                                                <li><a href="#" onclick="Logistics()"><i class="fa fa-angle-right fa-2x-before"></i><span>Logistics</span></a></li>
+                                                <li><a href="#" onclick="HealthMedicines()"><i class="fa fa-angle-right fa-2x-before"></i><span>Health &amp; Medicines</span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="/Career">Career</a></li>
+                                <li><a href="/OurWork">Portfolio</a></li>
+                                <li><a href="/Brochure/Brochure">Brochure</a></li>
+                                <li><a href="/Home/AboutUs">About Us</a></li>
+                                <li><a href="/Home/ContactUs">Contact Us</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+        <div class="fix-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-xs-10 logo">
+                        <a class="logo1" href="/Home/Index"><img src="/images/Final-50-U.png" alt="Anthem Infotech Logo" style="height:50px;"></a>
+                        <a class="logo2" href="/Home/Index">
+                            <img src="/images/Final-50-Text.png" alt="Anthem Infotech Pvt Ltd" style="height:35px;">
+                        </a>
+                        <nav class="nav is-fixed nav-al" role="navigation">
+                            <button class="nav-toggle" style="background-color: #00609B;"> <span class="icon-menu"><span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span></span> </button>
+                            <div class="nav-container">
+                                <ul class="nav-menu menu">
+                                    <li><a href="/Home/Index">Home</a></li>
+                                    <li><a href="/Home/OurServices">Services</a></li>
+                                    <li class="megamenu has-children has-dropdown">
+                                        <a href="/Home/Industries"><span>Industries</span><i class=""></i></a>
+                                        <ul class="dropdown fullwidhtdropdown">
+                                            <li class="fullwidth">
+                                                <ul>
+                                                    <li><a href="#" onclick="FoodOrdering()"><i class="fa fa-angle-right fa-2x-before"></i><span>Food Ordering</span></a></li>
+                                                    <li><a href="#" onclick="HOAAutomation()"><i class="fa fa-angle-right fa-2x-before"></i><span>HOA Automation</span></a></li>
+                                                    <li><a href="#" onclick="FinancialAdvisory()"><i class="fa fa-angle-right fa-2x-before"></i><span>Financial Advisory</span></a></li>
+                                                    <li><a href="#" onclick="Tourism()"><i class="fa fa-angle-right fa-2x-before"></i><span>Tourism</span></a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#" onclick="InformationTechnology()"><i class="fa fa-angle-right fa-2x-before"></i><span>Information Technology</span></a></li>
+                                                    <li><a href="#" onclick="Travel()"><i class="fa fa-angle-right fa-2x-before"></i><span>Travel</span></a></li>
+                                                    <li><a href="#" onclick="Construction()"><i class="fa fa-angle-right fa-2x-before"></i><span>Construction</span></a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#" onclick="BusinessPromotions()"><i class="fa fa-angle-right fa-2x-before"></i><span>Business Promotions</span></a></li>
+                                                    <li><a href="#" onclick="Logistics()"><i class="fa fa-angle-right fa-2x-before"></i><span>Logistics</span></a></li>
+                                                    <li><a href="#" onclick="HealthMedicines()"><i class="fa fa-angle-right fa-2x-before"></i><span>Health &amp; Medicines</span></a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="/Career">Career</a></li>
+                                    <li><a href="/OurWork">Portfolio</a></li>
+                                    <li><a href="/Brochure/Brochure">Brochure</a></li>
+                                    <li><a href="/Home/AboutUs">About Us</a></li>
+                                    <li><a href="/Home/ContactUs">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-2 pull-right res-bar">
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="innerpagetitle styleinner1" style="">
+        <div class="container">
+            <div class="mar-btm styleinner2" style="">
+                <h1 class="styleinner3" style=""><span class="small-font">Portfolio</span></h1>
+            </div>
+            <div class="innerbreadcrumb upper-font styleinner4" style=""> <a href="/Home/Index">Home</a> / <a href="/OurWork" class="activelink">Portfolio</a> </div>
+        </div>
+    </div>
+
+    @*<div class="innerpagetitle" style="background: #00609b;padding: 10px 0 10px;">
+            <div class="container">
+                <div class="mar-btm" style="margin-top:-10px;">
+                    <h1 style="margin-bottom: -12px;"><span class="small-font">Portfolio</span></h1>
+                </div>
+                <div class="innerbreadcrumb upper-font" style="float:right;margin-top: -18px;"> <a href="/Home/Index">Home</a> / <a href="/OurWork" class="activelink">Portfolio</a> </div>
+            </div>
+        </div>*@
+    <div class="clear"></div>
+
+    <div class="filter wow fadeInDown">
+        <ul class="Empty-15 port">
+            <li><a href="#" id="tab0" data-filter=".All" class="active">All</a></li>
+            @*<li><a href="#" id="tab0" data-filter="*" class="active">All</a></li>*@
+            <li><a href="#" id="tab1" data-filter=".RES">Responsive Websites</a></li>
+            <li><a href="#" id="tab2" data-filter=".ASP" class="">ASP.Net & Core</a></li>
+            <li><a href="#" id="tab3" data-filter=".MVC" class="">MVC.Net</a></li>
+            <li><a href="#" id="tab4" data-filter=".WORD" class="">WordPress & PHP </a></li>
+            <li><a href="#" id="tab5" data-filter=".HTML5" class="">HTML5</a></li>
+            <li><a href="#" id="tab6" data-filter=".Mobile" class="">Mobile Apps</a></li>
+            <li><a href="#" id="tab7" data-filter=".CSS" class="">HTML5/CSS3</a></li>
+            <li><a href="#" id="tab8" data-filter=".JQuery" class="">JQuery</a></li>
+        </ul>
+    </div>
+    <div style="padding-top:30px;">
+        <div class="middlecontent" style="padding: 0px 0 0;margin-left: 5px;">
+            <div id="spinner" class="spinner"></div>
+
+            <div id="content" class="blur">
+                <div class="row">
+                    <div class="col-md-12" style="padding-left: 0px;padding-bottom:50px;">
+                        <div class="span12" style="margin: 0;width: 100%;display: inline-block;">
+                            <div id="portfolio" class="row portfoliodiv4 wow fadeInDown" style="margin: 0; width: 100%; display: flex; display: -ms-flex; display: -webkit-flex; flex-wrap: wrap;left:11px!important;">
+                                @if (ViewBag.searchlist != "")
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <div class=" app hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;">
+                                            <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+                                            <p class="pd-5" style="height:auto;">
+                                                @item.SmallDesciption
+                                            </p>
+                                            <center>
+                                                <div class="sample work-item-image-container" style="width:fit-content;">
+                                                    <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                </div>
+                                            </center>
+                                            <div class="hover-text work-item-overlay">
+                                                <div class="port-hover">
+                                                    <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                    <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    if (ViewBag.searchlist == "")
+                                    {
+                                        switch (sectionName.ToUpper())
+                                        {
+
+                                            case "MVC":
+                                                // Render MVC section
+                                                foreach (var item in MVC)
+                                                {
+
+                                                    <div class=" MVC hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;">
+
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                                break;
+                                            case "RES":
+                                                // Render JQ section
+                                                foreach (var item in RES)
+                                                {
+                                                    <div class=" RES hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+                                                }
+                                                break;
+                                            case "ASP":
+                                                // Render JQ section
+                                                foreach (var item in ASP)
+                                                {
+
+                                                    <div class=" ASP hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+
+                                                break;
+                                            case "WORD":
+                                                // Render JQ section
+                                                foreach (var item in WORD)
+                                                {
+
+                                                    <div class=" WORD hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                                break;
+                                            case "HTML5":
+                                                // Render JQ section
+                                                foreach (var item in HTML5)
+                                                {
+                                                    <div class=" HTML5 hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                                break;
+                                            case "MOBILE":
+                                                // Render JQ section
+                                                foreach (var item in Mobile)
+                                                {
+                                                    <div class=" Mobile hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                break;
+                                            case "CSS":
+                                                // Render JQ section
+                                                foreach (var item in CSS)
+                                                {
+                                                    <div class=" CSS hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                                break;
+                                            case "JQUERY":
+                                                // Render JQ section
+                                                foreach (var item in JQuery)
+                                                {
+                                                    <div class=" JQuery hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                                break;
+                                            case "ALL":
+                                                // Render JQ section
+                                                foreach (var item in All)
+                                                {
+                                                    <div class=" All hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+                                                }
+                                                break;
+                                            default:
+                                                // Render default section (All)
+                                                foreach (var item in All)
+                                                {
+                                                    <div class=" All hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+                                                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                                        <p class="pd-5" style="height:auto;">
+                                                            @item.SmallDesciption
+                                                        </p>
+
+                                                        <center>
+                                                            <div class="sample work-item-image-container" style="width:fit-content;"> 
+                                                                <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                                                            </div>
+                                                        </center>
+                                                        <div class="hover-text work-item-overlay">
+                                                            <div class="port-hover">
+                                                                <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                                                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                }
+                                            break;
+                                        }
+                                    }
+                                } 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-black-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-map-marker fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="height:153px;">
+                                <p style="">
+                                    #11, Floor 11, Sushma Infinium,
+                                    Chandigarh - Ambala Highway,
+                                    Near Best Price
+                                </p>
+                                <p>Zirakpur, Punjab – 140603 India.</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-user fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="height:153px;">
+                                <p>Phone - <a href="tel:+91 9815-34-0123">+91 9815-34-0123</a></p>
+                                <p>Email - <a href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-share-alt fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="margin-left:-100px;">
+                                <div class="icn-social">
+                                    <a href="https://www.facebook.com/AnthemInfotech" target="_blank" class="facebook"></a>
+                                    <a href="https://twitter.com/antheminfotech" target="_blank" class="twitter"></a>
+                                     
+                                    <a href="https://www.linkedin.com/company/anthem-infotech-pvt-ltd-" target="_blank" class="youtube"></a>
+                                    <a target="_blank" href="https://wa.me/919815340123/?text=Hi Anthem Team." title="Share on whatsapp" class="whatsapp" style="background-position: -118px 0px;"></a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" style="padding: 0px 0;border-top: 1px solid;background:#00609B;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 text">
+                    <p style="font-size:12px;margin: 0px; padding: 5px;color:white;">© @DateTime.Now.Year Anthem Infotech Private Limited. All rights reserved.</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 text-1">
+                    <p class="fcompany" style=" margin: 0px; padding: 5px; float: right; font-size: 12px;color:white">Powered by <span class="pwdbyanthmbtns1"><a href="/Home/Index" style="color: #00609B;">Anthem Infotech Pvt. Ltd.</a></span></p>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </div>
+    <div id="fb-root"></div>
+    <link href="~/css/Tab.css" rel="stylesheet" />
+    @*<link href="~/css/preetyphoto.css" rel="stylesheet" />*@
+    <link href="~/css/prettycs1.css" rel="stylesheet" />
+    <link href="~/css/Doc.css" rel="stylesheet" />
+    <link href="~/tf-free-no.3/css/myyy.css" rel="stylesheet" />
+    <div class="backtotop"><a href="#0" class="cd-top">Top</a></div>
+    <script type="text/javascript" src="~/js/jquery-1.11.2.js"></script>
+    <script src="~/js/function1.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <script type="text/javascript" src="~/js/slick.js"></script>
+    <script type="text/javascript" src="~/js/stickyheader.js"></script>
+    <script type="text/javascript" src="~/js/mega-dropdown.js"></script>
+    <script type="text/javascript" src="~/js/backtotop.js"></script>
+    <script type="text/javascript" src="~/js/parallax.js"></script>
+    <script type="text/javascript" src="~/js/animation.js"></script>
+    @*<script type="text/javascript" src="~/js/counter.js"></script>*@
+    <script type="text/javascript" src="~/js/number-counter.js"></script>
+    <script type="text/javascript" src="~/js/jquery.portfolio.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @*<script type="text/javascript" src="~/js/bootstrapValidator.js"></script>
+        <script type="text/javascript" src="~/js/formValidation.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.migration.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.parallax.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revoluationfunction.js"></script>*@
+    <script>
+        function ViewProjects(ProjectName) {
+            window.location.href = "/Home/ViewProject?projectname=" + ProjectName
+        }
+    </script>
+    <script>
+        function FoodOrdering() {
+            var Industrytype = 'Food Ordering'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function HOAAutomation() {
+            var Industrytype = 'HOA Automation'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function FinancialAdvisory() {
+            var Industrytype = 'Financial Advisory'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function Tourism() {
+            var Industrytype = 'Tourism'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function Travel() {
+            var Industrytype = 'Travel'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function Construction() {
+            var Industrytype = 'Construction'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function BusinessPromotions() {
+            var Industrytype = 'Business Promotions'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function Logistics() {
+            var Industrytype = 'Logistics'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function HealthMedicines() {
+            var Industrytype = 'Health & Medicines'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+        function InformationTechnology() {
+            var Industrytype = 'Information Technology'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var Industry = window.location.href;
+            var Type = Industry.split('=');
+            var IndustryType = Type[1];
+            if (IndustryType == "" || IndustryType == undefined) {
+                $("#tab0").css("pointer-events", "block");
+                $("#tab1").css("pointer-events", "block");
+                $("#tab2").css("pointer-events", "block");
+                $("#tab3").css("pointer-events", "block");
+                $("#tab4").css("pointer-events", "block");
+                $("#tab5").css("pointer-events", "block");
+                $("#tab6").css("pointer-events", "block");
+                $("#tab7").css("pointer-events", "block");
+                $("#tab8").css("pointer-events", "block");
+            }
+            else {
+                $("#tab0").css("pointer-events", "none");
+                $("#tab1").css("pointer-events", "none");
+                $("#tab2").css("pointer-events", "none");
+                $("#tab3").css("pointer-events", "none");
+                $("#tab4").css("pointer-events", "none");
+                $("#tab5").css("pointer-events", "none");
+                $("#tab6").css("pointer-events", "none");
+                $("#tab7").css("pointer-events", "none");
+                $("#tab8").css("pointer-events", "none");
+                $("#tab0").removeClass('active');
+            }
+        });
+    </script>
+
+    <script>
+        // Get all the anchor tags inside the ul
+        var anchors = document.querySelectorAll('.Empty-15.port a');
+
+        // Loop through each anchor tag
+        anchors.forEach(function (anchor) {
+            // Add a click event listener
+            anchor.addEventListener('click', function (event) {
+                // Prevent the default action of the link
+                event.preventDefault();
+
+                // Get the data-filter attribute value
+                var filter = this.getAttribute('data-filter');
+
+                // Remove the dot from the filter value
+                filter = filter.replace('.', '');
+
+                // Update the URL
+                window.history.pushState({}, '', '/OurWork/' + filter);
+
+                window.location.href = '/OurWork/' + filter;
+            });
+        });
+    </script>
+
+    <script>
+        window.onload = function () {
+            // Get the filter value from the URL
+            var url = window.location.href;
+            var filter = url.substr(url.lastIndexOf('/') + 1);
+
+            // Add the dot (.) to match the data-filter attribute
+            filter = '.' + filter;
+
+            // Select the corresponding tab
+            var tab = document.querySelector('a[data-filter="' + filter + '"]');
+
+            // Check if the tab exists and if it has the data-filter attribute
+            if (tab && tab.getAttribute('data-filter') === filter) {
+                // Remove the 'active' class from all tabs
+                var tabs = document.querySelectorAll('.Empty-15.port a');
+                tabs.forEach(function (tab) {
+                    tab.classList.remove('active');
+                });
+
+                // Add the 'active' class to the selected tab
+                tab.classList.add('active');
+            }
+        };
+    </script>
+    <script>
+        // Get references to the spinner and content elements
+        const spinner = document.getElementById('spinner');
+        const content = document.getElementById('content');
+
+        // Function to add blur effect and show spinner
+        function showSpinnerAndBlur() {
+            spinner.style.display = 'block';
+            content.classList.add('blur');
+        }
+
+        // Function to remove blur effect and hide spinner
+        function hideSpinnerAndBlur() {
+            spinner.style.display = 'none';
+            content.classList.remove('blur');
+        }
+
+        // Call the showSpinnerAndBlur function initially
+        showSpinnerAndBlur();
+
+        // Simulate loading process (setTimeout is used as an example, replace it with your actual loading logic)
+        setTimeout(function () {
+            // Call the hideSpinnerAndBlur function after the loading is complete
+            hideSpinnerAndBlur();
+        }, 2000); // Adjust the time as needed
+    </script>
+
+</body>
+</html>
+

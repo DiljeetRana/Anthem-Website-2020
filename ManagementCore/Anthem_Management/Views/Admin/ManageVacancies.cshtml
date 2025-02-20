@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "ManageVacancies";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div id="footerOuterSeparator"></div>
+
+<h5 style="margin-left:115px;color:#626262;float:left">Vacancies Management</h5>
+<div style="margin-left:1170px;margin-top:0px;height:40px;">
+    <p id="puser" style="font-size:medium;color:#003366;font-weight:600;"></p>
+</div>
+<div class="row">
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-2">
+        <a href="\Admin\AddVacancy" id="btnAddNewVacancy" class="btn btn-primary " style="color:white;margin-bottom:5px;padding:5px 15px 5px 15px;font-family:Verdana;font-size:16px ">New Vacancy</a>
+    </div>
+</div>
+<form>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;height:40px;">Vacancy Title</th>
+                        <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;height:40px;">Vacancy Content</th>
+                        <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;height:40px;">Active/Inactive</th>
+                        <th style="width: 50px;background-color: #0097E3; font-size: small; text-align: center; color: white; height: 40px;">Edit</th>
+                        <th style="width:50px;background-color:#0097E3;font-size:small;text-align:center;color:white;height:40px;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.VacancyList)
+                    {
+
+                        <tr>
+                            <td>@item.JobTitle</td>
+                            <td>@Html.Raw(@item.Content)</td>
+                            @if (item.IsActive == false)
+                            {
+                                <td>
+                                    
+                                    <input type="button" class="btn btn-primary" style="margin-left:0px;" value="Make Activate" />
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                   
+                                    <input type="button" id="btnInactive" class="btn btn-danger" style="margin-left:0px;padding:6px 20px;" value="Make Inactive" />
+                                </td>
+                            }
+
+                            <td>
+                                <a href="\Admin\EditVacancy?vacancyId=@item.id">
+                                    <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @*<asp:GridView ID="gdvVacancies" runat="server" EmptyDataText="No records found" GridLines="None" ShowHeaderWhenEmpty="true" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnRowCommand="gdvVacancies_RowCommand" AllowPaging="true" PageSize="3" OnPageIndexChanging="gdvVacancies_PageIndexChanging">
+
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="JobTitle" HeaderText="Vacancy Title" />
+                        <%--<asp:BoundField DataField="Content" HeaderText="Vacancy Content" />--%>
+                        <asp:TemplateField HeaderText="Vacancy Content">
+                            <ItemTemplate>
+                                <asp:Literal runat="server" ID="lblContent" Text='<%#Eval("Content") %>'></asp:Literal>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Active/Inactive">
+
+                            <ItemTemplate>
+
+                                <asp:Button ID="btnActivate" CommandName="Activate" CommandArgument='<%#Eval("id") %>' CssClass="btn btn-primary" Visible='<%# CheckActive((Boolean)(Eval("IsActive")))  %>' OnClientClick="return confirm('Are you sure to activate this vacancy ?')" runat="server" Text="Make Activate" style="margin-left:0px;" />
+                                <asp:Button ID="btnInactive" CommandName="Inactive" CommandArgument='<%#Eval("id") %>' CssClass="btn btn-danger" Visible='<%# CheckInActive((Boolean)Eval("IsActive"))  %>' OnClientClick="return confirm('Are you sure to inactive this vacancy ?')" runat="server" Text="Make Inactive" style="margin-left:0px;padding:6px 20px;" />
+                                <br /><br />
+                                Status : <%# GetVacancyCurrentlyActiveOrNot((Boolean)(Eval("IsActive"))) %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Edit">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnbedit" runat="server" ToolTip="Edit" Text="" CommandName="EditRow" CommandArgument='<%#Eval("id") %>'>
+                                    <img src="image/edit.jpg" style="cursor:pointer;height:20px;" id="imgeditbtn" />
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
+
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnbdelete" runat="server" ToolTip="Delete" OnClientClick="return confirm('Are you sure to delete this vacancy ?')" Text="" CommandName="DeleteRow" CommandArgument='<%#Eval("id") %>'>
+                                    <img src="image/delete.jpg" style="cursor:pointer;height:20px;" id="imgDeleteBtn" />
+                                </asp:LinkButton>
+
+
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="WhiteSmoke" />
+                    <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+                    <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+                    <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+                    <HeaderStyle BackColor="#0097E3" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+                    <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+                    <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedAscendingHeaderStyle BackColor="#0097E3" />
+                    <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedDescendingHeaderStyle BackColor="#0097E3" />
+                </asp:GridView>*@
+        </div>
+        <div class="col-md-1">
+            <input type="hidden" id="hdnPageIndex" />
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $("#navManagement").addClass("active").siblings().removeClass("active");
+    });
+</script>

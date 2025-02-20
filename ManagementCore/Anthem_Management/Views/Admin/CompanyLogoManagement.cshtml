@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewData["Title"] = "CompanyLogoManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div style="min-height: 537px;">
+    <h5 style="margin-left: 115px; color: #626262; float: left" runat="server">Client Management</h5>
+    <div style="margin-left: 1170px; margin-top: 10px; height: 40px;">
+        <p runat="server" id="puser" style="font-size: medium; color: #003366; font-weight: 600;"></p>
+
+    </div>
+
+    <form runat="server" style="margin-top: 5px;">
+        <div style="margin-left: 115px; margin-bottom: 5px; float: left">
+            <label style="float: left; font-family: Verdana; font-size: 14px;"></label>
+            <p id="p1" runat="server" cssclass="form-control" autopostback="true" style="float: left; width: 150px; text-align: center; margin-left: 18px;"></p>
+            <p id="pmessage" runat="server" style="color: red; float: left; width: 120px"></p>
+        </div>
+
+        <input type="button" runat="server" id="btnsubmit" class="btn btn-primary" value="Add New Client" onserverclick="btnsubmit_ServerClick" style="font-size: 15px; font-family: Verdana; margin-bottom: 5px; margin-left: 250px" />
+
+        <div class="form-group" style="margin-left: 115px; float: left">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:220px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">Name</th>
+                        <th style="width:250px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">Website Address</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">Priority</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">View</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">Edit</th>
+                        <th style="width:50px;background-color:#0097E3;font-weight:bold;text-align:center;height:40px;color:white;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.CompanyClientList)
+                    {
+
+                    <tr>
+                        <td>@item.ClientName</td>
+                        <td>@item.WebsiteAddress</td>
+                        <td>@item.Priority</td>
+                        <td>
+                            <a>
+                                <img src="~/image/view.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+
+                        <td>
+                            <a>
+                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+                    </tr>
+
+
+                    }
+
+                </tbody>
+            </table>
+            @*<asp:GridView ID="gdvclient" runat="server" BorderWidth="0px" AutoGenerateColumns="False" CellPadding="4" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" DataKeyNames="ClientId" OnRowCommand="gdvclient_RowCommand" OnPageIndexChanging="gdvclient_PageIndexChanging" ForeColor="#333333" AllowPaging="True" PageSize="15">
+
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="ClientId" HeaderText="ClientId" Visible="False" />
+                        <asp:BoundField DataField="ClientName" HeaderText="Name">
+                            <HeaderStyle Width="220px" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="WebsiteAddress" HeaderText="Website Address">
+                            <HeaderStyle Width="250px" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Priority" HeaderText="Priority">
+                            <HeaderStyle Width="50px" />
+                        </asp:BoundField>
+
+                        <asp:TemplateField HeaderText="View">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnview" runat="server" ToolTip="View" Text="" CommandName="GetId" CommandArgument='<%#Eval("ClientId") %>'>
+                                    <img src="image/view.jpg" style="cursor:pointer;height:20px;" id="imgviewbtn" />
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Edit">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnbedit" runat="server" ToolTip="Edit" Text="" CommandName="EditRow" CommandArgument='<%#Eval("ClientId") %>'>
+                                    <img src="image/edit.jpg" style="cursor:pointer;height:20px;" id="imgeditbtn" />
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnbdelete" runat="server" ToolTip="Delete" OnClientClick="return confirm('Are you sure to delete this client ?')" Text="" CommandName="DeleteClient" CommandArgument='<%#Eval("ClientId") %>'>
+                                    <img src="image/delete.jpg" style="cursor:pointer;height:20px;" id="imgDeleteBtn" />
+                                </asp:LinkButton>
+
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" />
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="WhiteSmoke" />
+                    <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+                    <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+                    <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+                    <HeaderStyle BackColor="#0097E3" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+                    <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+                    <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedAscendingHeaderStyle BackColor="#0097E3" />
+                    <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedDescendingHeaderStyle BackColor="#0097E3" />
+                </asp:GridView>*@
+        </div>
+
+
+        <div style="margin-left: 918px;">
+            <img src="~/image/anthem-infotecha.png" height="400" width="455" />
+        </div>
+
+    </form>
+
+</div>

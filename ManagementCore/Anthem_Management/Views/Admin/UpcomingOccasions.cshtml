@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "UpcomingOccasions";
+    Layout = "~/Views/Shared/AdminLoginLayout.cshtml";
+}
+<style type="text/css">
+        table { border-collapse: collapse; }
+
+
+        .blink {
+    animation-duration: 1s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(2, start);
+}
+
+ table td, table th {
+
+    padding-left: 10px;
+}
+</style>
+<div class="container-fluid" style="min-height:517px;">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <p runat="server" id="hupcoming" style="color:#626262;">Upcoming Occasions</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:180px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Name</th>
+                        <th style="width:180px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Occassion</th>
+                        <th style="width:120px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.occasionlist)
+                    {
+                        @if (Convert.ToDateTime(item.Date) < DateTime.Now)
+                        {
+                            <tr style="text-decoration:line-through;">
+                                <td>@item.Name</td>
+                                <td>@item.Type</td>
+                                <td>@item.Date</td>
+                            </tr>
+                        }
+                        else
+                        {
+                           
+                            <tr style="font-weight:bold;">
+                                <td>@item.Name</td>
+                                <td>@item.Type</td>
+                                <td>@item.Date</td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6" style="margin-left:4%">
+            <div style="float:left;border:1px #cccccc solid;background-color:#3A5795;margin-bottom:20px;" id="dvtodayoccasions" runat="server">
+
+            </div>
+
+            <div style="margin-bottom:20px;" runat="server" id="dvhideimage" visible="false">
+                <img src="~/image/2.png" height="300" width="100%" />
+            </div>
+
+
+            <img src="~/image/anthem-infotech-logo-2.png" height="140" width="100%" />
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,364 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+        .Manage_HomeContent {
+            border: solid;
+            border-width: 1px;
+            border-color: lightgray;
+        }
+
+        .Manage_InnerContent {
+            margin: 10px 10px 10px 10px;
+            border: 1px #cccccc solid;
+            width: 217px;
+            height: 170px;
+            float: left;
+        }
+
+        .BackDivMat {
+            background-color: whitesmoke;
+            border: solid;
+            border-width: 1px;
+            border-color: lightgray;
+            width: 90%;
+            height: auto;
+            left: 5%;
+            position: relative;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            overflow-y: auto;
+        }
+
+        .smaller {
+            display: none;
+        }
+
+        .cont {
+            margin: 40px;
+            border: solid;
+            border-width: 1px;
+            border-color: lightgrey;
+        }
+
+        .mdl-card__title-text {
+            font-size: 15px !important;
+        }
+
+        .mdl-card {
+            width: 221px !important;
+        }
+
+        .mdl-card__supporting-text {
+            padding: 0px !important;
+        }
+
+        .graybox:hover {
+            background-color: rgba(158,158,158,.2) !important;
+        }
+
+       
+</style>
+<link href="~/cssStyle/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<div class="BackDivMat larger">
+    <div id="progressbar2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%;">
+    </div>
+    <main class="mdl-layout__content">
+        <div class="mdl-grid">
+           
+            <a href="\Admin\AMCDetail">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">AMC tracker</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/MessageBoard.jpg" width="162" height="148" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+            <!--Client Management-->
+            <a href="\Admin\Clients">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Client Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/Client-Management.png" width="162" height="148" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+            <!--Client Gst Management-->
+            <a href="\Admin\ClientGSTDetail">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Client GST Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/ClientGSTManagement.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+            <!--Company Logo Management-->
+            <a href="\Admin\CompanyLogoManagement">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Company Logo Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/clientmanagement.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Content Management -->
+            <a href="\Admin\ContentManagement">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Content Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/pagemgmt.png" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+
+
+
+            <!--Document Management -->
+            <a href="\Admin\DocumentLibrary">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Document Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/document.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Employee Attendance Management-->
+            <a href="CheckInAttendanceReport.aspx">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Employee Attendance Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/employee_attandance.jpg" width="95" height="95" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Employee Management -->
+            <a href="\Admin\EmployeeManagement">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Employee Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text" id="content">
+                            <img src="~/image/emp_management.png" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Employee Status Management-->
+            <a href="\Admin\EmployeeReport">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Employee Status Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/Employer-and-Employee-Background.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+            <!--Holiday Management -->
+            <a href="\Admin\HolidayManagement">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Holiday Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/holiday-icon.png" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+
+            <!--Landing Pages-->
+            <a href="\Admin\Dynamic">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Landing Pages</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/LandingPage.png" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Leave Management-->
+            <a href="\Admin\LeavesForApproval">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Leave Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/day-off-logo2.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Message Board -->
+            <a href="\Admin\AnthemNews">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Message Board</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/MessageBoard.jpg" width="150" height="120" style="margin-left: 30px;" />
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Portfolio Management -->
+            <a href="\Admin\Portfolio">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Portfolio Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/portfolio.png" width="150" height="120" style="margin-left: 30px;" />
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Send Bulk Mail -->
+            <a href="\Admin\MultipleMail">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Send Bulk Emails</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/SendBulkMail.jpg" width="150" height="120" style="margin-left: 30px;" />
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+            <!--Vacancy Management -->
+            <a href="\Admin\ManageVacancies">
+                <div class="mdl-cell mdl-cell--3-col graybox">
+                    <div class="square-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Vacancy Management</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <img src="~/image/vacancy-update.jpg" width="150" height="120" style="margin-left: 30px;" />
+                        </div>
+                       
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </main>
+</div>
+<div class="smaller">
+    <div class="cont">
+        <div class="list-group">
+            <a href="employeemanagement.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Employee Management</a>
+            <a href="holidaymanagement.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Holiday Management</a>
+            <a href="documentlibrary.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Document Management</a>
+            <a href="Portfloio.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Portfolio Management</a>
+            <a href="pagesmanage.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Content Management</a>
+            <a href="ManageVacancies.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Vacancy Management</a>
+            <a href="ClientManage.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Company Logo Management</a>
+            <a href="Client.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Client Management</a>
+            <a href="EmployeeReport.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Employee Status Management</a>
+            <a href="CheckInAttendanceReport.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Employee Attendance Management</a>
+            <a href="LeavesForApproval.aspx" class="list-group-item list-group-item-action" style="font-weight: 900">Leave Management</a>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+        $(window).load(function () {
+            // PAGE IS FULLY LOADED
+            // FADE OUT YOUR OVERLAYING DIV
+            $('#progressbar2').fadeOut(2000);
+        });
+</script>

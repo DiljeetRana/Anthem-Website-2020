@@ -1,0 +1,28 @@
+﻿
+
+@model List<AnthemEntites.Categories>
+    @foreach (var item in Model)
+    {
+
+        <div class=" AND hover-bg col-md-3  work-item" style="position:relative;padding:6px;text-align:justify;height:fit-content;margin-left:15px;">
+            <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+            <p>
+                @item.SmallDesciption
+            </p>
+
+            <center>
+                <div class="sample work-item-image-container" style="width:fit-content;">
+
+                    <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" />
+                </div>
+            </center>
+            <div class="hover-text work-item-overlay">
+                <div class="port-hover">
+                    <h4 style="font-size:18px;">@item.ProjectName</h4>
+                    <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                </div>
+            </div>
+
+        </div>
+    }

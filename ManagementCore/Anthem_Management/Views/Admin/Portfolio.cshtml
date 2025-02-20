@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewData["Title"] = "Portfolio";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .sortddl {
+        padding: 1px 1px 1px 1px;
+        width: 160px;
+        height: 22px;
+        margin-top: 16px;
+    }
+</style>
+<div id="footerOuterSeparator"></div>
+
+<h5 style="margin-left:15px;color:#626262;float:left">Portfolio Management</h5>
+<div style="margin-left:1170px;margin-top:0px;height:75px;">
+    <p runat="server" id="puser" style="font-size:medium;color:#003366;font-weight:600;"></p>
+</div>
+<form class="form-horizontal" id="loginform" runat="server" style="min-height:497px">
+    <div>
+        <div style="margin-left:390px;padding-left:100px;width:400px;height:20px; float:left">
+            <p id="pdownloadmessage" runat="server" style="font-size:16px"></p>
+        </div>
+
+    </div>
+
+    <div>
+
+        <div class="panel panel-default" style="margin-left:10px; margin-right:10px; margin-top:3px;">
+            <div class="panel-heading">
+                <span style="margin-left:-735px">Search By Project Name</span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" style="width:100%;margin-top:7px" placeholder="Enter project name" />
+                        </div>
+                        <div class="col-md-2">
+
+                            <input type="button" id="btnSearch" class="btn btn-primary" style="margin-top:5px;padding:5px 15px 5px 15px;font-family:Verdana;font-size:16px" value="Search" onclick="" />
+                        </div>
+                    <div class="col-md-2">
+                        @*<input type="button" id="btnAddNewPortfolio" class="btn btn-primary" style="margin-left:95px;margin-top:5px;padding:5px 15px 5px 15px;font-family:Verdana;font-size:16px" value="New Project" />*@
+                        <a href="\Admin\AddProject" id="btnAddNewPortfolio" class="btn btn-primary" style="margin-left:95px;margin-top:5px;padding:5px 15px 5px 15px;font-family:Verdana;font-size:16px">New Project</a>
+                    </div>
+                    <div>
+                        <select id="ddlSort" class="sortddl" name="expYears">
+                            <option value="0">--Sort Project--</option>
+                            <option value="1">Project End Date</option>
+                            <option value="2">Project Start Date</option>
+                            <option value="3">Project Code</option>
+                            <option value="4">Website Project</option>
+                            <option value="5">Mobile Project</option>
+                            <option value="6">Photoshop Project</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="example" ForeColor="#333333" Font-Size="Small">
+            <thead>
+                <tr>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Project Code</th>
+                    <th style="width:190px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Project Name</th>
+                    <th style="width:180px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Sub Categories</th>
+                    <th style="width:190px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Technologies</th>
+                    <th style="width:160px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Project Url</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Priority</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Start Date</th>
+                    <th style="width:80px;background-color:#0097E3;font-size:small;text-align:center;color:white;">End Date</th>
+                    <th style="width:110px;background-color:#0097E3;font-size:small;text-align:center;color:white;">Publish or Unpublish</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">View</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">Edit</th>
+                    <th style="background-color:#0097E3;font-size:small;text-align:center;color:white;">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.ProjectList)
+                {
+                <tr>
+                    <td>@item.ProjectCode</td>
+                    <td>@item.ProjectName</td>
+                    <td>@item.ProjectSubCategory</td>
+                    <td>@item.Technolgies</td>
+                    <td>@item.URL</td>
+                    <td>@item.Priority</td>
+                    <td>@item.DateofProject</td>
+                    <td>@item.EndDateofProject</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+
+        
+    </div>
+</form>
+<style>
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+</style>
+<script>
+    function SearchByName() {
+
+    }
+</script>

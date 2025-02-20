@@ -1,0 +1,513 @@
+﻿
+@{
+    ViewData["Title"] = "AMCDetail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<style>
+    .searchbar {
+        padding: 1%;
+        width: 95.6%;
+        height: 60px;
+        background-color: lavender;
+        margin: 5px;
+        left: 22px;
+    }
+
+    .space {
+        padding-left: 30px;
+    }
+
+    .medium-container {
+        width: 96%;
+        position: relative;
+        left: 32px;
+    }
+
+    .control-Height {
+    }
+
+    .amccontainer {
+        width: 50%;
+        position: relative;
+        left: 25%;
+    }
+
+    .marginclass {
+        margin-left: 0px;
+    }
+
+    .rfvmargin {
+        margin-left: 30px;
+    }
+
+    .add {
+        padding-right: 20px;
+    }
+
+    .btnadd {
+        float: right;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".txtdate").datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '1920:2040' });
+    });
+</script>
+
+
+<form action="\Admin\AMCDetail" method="post" style="min-height: 555px;">
+    <div class="row">
+        <h5 id="headingTxt" style="margin-left: 80px;margin-bottom:10px; color: #626262; float: left" runat="server">AMC Data Management</h5><br />
+    </div><div class="row">
+        <h5 id="heading1Txt" style="display:none; margin-left: 80px;margin-top:0px; color: #626262; float: left" runat="server">AMC Data Management</h5><br />
+    </div>
+    <input type="hidden" id="hdnSrNo" />
+    <input type="hidden" id="hdnClientId" />
+    <input type="hidden" id="hdnInvoiceId" />
+    <div class="col-md-12" id="addAMC" runat="server" style="padding-top:10px;padding-left:20px;display:block">
+        <div class="row">
+        </div>
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-2" style="padding-bottom:20px;">
+                <select name="Id" id="drdClients" title="Client name" class="form-control align textbox" style="height:40px;width:180px;">
+                    <option selected="selected" value="0">Please Select Client</option>
+                    <option value="1">Gursharanjit Singh Hoti</option>
+                    <option value="2">HIL</option>
+                    <option value="3">KPMG</option>
+                    <option value="4">INDRAPRASTHA</option>
+                    <option value="5">Graycell</option>
+                    <option value="6">HCL</option>
+                    <option value="7">Avtec</option>
+                    <option value="8">Diljeet</option>
+                    <option value="9">OYO Rooms</option>
+                    <option value="10">pallavi</option>
+                    <option value="11">Mohit Aggarwal</option>
+                    <option value="12">New Client</option>
+                    <option value="13">ONGC</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="txtAMCTitle" title="Title" placeholder="Title" Class="form-control align textbox" style="height:40px;width:180px;" name="AMCTitle" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="txtStartDate" Width="180" title="Start date" placeholder="Start Date" Class="form-control txtdate align" OnKeyDown="return false;" Height="40" style="height:40px;width:180px;" name="AMCStartDate" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="txtEndDate" width="180" title="End date" class="form-control txtdate align" OnKeyDown="return false;" Height="40" placeholder="End Date" style="height:40px;width:180px;" name="AMCEndDate" />
+            </div>
+            <div class="col-md-2" style="padding-bottom:20px;">
+                <select name="PaymentMode" id="ContentPlaceHolder_drdPaymentMode" title="Payment mode" class="form-control align textbox" style="height:40px;width:180px;">
+                    <option selected="selected" value="0">Select Payment Mode</option>
+                    <option value="1">Quarterly</option>
+                    <option value="2">Half-Yearly</option>
+                    <option value="3">Annual</option>
+                    <option value="4">One-Time</option>
+
+                </select>
+            </div>
+            <div class="col-md-2" style="padding-bottom:20px; padding-top:10px">
+                <label id="lbl1" style="font-size:13pt; color:#555">Advance Payment</label>
+                <input type="checkbox" id="chkpayment" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2" style="padding-left:35px">
+                <a href="#" id="lnkAddClients" style="color:blue">Click here to add Clients</a>
+            </div>
+            <div class="col-md-2">
+                <input type="button" id="btnSubmit" class="btn btn-primary" value="Submit"" />
+                <a href="\Admin\AMCDetail" id="btnCancel" class="btn btn-primary" style="color:white;">Cancel</a>
+            </div>
+        </div>
+
+      
+    </div>
+
+    <div id="adddiv" class="col-md-12 add searchbar" runat="server">
+        <input type="text" style="background-color:#ff6666;width:15px;height:15px;" />
+        <label id="EX">Expired with in a month</label>
+        <input type="text" style="background-color:LightGray;width:15px;height:15px;" />
+        <label id="EX1">Expired</label>
+        <a href="#" id="btnaddAMC" class="btn btn-primary btnadd" onclick="ShowAddAmcdiv()" style="color:white;">Add New AMC Record</a>
+        <a href="\Admin\CheckPayments" id="btnPayment" class="btn btn-primary btnadd" style="margin-right:10px;color:white;">Pending Invoice Payments</a>
+        <a href="\Admin\CheckInvoiceSent" id="btnInvoice" class="btn btn-primary btnadd" style="margin-right:10px;color:white;">Invoice Not Sent</a>
+
+    </div>
+    <div class="medium-container" id="gvwdiv" runat="server">
+        <div class="col-md-12">
+            <div id="outer-lines" class="col-centered" style="overflow: auto; height: 60%;">
+                <div class="table-responsive fixed-header">
+                    <div class="control-Height">
+                        <table id="gvwAMCDetails" class="table table-striped table-bordered table-hover" style="Width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="">Client</th>
+                                    <th style="">AMC Title</th>
+                                    <th style="">Start-End Date</th>
+                                    <th style="">Payment Mode</th>
+                                    <th style="">Manage Invoice</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.AMCDetail)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.AMCTitle</td>
+                                        <td>@item.StartEnddate</td>
+                                        <td>@item.PaymentMode</td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/choose-page.png" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+
+                                    </tr>
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                        @*<asp:GridView ID="gvwAMCDetails" Width="100%" CssClass="table table-striped table-bordered table-hover"
+                                          runat="server" AutoGenerateColumns="False" EmptyDataText="There are no data records to display."
+                                          AllowPaging="True" OnRowCommand="gvwAMCDetails_RowCommand" OnRowEditing="gvwAMCDetails_RowEditing" OnRowDataBound="gvwAMCDetails_RowDataBound">
+                                <Columns>
+                                    <asp:BoundField DataField="Id" HeaderText="ID" Visible="False" />
+                                    <asp:BoundField DataField="Name" HeaderText="Client" />
+                                    <asp:BoundField DataField="AMCTitle" HeaderText="AMC Title" />
+                                    <asp:BoundField DataField="StartEnddate" HeaderText="Start-End Date" DataFormatString="{0:dd/MM/yyyy}" />
+                                    <%--<asp:BoundField DataField="AMCEndDate" HeaderText="AMC End Date" DataFormatString="{0:dd/MM/yyyy}" />--%>
+                                    <asp:BoundField DataField="PaymentMode" HeaderText="Payment Mode" />
+                                    <%--<asp:BoundField DataField="InvoiceSent" HeaderText="Invoice Sent" />
+                                    <asp:BoundField DataField="InvoiceDispatchNo" HeaderText="Invoice Dispatch No." />
+                                    <asp:BoundField DataField="PaymentReceived" HeaderText="Payment Received" />     --%>
+
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Manage Invoice" ItemStyle-CssClass="text-center" HeaderStyle-Width="130px">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CssClass="" ID="View_Button" CommandName="View" CommandArgument='<%#Eval("SrNo")%>'>
+                                                <img src="image/choose-page.png" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Edit" ItemStyle-CssClass="text-center" HeaderStyle-Width="10px">
+                                        <ItemTemplate>
+                                            <asp:LinkButton CssClass="" ID="Edit_Button" runat="server" CommandName="Edit"
+                                                            Text="" CommandArgument='<%#Eval("SrNo")%>'>
+                                                <%--<span class="glyphicon glyphicon-edit"></span>--%>
+                                                <img src="image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Delete" ItemStyle-CssClass="text-center" HeaderStyle-Width="20px">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CssClass="" ID="Delete_Button" CommandName="DeleteRecord" OnClientClick="if(!ConfirmDelete()) return false;" CommandArgument='<%#Eval("SrNo")%>'>
+                                                <%--<span class="glyphicon glyphicon-trash"></span>--%>
+                                                <img src="image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<div id="AMCinvoicediv" runat="server">
+
+    <div class="col-md-12 amccontainer" id="NewInvoice" style="padding-top:10px; float: left" runat="server">
+
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-5 marginclass" style="padding-bottom:20px;">
+                <asp:DropDownList ID="drdAMC" runat="server" Width="180" CssClass="form-control align textbox" Height="40" ToolTip="AMC title"></asp:DropDownList>
+
+            </div>
+            <div class="col-md-3 marginclass" id="Div3">
+                <input type="text" id="txtInvoiceGenerate" width="190" class="form-control txtdate align marginclass" title="Invoice Generate date" OnKeyDown="return false;" Height="40" placeholder="Invoice Date" onchange="CheckinovoicegenerateDate(this.value)" />
+            </div>
+            <div class="col-md-3 " id="Div2">
+                <input type="text" id="txtInvoiceNo" width="180" title="Invoice number" class="form-control align textbox " onchange="checkInvoiceNo(this.value);" Height="40" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 " id="Div1" style="padding-bottom:20px;" runat="server">-->
+@*<asp:TextBox ID="txtDescription" AutoCompleteType="Disabled" TextMode="MultiLine" Width="645" CssClass="form-control" ToolTip="Description" Height="40" runat="server" placeholder="Description"></asp:TextBox>*@
+<!--<textarea id="txtDescription" style="width:645;height:40;" class="form-control" title="Description" placeholder="Description"></textarea>
+    </div>
+</div>
+<div class="row" style="padding-top:10px;">
+    <div class="col-md-5" style="padding-bottom:20px; padding-left:40px;">
+        <div class="col-md-2" style="padding-left:5px;">Invoice Sent?</div>
+        <input type="radio" id="chkboxYes" style="padding-left:30px;padding-top:15px;" GroupName="invoicesent" />Yes
+        <input type="radio" id="chkboxNo" style="padding-left:30px;padding-top:15px;" GroupName="invoicesent" checked />No-->
+@*<asp:RadioButton ID="chkboxYes" runat="server" OnCheckedChanged="chkboxYes_CheckedChanged" AutoPostBack="true" style="padding-left:30px;padding-top:15px;" GroupName="invoicesent" Checked="false" />Yes
+    <asp:RadioButton ID="chkboxNo" runat="server" OnCheckedChanged="chkboxNo_CheckedChanged" AutoPostBack="true" style="padding-left:30px;padding-top:15px;" GroupName="invoicesent" Checked="true" />No*@
+<!--</div>
+<div class="col-md-3 marginclass" id="dispatchDiv" runat="server">
+    <input type="text" id="txtDispatchNo" style="width:190;height:40;" title="Invoice dispatch number" placeholder="Invoice Dispatch Number" Class="form-control align textbox marginclass " onchange="checkDispatchNo(this.value);" />-->
+@*<asp:TextBox ID="txtDispatchNo" AutoCompleteType="Disabled" Width="190" runat="server" ToolTip="Invoice dispatch number" placeholder="Invoice Dispatch Number" CssClass="form-control align textbox marginclass " onchange="checkDispatchNo(this.value);" Height="40"></asp:TextBox>*@
+
+<!--</div>
+<div class="col-md-3" id="invoicediv" runat="server">-->
+@* <asp:TextBox ID="txtInvoiceDate" AutoCompleteType="Disabled" Width="180" CssClass="form-control txtdate align" ToolTip="Invoice sent date" OnKeyDown="return false;" Height="40" runat="server" placeholder="Invoice Sent Date" onchange="CheckinvoiceDate(this.value)"></asp:TextBox>*@
+<!--<input type="text" id="txtInvoiceDate" style="width:180;height:40;" title="Invoice Sent Date" placeholder="Invoice Dispatch Number" Class="form-control txtdate align" onchange="CheckinvoiceDate(this.value);" />
+    </div>
+</div>
+<div class="row" style="padding-top:10px;">
+    <div class="col-md-5" style="padding-bottom:20px;padding-left:40px;">
+        <div class="col-md-2" style="padding-left:5px">Payment Received?</div>
+        <input type="radio" id="rdPaymentYes" style="padding-left:30px;padding-top:15px;" GroupName="Paymentreceived" />
+        <input type="radio" id="rdPaymentNo" style="padding-left:30px;padding-top:15px;" GroupName="Paymentreceived" checked />-->
+@*<asp:RadioButton ID="rdPaymentYes" runat="server" OnCheckedChanged="rdPaymentYes_CheckedChanged" AutoPostBack="true" style="padding-left:30px;padding-top:15px;" GroupName="Paymentreceived" Checked="false" />Yes
+    <asp:RadioButton ID="rdPaymentNo" runat="server" OnCheckedChanged="rdPaymentNo_CheckedChanged" AutoPostBack="true" style="padding-left:30px;padding-top:15px;" GroupName="Paymentreceived" Checked="true" />No*@
+<!--</div>
+<div class="col-md-3" id="payDateDiv" style="padding-bottom:20px;" runat="server">-->
+@* <asp:TextBox ID="txtPaymentDate" AutoCompleteType="Disabled" Width="190" CssClass="form-control txtdate align marginclass" ToolTip="Payment received date" onchange="checkDate(this);" Height="40" runat="server" placeholder="Payment Date"></asp:TextBox>*@
+<!--<input type="text" Width="190" Class="form-control txtdate align marginclass" title="Payment received date" onchange="checkDate(this);" Height="40" runat="server" placeholder="Payment Date" />
+</div>
+<div class="col-md-4">
+    <input type="button" id="btnInvioceSave" class="btn btn-primary" value="Submit" />
+    <input type="button" id="btnInvioceCancel" class="btn btn-primary" value="Cancel" />-->
+@*<asp:Button ID="btnInvioceSave" runat="server" CssClass="btn btn-primary" Text="Submit" ValidationGroup="invoicevalidation" OnClick="btnInvioceSave_Click" />
+    <asp:Button ID="btnInvioceCancel" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="btnInvioceCancel_Click" />*@
+<!--</div>
+    </div>
+
+</div>
+
+<div class="col-md-12 add searchbar" id="addInvoice" runat="server">
+    <input type="button" id="btnBack" class="btn btn-primary btnadd" value="Back" />
+    <input type="button" id="btnAddinvoice" class="btn btn-primary btnadd" value="Back" />-->
+@*<asp:Button ID="btnBack" Text="Back" runat="server" CssClass="btn btn-primary btnadd" OnClick="btnBack_Click" />
+    <asp:Button ID="btnAddinvoice" Text="Add New Invoice" runat="server" CssClass="btn btn-primary btnadd" OnClick="btnAddinvoice_Click" />*@
+<!--</div>
+<div class="medium-container" id="invoiceGrid" runat="server">
+    <div class="col-md-12">
+        <div id="outer-lines1" class="col-centered" style="overflow: auto; height: 60%;">
+            <div class="table-responsive fixed-header">
+                <div class="control-Height">-->
+@*<asp:GridView ID="gvwInvoice" Width="100%" CssClass="table table-striped table-bordered table-hover"
+                  runat="server" AutoGenerateColumns="False" EmptyDataText="There are no data records to display."
+                  AllowPaging="True" OnRowCommand="gvwInvoice_RowCommand" OnRowEditing="gvwInvoice_RowEditing">
+        <Columns>
+            <asp:BoundField DataField="SrNo" HeaderText="AMCID" Visible="False" />
+            <%--                                    <asp:BoundField DataField="AMCTitle" HeaderText="AMC Title" />--%>
+            <asp:BoundField DataField="InvoiceGenerateDate" HeaderText="Invoice Generate Date" />
+            <asp:BoundField DataField="InvoiceNo" HeaderText="Invoice No" />
+            <%--<asp:BoundField DataField="AMCEndDate" HeaderText="AMC End Date" DataFormatString="{0:dd/MM/yyyy}" />--%>
+            <%--<asp:BoundField DataField="PaymentMode" HeaderText="Payment Mode" />--%>
+            <asp:BoundField DataField="InvoiceSent" HeaderText="Invoice Sent" />
+            <asp:BoundField DataField="InvoiceDispatchNo" HeaderText="Invoice Dispatch No." />
+            <asp:BoundField DataField="PaymentReceived" HeaderText="Payment Received" />
+            <asp:BoundField DataField="Description" HeaderText="Description" />
+
+            <%-- <asp:TemplateField ShowHeader="True" HeaderText="View" ItemStyle-CssClass="text-center">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CssClass="" ID="View_Button" CommandName="View" CommandArgument='<%#Eval("SrNo")%>'>
+                        <img src="image/view.jpg" style="height: 20px; width: 16px;" />
+                    </asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>--%>
+
+            <asp:TemplateField ShowHeader="True" HeaderText="Edit" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                <ItemTemplate>
+                    <asp:LinkButton CssClass="" ID="Edit_Button" runat="server" CommandName="Edit"
+                                    Text="" CommandArgument='<%#Eval("InvoiceId")%>'>
+                        <%--<span class="glyphicon glyphicon-edit"></span>--%>
+                        <img src="image/edit.jpg" style="height: 20px; width: 16px;" />
+                    </asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField ShowHeader="True" HeaderText="Delete" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CssClass="" ID="Delete_Button" CommandName="DeleteRecord" OnClientClick="if(!ConfirmDelete()) return false;" CommandArgument='<%#Eval("InvoiceId")%>'>
+                        <%--<span class="glyphicon glyphicon-trash"></span>--%>
+                        <img src="image/delete.jpg" style="height: 20px; width: 16px;" />
+                    </asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>*@
+<!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>-->
+
+<script>
+
+    function ConfirmDelete() {
+        //debugger;
+
+        if (confirm("This record will be deleted. Are you sure about deletion ?")) {
+            alert("Record Deletion Successfull");
+            return true;
+        }
+        else {
+            alert("Record Deletion Cancelled");
+            return false;
+        }
+    }
+
+    function ShowAddAmcdiv() {
+        $("#addAMC").show();
+        $("#adddiv").hide();
+        $("#gvwdiv").hide();
+    }
+    //function ShowAddDiv() {
+    //    document.getElementById('addAMC').style.display = "block";
+    //    document.getElementById('gvwdiv').style.display = "none";
+    //    document.getElementById('btnadd').style.display = "none";
+    //}
+    $(document).ready(function () {
+        $("#addAMC").hide();
+    });
+
+    function checkInvoiceNo(val) {
+
+        var invoiceno = val;
+        $.ajax({
+            type: "POST",
+            url: "AMCDetails.aspx/CheckInvoiceNo",
+            contentType: "application/json; charset=utf-8",
+            data: '{invoiceno: "' + val + '"}',
+            success: function (response) {
+                if (response.d == true) {
+                    alert("Invoice No Exist");
+                    var a = document.getElementById("<%= txtInvoiceNo.ClientID%>");
+                    a.value = "";
+                    a.focus();
+                }
+                else {
+                    var a = document.getElementById("<%= txtDescription.ClientID%>");
+                    a.focus();
+                }
+            }
+        });
+    }
+
+    function checkDispatchNo(val) {
+        var dispatchno = val;
+        $.ajax({
+            type: "POST",
+            url: "AMCDetails.aspx/CheckDispatchNo",
+            contentType: "application/json; charset=utf-8",
+            data: '{dispatchNo: "' + val + '"}',
+            success: function (response) {
+                if (response.d == true) {
+                    alert("Dispatch No Exist");
+                    var a = document.getElementById("<%= txtDispatchNo.ClientID%>");
+                    a.value = "";
+                    a.focus();
+                }
+                else {
+                    var a = document.getElementById("<%= txtInvoiceDate.ClientID%>");
+
+                    a.focus();
+                }
+            }
+        });
+    }
+
+    function checkDate(val) {
+        var firstValue = val.value.split('/');
+        var secondValue = document.getElementById("<%= txtInvoiceDate.ClientID %>").value.split('/');
+        var firstDate = new Date(firstValue[2], (firstValue[1] - 1), firstValue[0]);
+        var secondDate = new Date(secondValue[2], (secondValue[1] - 1), secondValue[0]);
+        if (firstDate >= secondDate) {
+            document.getElementById("<%= btnInvioceSave.ClientID %>").focus = true;
+        }
+        else {
+            alert("Payment received date  must be greater than invoice sent date");
+            document.getElementById("<%= txtPaymentDate.ClientID %>").value = "";
+        }
+        return false;
+    }
+
+    function checkTitle(val) {
+        var drdvalue = document.getElementById("<%= drdClients.ClientID%>");
+        var strUser = drdvalue.options[drdvalue.selectedIndex].value;
+        $.ajax({
+            type: "POST",
+            url: "AMCDetails.aspx/CheckTitleExist",
+            contentType: "application/json; charset=utf-8",
+            data: '{name: "' + val + '",clientid:"' + strUser + '" }',
+            success: function (response) {
+                if (response.d == true) {
+                    alert("Title name exist for this AMC");
+                    var a = document.getElementById("<%= txtAMCTitle.ClientID%>");
+                    a.value = "";
+                }
+                else {
+                    var a = document.getElementById("<%= txtStartDate.ClientID%>");
+                    a.focus();
+                }
+            }
+        });
+    }
+
+    function CheckinvoiceDate(val) {
+        var firstValue = val.split('/');
+        var secondValue = document.getElementById("<%= txtInvoiceGenerate.ClientID %>").value.split('/');
+        var firstDate = new Date(firstValue[2], (firstValue[1] - 1), firstValue[0]);
+        var secondDate = new Date(secondValue[2], (secondValue[1] - 1), secondValue[0]);
+        if (firstDate >= secondDate) {
+            document.getElementById("<%= rdPaymentYes.ClientID %>").focus = true;
+        }
+        else {
+            alert("Invoice sent date  must be greater than invoice generation date");
+            document.getElementById("<%= txtInvoiceDate.ClientID %>").value = "";
+        }
+        return false;
+    }
+
+    function CheckinovoicegenerateDate(val) {
+        var a = document.getElementById("<%= txtInvoiceNo.ClientID%>");
+        a.removeAttribute('disabled');
+        a.focus();
+
+        //<%--$.ajax({
+        //    type: "POST",
+        //    url: "AMCDetails.aspx/CheckInvoiceDate",
+        //    contentType:"charset=utf-8",
+        //    data: '{invoicedate:"' + val + '"}',
+        //    success: function (response) {
+        //        if (response.d == true) {
+        //            alert("Invoice generate date must be grater than AMC start date.");
+        //            var a = document.getElementById("<%= txtInvoiceGenerate.ClientID%>");
+        //            a.value = "";
+        //            a.focus();
+        //        }
+        //        else {
+        //            var a = document.getElementById("<%= txtInvoiceNo.ClientID%>");
+        //            a.setAttribute("disabled", true);
+        //            a.focus();
+        //        }
+        //    }
+
+        //});--%>
+    }
+
+</script>

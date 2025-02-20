@@ -1,0 +1,326 @@
+﻿
+@{
+    ViewData["Title"] = "DynamicPage";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    tr {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    .loading {
+        font-family: Arial;
+        font-size: 10pt;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        width: 100%;
+        height: 100%;
+        display: none;
+        position: fixed;
+        background-color: black;
+        z-index: 999;
+        padding: 173px;
+    }
+
+    .AutoExtender {
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: .8em;
+        margin: 0px;
+        font-weight: normal;
+        border: solid 1px #006699;
+        z-index: 10;
+        line-height: 20px;
+        padding: 0px;
+        background-color: White;
+        list-style-type: none;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .AutoExtenderList {
+        border-bottom: dotted 1px #006699;
+        cursor: pointer;
+        color: Maroon;
+        left: auto;
+        margin: 0px;
+    }
+
+    .AutoExtenderHighlight {
+        color: White;
+        background-color: #006699;
+        cursor: pointer;
+        margin: 0px;
+    }
+
+    .note-editor {
+        width: 1098px !important;
+        margin: 0px 0px 0px 1px !important;
+    }
+
+    /*.note-editable {
+            height: 240px !important;
+        }*/
+
+
+
+    .checkbox {
+        margin-top: 4px !important;
+        margin-left: 8px;
+    }
+
+    .txtPage {
+        margin-left: 13px;
+        width: 58%;
+    }
+</style>
+<link type="text/css" href="~/css/summernote.css" rel="stylesheet" />
+<link type="text/css" href="~/css/jquery.multiselect.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="~/cssStyle/style.css" rel="stylesheet" />
+<div style="min-height: 542px;">
+    <form class="form-horizontal" runat="server" id="addProject" defaultbutton="btnsubmit" method="post" action="\Admin\DynamicPage">
+
+        <label id="lblmessage" style="color: red; margin-left: 320px; margin-bottom: 5px; margin-top: 0px;"></label>
+
+        <div class="">
+
+            <div class="container" style="width: 1100px; margin-left: 126px;">
+                <div class="col-md-12">
+                    <label for="lblHeading" style="font-weight: normal; color: #626262; margin-left: -6px; font-size: 20px; margin-bottom: 22px;">Dynamic Page </label>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-1">
+                        <label for="lblPageName" style="">Page Name</label>
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" title="Page Name" name="PageName" id="txtPageNames" placeholder="Enter Page Name" maxlength="200" runat="server" style="margin-left: 13px;" />
+
+                    </div>
+
+
+                    <div class="col-md-1">
+                        <label for="lblpublic" style="margin-top: 5px; margin-left: -80px;">Is Public</label>
+                    </div>
+
+                    <div class="col-md-4" style="margin-top: -6px; margin-left: -94px;">
+
+                        <input type="checkbox" class="checkbox" id="checkbox" name="IsPublic" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    @*<label for="lblPageError" visible="false" id="PageExist" style="color: red;margin-left: 100px;">Page name already exist.</label>*@
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-1">
+                        <label for="lblProjectURL" class="control-label" style="">Description</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-11">
+                        @*<textarea id="txtDescription" title="Description" placeholder="Enter Page Description" style="height:300px;width:80%;"></textarea>*@
+                        <div id="summernote">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+
+                </div>
+
+
+
+
+            </div>
+            <button id="btnsubmit" title="Submit" onclick="return AddDynamicPage();" class="btn btn-primary" Style="margin-left: 500px; margin-top: 20px; margin-bottom: 20px; float: left; padding: 5px 8px; font-family: Verdana; font-size: 15px">Submit</button>
+            <button id="Btnclear" title="Clear" class="btn btn-primary" Style="margin-top: 20px; margin-bottom: 20px; float: left; padding: 5px 8px; font-family: Verdana; font-size: 15px" onclick="Clear()">Clear</button>
+
+            <a href="\Admin\Dynamic" id="btnnback" title="Back" class="btn btn-primary" Style="margin-top: 20px;color:white; margin-left:25px; margin-bottom: 20px; float: left; padding: 5px 8px; font-family: Verdana; font-size: 15px">Back</a>
+            @* <button id="btnUpdate" title="Submit" onclick="return rolevalidate();" class="btn btn-primary" Style="margin-left: 500px; margin-top: 20px; margin-bottom: 20px; float: left; padding: 5px 8px; font-family: Verdana; font-size: 15px">Submit</button>*@
+            @*<asp:Button ID="btnsubmit" runat="server" ToolTip="Submit" ValidationGroup="employeeform" OnClientClick="return rolevalidate();" CssClass="btn btn-primary" Text="Submit" Style="margin-left: 500px; margin-top: 20px; margin-bottom: 20px; float: left; padding: 5px 8px; font-family: Verdana; font-size: 15px" TabIndex="19" OnClick="btnsubmit_Click" />*@
+            @*<asp:Button ID="btnUpdate" runat="server" Visible="false" ToolTip="Update" ValidationGroup="employeeform" CssClass="btn btn-primary" Text="Update" Style="margin-left: 500px; margin-top: 20px; margin-bottom: 20px;  float: left; font-family: Verdana; padding: 5px 8px;font-size: 15px" TabIndex="19" OnClick="btnUpdate_Click" />*@
+
+            @*<asp:Button ID="Btnclear" runat="server" ToolTip="Clear" CausesValidation="false" CssClass="btn btn-primary" Text="Clear" Style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; padding: 5px 8px; font-family: Verdana; font-size: 15px" OnClick="Btnclear_Click" />*@
+
+            @*<asp:Button ID="btnnback" runat="server" ToolTip="Back" causesvalidation="false" CssClass="btn btn-primary" Text="Back" style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; padding: 5px 8px; font-family: Verdana; font-size: 15px" OnClick="btnnback_Click" />*@
+
+
+        </div>
+        @*</asp:Panel>*@
+        @*<asp:Panel ID="pnlAddImages" runat="server" Visible="false">
+                <div class="borderdiv" style="width: 1000px; margin-top: 20px; margin-left: 115px;">
+                    <div>
+                        <asp:FileUpload ID="flpUploadImage" AllowMultiple="true" runat="server" /><asp:Button ID="btnuploadImage" runat="server" Text="Upload Image" />
+                        <%--OnClick="btnuploadImage_Click"--%>
+                    </div>
+                    <asp:Repeater runat="server" ID="rptProjectImages">
+                        <ItemTemplate>
+                            <img src="<%#" /PortfolioImages/"+Eval("ImageURL") %>" width="100" />
+
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </asp:Panel>
+            <asp:HiddenField ID="hdnTechnologies" runat="server" />*@
+    </form>
+</div>
+
+@*<asp:Image ID="imgregistered" runat="server" />*@
+<script src="~/Scripts/jquery-1.3.2.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.MultiFile.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/js/home-index.js"></script>
+<script type="text/javascript" src="~/js/summernote.js"></script>
+<script type="text/javascript" src="~/js/jquery.multiselect.js"></script>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+<script>
+    $('select[multiple]').multiselect({
+        columns: 4,
+        placeholder: 'Select options'
+    });
+    //$(document).ready(function () {
+    //    $(".note-editable").css("height", "300");
+    //    $.datepicker.setDefaults({
+    //        showOn: "both",
+    //        buttonImageOnly: true,
+    //        buttonImage: "image/calendar.png",
+    //        buttonText: "Calendar",
+    //    });
+    //    $('.txtdate').datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '1920:2040' });
+
+    //    var str = $('#<%=hdnTechnologies.ClientID%>').val();
+    //    var res = str.split(",");
+    //    for (var i in res) {
+    //        var obj = $('.ms-options ul li').find('input[title="' + res[i].trim() + '"]').parent();
+    //        obj.find('input[type="checkbox"]').trigger('click');
+    //    }
+    //    $('#<%=btnsubmit.ClientID%>').click(function () {
+    //        });
+    //});
+    //function returnString() {
+    //    var val = $('#btnTechnolgies').text();
+    //    $('#<%=hdnTechnologies.ClientID%>').val($('#btnTechnolgies').text());
+    //    return val;
+    //}
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#txtPageName").keydown(function (event) {
+            if (event.keyCode == 32) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+<script>
+
+    $('#txtPageName').on('keyup', function () {
+        debugger;
+        $('#txtPageName').next('div').html('')
+        var values = $('#txtPageName').val().replace(/[`~!#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]/gi, '');
+        $('#txtPageName').val(values);
+    })
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+    //function rolevalidate() {
+
+    //    if (document.getElementById("<%=txtPageName.ClientID%>").value == "") {
+    //        alert("Page name can not be blank");
+    //        document.getElementById("<%=txtPageName.ClientID%>").focus();
+    //        return false;
+    //    }
+    //    return true;
+    //}
+
+</script>
+
+<script type="text/javascript">
+
+    //function ShowProgress() {
+    //    setTimeout(function () {
+    //        var modal = $('<div />');
+    //        modal.addClass("modal");
+    //        $('body').append(modal);
+    //        var loading = $(".loading");
+    //        loading.show();
+    //        var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+    //        var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+    //        loading.css({ top: top, left: left });
+    //    }, 200);
+    //}
+    //$('form').live("submit", function () {
+    //    var name = $('#ContentPlaceHolder_txtProjectName').val();
+    //    var startdate = $('#ContentPlaceHolder_txtprojectDate').val();
+    //    var enddate = $('#ContentPlaceHolder_txtEndDate').val();
+    //    var url = $('#ContentPlaceHolder_txtProjectURL').val();
+    //    var small = $('#ContentPlaceHolder_txtsmalldescription').val();
+    //    if (name == "" || startdate == "" || enddate == "" || url == "" || small == "") {
+
+    //    }
+    //    else {
+    //        ShowProgress();
+    //    }
+    //});
+</script>
+<script>
+    $(document).ready(function () {
+      
+        $('#summernote').summernote();
+
+        $('#summernote').summernote({
+            height: 900,       //  set editor height
+            minHeight: null,   //  set minimum height of editor
+            maxHeight: null,   //  set maximum height of editor
+            focus: true        //  set focus to editable area after initializing summernote
+        });
+
+
+
+        $('.note-editor').addClass('Metro');
+        $('.note-editable').css("height", "293px");
+
+    });
+</script>
+<script>
+    function Clear() {
+        $("#txtPageNames").val("");
+        $("#checkbox").val("");
+        $('.note-editable').val("");
+    }
+</script>
+<script>
+    function AddDynamicPage() {
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/DynamicPage',
+            data: {
+                'PageName': $("#txtPageNames").val(),
+                'IsPublic': $("#checkbox").val(),
+                'Description': $('.note-editable').val(),
+            },
+            async: false,
+            success: function (response) {
+                var JarrProperty = JSON.parse(response);
+               
+
+            }
+        });
+        return false;
+    }
+</script>

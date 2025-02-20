@@ -1,0 +1,9 @@
+E:\Sahil Works\Management(Core)\EmployeeEntity\bin\Release\netstandard2.0\EmployeeEntity.deps.json
+E:\Sahil Works\Management(Core)\EmployeeEntity\bin\Release\netstandard2.0\EmployeeEntity.dll
+E:\Sahil Works\Management(Core)\EmployeeEntity\bin\Release\netstandard2.0\EmployeeEntity.pdb
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.csprojAssemblyReference.cache
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.AssemblyInfoInputs.cache
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.AssemblyInfo.cs
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.csproj.CoreCompileInputs.cache
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.dll
+E:\Sahil Works\Management(Core)\EmployeeEntity\obj\Release\netstandard2.0\EmployeeEntity.pdb

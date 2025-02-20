@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "HolidayList";
+    Layout = "~/Views/Shared/AdminLoginLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <p style="color:#626262">Holidays</p>
+        </div>
+    </div>
+
+    <div style="min-height:489px;" class="row">
+
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:200px;background-color:#3A5795;font-weight:bold;height:40px;color:white;">Holiday Date</th>
+                        <th style="width:220px;background-color:#3A5795;font-weight:bold;height:40px;color:white;">Holiday</th>
+                        <th style="width:100px;background-color:#3A5795;font-weight:bold;height:40px;color:white;">Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.HolidayList)
+                    {
+                        @if (Convert.ToDateTime(item.FestivalDate) < DateTime.Now)
+                        {
+                            <tr style="text-decoration:line-through;">
+                                <td>@item.FestivalDate</td>
+                                <td>@item.FestivalName</td>
+                                <td>@item.FestivalDay</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr style="font-weight:bold;">
+                                <td>@item.FestivalDate</td>
+                                <td>@item.FestivalName</td>
+                                <td>@item.FestivalDay</td>
+                            </tr>
+                        }
+                        
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-5" style="margin-left:4%">
+            <img src="~/image/anthem-infotecha.png" height="450" width="100%" style="margin-top:-18px;" />
+        </div>
+    </div>
+</div>

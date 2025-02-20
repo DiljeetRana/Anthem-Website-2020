@@ -1,0 +1,354 @@
+﻿
+@{
+    ViewData["Title"] = "AddProject";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    tr {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    .loading {
+        font-family: Arial;
+        font-size: 10pt;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        width: 100%;
+        height: 100%;
+        display: none;
+        position: fixed;
+        background-color: black;
+        z-index: 999;
+        padding: 173px;
+    }
+
+    .AutoExtender {
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: .8em;
+        margin: 0px;
+        font-weight: normal;
+        border: solid 1px #006699;
+        z-index: 10;
+        line-height: 20px;
+        padding: 0px;
+        background-color: White;
+        list-style-type: none;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .AutoExtenderList {
+        border-bottom: dotted 1px #006699;
+        cursor: pointer;
+        color: Maroon;
+        left: auto;
+        margin: 0px;
+    }
+
+    .AutoExtenderHighlight {
+        color: White;
+        background-color: #006699;
+        cursor: pointer;
+        margin: 0px;
+    }
+</style>
+<link type="text/css" href="~/css/summernote.css" rel="stylesheet" />
+<link type="text/css" href="~/css/jquery.multiselect.css" rel="stylesheet" />
+<div style="min-height: 542px;">
+    <div class="loading" align="center" id="popup" runat="server">
+        <br />
+        <br />
+        <img src="~/image/ajax_loader_blue_512.gif" alt="" height="150" />
+    </div>
+    <h3 style="margin-left: 115px; color: #626262; float: left" runat="server" id="heading">Portfolio</h3>
+    <div style="margin-left: 1170px; margin-top: 0px; height: 10px;">
+        <p runat="server" id="puser" style="font-size: medium; color: #003366; font-weight: 600;"></p>
+    </div>
+    <form class="form-horizontal" runat="server" id="addProject" defaultbutton="btnsubmit" method="post">
+        <label runat="server" id="lblmessage" style="color: red; margin-left: 320px; margin-bottom: 5px; margin-top: 0px;"></label>
+        @*<asp:Panel ID="pnlAddNewProject" runat="server" Visible="true">*@
+            <div class="borderdiv" style="width: 1000px; margin-top: 30px; margin-left: 115px;">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="alert alert-info">
+                            <p><strong>Instructions:</strong></p>
+                            <p>Please upload image of size 712X600</p>
+                            <p>If no link avilable for project please enter "no link" in Project URL textbox </p>
+                        </div>
+                    </div>
+                </div>
+                <table style="margin-left: 30px;">
+                    <tr>
+                        <td class="auto-style1" style="text-align: right">
+                            <label for="lblProjectName" class="control-label" style="margin-right: -10px;">Project Name</label>
+                        </td>
+                        <td style="width: 15px" colspan="3">
+                            <input type="text" class="form-control" id="txtProjectName" tabindex="1" maxlength="200" style="width: 96%;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style1" style="text-align: right">
+                            <label for="lblCategories" class="control-label" style="margin-right: -10px;">Category</label>
+                        </td>
+                        <td style="width: 15px">
+                            <select id="drpCategories" class="form-control" name="drpCategories" Style="margin-top: 1px;">
+
+                                <option value="1">Mobile</option>
+                                <option value="2">Website</option>
+                                <option value="4">Photoshop</option>
+                               
+
+                            </select>
+                            @*<asp:DropDownList ID="drpCategories" runat="server" class="form-control" Style="margin-top: 1px;"></asp:DropDownList>*@
+                        </td>
+
+                        <td class="auto-style2" style="text-align: right">
+                            <label for="lblProjectDate" class="control-label" style="margin-right: -10px;">Project Start Date</label>
+                        </td>
+                        <td style="width: 326px;">
+                            @*<asp:TextBox ID="txtprojectDate" OnKeyDown="return false;" runat="server" class="form-control txtdate" Style="width: 245px; float: left; margin-top: 1px;"></asp:TextBox>*@
+                            <input type="text" id="txtprojectDate" class="form-control txtdate" style="width: 245px; float: left; margin-top: 1px;" />
+                            <img src="~/image/calendar.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <label for="lblSubCategories" class="control-label" style="margin-right: -10px; text-align: right;">Sub Category</label>
+                        </td>
+                        <td>
+                            <select id="ddlSubCategory" class="form-control" name="ddlSubCategory" Style="margin-top: 1px;">
+                                <option value="5">ASP.Net Development</option>
+                                <option value="6">PHP Development</option>
+                                <option value="7">CMS-WordPress Websites</option>
+                                <option value="8">Ecommerce Website</option>
+                                <option value="9">Android Development</option>
+                                <option value="10">IOS Development</option>
+                                <option value="11">Windows Applications</option>
+                                <option value="15">HTML-HTML5 Websites</option>
+                                <option value="16">Website(Mobile Devices Compatible)</option>
+
+                            </select>
+                            @*<asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control" Style="margin-top: 1px;"></asp:DropDownList>*@
+                        </td>
+
+                        <td style="text-align: right;">
+                            <label for="lblEndDate" class="control-label" style="margin-right: -10px;">Project End Date</label>
+                        </td>
+                        <td>
+                            <input type="text" id="txtEndDate" class="form-control txtdate" Style="width: 245px; float: left; margin-top: 1px;" />
+                            <img src="~/image/calendar.png" />
+                            @*<asp:TextBox ID="txtEndDate" OnKeyDown="return false;" runat="server" class="form-control txtdate" Style="width: 245px; float: left; margin-top: 1px;"></asp:TextBox>*@
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; vertical-align: middle;" class="auto-style1">
+                            <label for="lblProjectImage" style="margin-right: -10px; margin-bottom: -2px;">Title Image</label>
+                        </td>
+                        <td>
+                            <input type="file" id="flpProjectImage" onchange="validateFileSize();" class="form-control" Style="width: 250px; padding-bottom: 31px; float: left; padding-top: 0px; margin-top: 1px;" />
+                            @*<asp:FileUpload ID="flpProjectImage" runat="server" onchange="validateFileSize();" class="form-control" Style="width: 250px; padding-bottom: 31px; float: left; padding-top: 0px; margin-top: 1px;" />*@
+                        </td>
+                        <td class="auto-style1" style="text-align: right;">
+                            <label for="lblProjectURL" style="margin-right: -10px; margin-bottom: -2px;">Project Url</label>
+                        </td>
+                        <td>
+                            @*<asp:TextBox ID="txtProjectURL" runat="server" class="form-control" Style="width: 89%; margin-top: -1px;"></asp:TextBox>*@
+                            <input type="text" id="txtProjectURL" class="form-control" style="width: 89%; margin-top: -1px;" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <label for="lblPrioprity" class="control-label" style="margin-right: -10px; margin-left: -32px;">Priority</label>
+                        </td>
+                        <td>
+                            <select id="drpPriority" class="form-control" name="expYears">
+                               
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <label for="lbltechnologies" style="margin-right: -10px; margin-bottom: 14px;">Technologies</label>
+                        </td>
+                        <td colspan="3" style="padding-top: 10px;">
+                          <input type="text" id="txtTechnolgies" class="form-control" style="width: 96%;" />
+                            @*<asp:TextBox ID="txtTechnolgies" runat="server" class="form-control" Style="width: 96%;"></asp:TextBox>*@
+                            @*<ajax:AutoCompleteExtender CompletionListCssClass="AutoExtender" CompletionListHighlightedItemCssClass="AutoExtenderHighlight" CompletionListItemCssClass=".AutoExtenderList" ServiceMethod="GetTechnolgies" MinimumPrefixLength="1"
+                                                       CompletionInterval="0" EnableCaching="false" CompletionSetCount="1" TargetControlID="txtTechnolgies"
+                                                       ID="AutoCompleteExtenderTechnolgies" runat="server" FirstRowSelected="false" DelimiterCharacters="," ShowOnlyCurrentWordInCompletionListItem="true">
+                            </ajax:AutoCompleteExtender>
+                            <asp:Label ID="lblTechnologiesSelected" runat="server" Style="color: white;"></asp:Label>*@
+                        </td>
+                        <td>
+                            @*<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please enter technolgies" ForeColor="Red" SetFocusOnError="true" ControlToValidate="txtTechnolgies" ValidationGroup="employeeform">*</asp:RequiredFieldValidator>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <label for="lblProjectURL" class="control-label" style="margin-right: -10px;">Description</label>
+                        </td>
+                        <td colspan="3">
+                            @*<asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Height="300" Width="80%"></asp:TextBox>*@
+                            <input type="text" id="txtDescription" Height="300" Width="80%" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <label for="lblsmalldescription" class="control-label" style="margin-right: -10px; margin-left: -32px;">Small Description</label>
+                        </td>
+
+                        <td colspan="3" style="padding-top: 10px;">
+                            <textarea id="txtsmalldescription" class="form-control" runat="server" maxlength="150" style="width: 96%; height: 135px;"></textarea>
+
+                        </td>
+                       
+                    </tr>
+                </table>
+                <asp:Button ID="btnsubmit" runat="server" ValidationGroup="employeeform" CssClass="btn btn-primary" Text="Submit" OnClientClick="returnString();" Style="margin-left: 415px; margin-top: 30px; margin-bottom: 20px; width: 100px; float: left; height: 35px; font-family: Verdana; font-size: 16px" TabIndex="19" OnClick="btnsubmit_Click" />
+                <input type="button" id="btnclear" causesvalidation="false" runat="server" class="btn btn-primary btnn" style="margin-left: 20px; margin-top: 30px; margin-bottom: 20px; width: 100px; height: 35px; font-family: Verdana; font-size: 16px" value="Clear" tabindex="20" onserverclick="btnclear_ServerClick" />
+                <button type="submit" id="btnback" validationgroup="clear" runat="server" class="btn btn-primary" onserverclick="btnback_ServerClick" style="margin-left: 20px; margin-top: 30px; margin-bottom: 20px; width: 100px; height: 35px; font-family: Verdana; font-size: 16px" tabindex="20">Back</button>
+
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="employeeform" ForeColor="#CC3300" ShowMessageBox="True" ShowSummary="False" />
+            </div>
+        @*</asp:Panel>*@
+        @*<asp:Panel ID="pnlAddImages" runat="server" Visible="false">*@
+            <div class="borderdiv" style="width: 1000px; margin-top: 20px; margin-left: 115px;">
+                <div>
+                    <asp:FileUpload ID="flpUploadImage" AllowMultiple="true" runat="server" /><asp:Button ID="btnuploadImage" runat="server" OnClick="btnuploadImage_Click" Text="Upload Image" />
+                </div>
+                <asp:Repeater runat="server" ID="rptProjectImages">
+                    <ItemTemplate>
+                        <img src="<%#" /PortfolioImages/"+Eval("ImageURL") %>" width="100" />
+                        <%--<asp:Image ID="imgProjectImage" runat="server" ImageUrl="<%#" /ProtfolioImages/"+Eval("ImageURL") %>" />--%>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        @*</asp:Panel>*@
+        <asp:HiddenField ID="hdnTechnologies" runat="server" />
+    </form>
+</div>
+
+<asp:Image ID="imgregistered" runat="server" />
+<script src="~/Scripts/jquery-1.3.2.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.MultiFile.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/js/home-index.js"></script>
+<script type="text/javascript" src="~/js/summernote.js"></script>
+<script type="text/javascript" src="~/js/jquery.multiselect.js"></script>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+<script>
+        $('select[multiple]').multiselect({
+            columns: 4,
+            placeholder: 'Select options'
+        });
+        $(document).ready(function () {
+            $.datepicker.setDefaults({
+                showOn: "both",
+                buttonImageOnly: true,
+                buttonImage: "~/image/calendar.png",
+                buttonText: "Calendar",
+            });
+            $('.txtdate').datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '1920:2040' });
+
+            var str = $('#<%=hdnTechnologies.ClientID%>').val();
+            var res = str.split(",");
+            for (var i in res) {
+                var obj = $('.ms-options ul li').find('input[title="' + res[i].trim() + '"]').parent();
+                obj.find('input[type="checkbox"]').trigger('click');
+            }
+            $('#<%=btnsubmit.ClientID%>').click(function () {
+
+                //if ($('#btnTechnolgies').text().trim() == "Select options")
+                //{
+                //    alert("Please select technologies used for project.");
+                //    return false;
+                //}
+                if (document.getElementById('<%= flpProjectImage.ClientID %>').value == "") {
+                    alert('Please upload title image');
+                    return false;
+                }
+
+            });
+        });
+        function returnString() {
+            var val = $('#btnTechnolgies').text();
+            $('#<%=hdnTechnologies.ClientID%>').val($('#btnTechnolgies').text());
+            return val;
+        }
+</script>
+<script type="text/javascript">
+
+        function validateFileSize() {
+
+            var uploadControl = document.getElementById('<%= flpProjectImage.ClientID %>');
+
+            var fileName = uploadControl.value;
+
+            var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+            if (ext == "gif" || ext == "GIF" || ext == "JPEG" || ext == "jpeg" || ext == "jpg" || ext == "JPG" || ext == "PNG" || ext == "png") {
+                if (uploadControl.files[0].size > 6291456) {
+                    alert('Size is larger than 6 Mb');
+                    uploadControl.value = "";
+                    uploadControl.style.color = 'transparent';
+                    //document.getElementById('lblfile').style.display = '-moz-box';
+                    return false;
+                }
+                else {
+                    //document.getElementById('lblfile').style.display = 'none';
+                    document.getElementById('<%= flpProjectImage.ClientID %>').style.color = 'black';
+                    return true;
+                }
+            }
+            else {
+                alert('Upload Image Only');
+                uploadControl.value = "";
+                uploadControl.style.color = 'transparent';
+                //document.getElementById('lblfile').style.display = '-moz-box';
+                return false;
+            }
+        }
+</script>
+<script type="text/javascript">
+
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                var loading = $(".loading");
+                loading.show();
+                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                loading.css({ top: top, left: left });
+            }, 200);
+        }
+        $('form').live("submit", function () {
+            var name = $('#ContentPlaceHolder_txtProjectName').val();
+            var startdate = $('#ContentPlaceHolder_txtprojectDate').val();
+            var enddate = $('#ContentPlaceHolder_txtEndDate').val();
+            var url = $('#ContentPlaceHolder_txtProjectURL').val();
+            var small = $('#ContentPlaceHolder_txtsmalldescription').val();
+            if (name == "" || startdate == "" || enddate == "" || url == "" || small == "") {
+
+            }
+            else {
+                ShowProgress();
+            }
+        });
+
+</script>
+

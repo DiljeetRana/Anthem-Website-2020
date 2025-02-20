@@ -1,0 +1,34 @@
+.thumb-hover-effect .mask {
+	opacity: 0;
+	overflow: visible;
+	background: rgba(0,156,255,.85);
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out
+}
+.thumb-hover-effect .info {
+	position: relative;
+	opacity: 0;
+	-webkit-transition: opacity .4s 0s ease-in-out;
+	-moz-transition: opacity .4s 0s ease-in-out;
+	-o-transition: opacity .4s 0s ease-in-out;
+	-ms-transition: opacity .4s 0s ease-in-out;
+	transition: opacity .4s 0s ease-in-out
+}
+.thumb-hover-effect:hover .mask {
+	opacity: 1;
+	background: rgba(0,156,255,.85)
+}
+.thumb-hover-effect:hover .info {
+	opacity: 1;
+	-moz-transition-delay: .1s;
+	-webkit-transition-delay: .1s;
+	-o-transition-delay: .1s;
+	-ms-transition-delay: .1s;
+	transition-delay: .1s
+}

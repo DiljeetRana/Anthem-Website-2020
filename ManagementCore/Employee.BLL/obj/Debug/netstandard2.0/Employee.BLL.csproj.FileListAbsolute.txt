@@ -1,0 +1,14 @@
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\Employee.BLL.deps.json
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\Employee.BLL.dll
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\Employee.BLL.pdb
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\EmployeeEntity.dll
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\SQLEmployee.DLL.dll
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\EmployeeEntity.pdb
+E:\Sahil Works\Management(Core)\Employee.BLL\bin\Debug\netstandard2.0\SQLEmployee.DLL.pdb
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.csprojAssemblyReference.cache
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.AssemblyInfoInputs.cache
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.AssemblyInfo.cs
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.csproj.CoreCompileInputs.cache
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.csproj.CopyComplete
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.dll
+E:\Sahil Works\Management(Core)\Employee.BLL\obj\Debug\netstandard2.0\Employee.BLL.pdb

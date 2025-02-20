@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewData["Title"] = "CheckPayments";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .searchbar {
+        padding: 1%;
+        width: 95.6%;
+        height: 60px;
+        background-color: lavender;
+        margin: 5px;
+        left: 22px;
+    }
+
+    .space {
+        padding-left: 30px;
+    }
+
+    .medium-container {
+        width: 96%;
+        position: relative;
+        left: 32px;
+        /*max-height: 50%;*/
+    }
+
+    .control-Height {
+        /*height: 400px !important;*/
+    }
+
+    .amccontainer {
+        width: 50%;
+        position: relative;
+        left: 25%;
+    }
+
+    .marginclass {
+        margin-left: 0px;
+    }
+
+    .rfvmargin {
+        margin-left: 30px;
+    }
+
+    .add {
+        padding-right: 20px;
+    }
+
+    .btnadd {
+        float: right;
+    }
+</style>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtdate").datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '1920:2040' });
+        });
+</script>
+<form runat="server" style="min-height: 555px;" autocomplete="off">
+    <div class="row">
+        <h5 id="headingTxt" style="margin-left: 80px;margin-bottom:10px; color: #626262; float: left" runat="server">Pending Invoice Payments</h5><br />
+    </div>
+    <div id="adddiv" class="col-md-12 add searchbar" runat="server">
+        <a href="\Admin\AMCDetail" Class="btn btn-primary btnadd" style="color:white;">Back to AMC's</a>
+       
+    </div>
+    <div class="medium-container" id="paymentgvwdiv" runat="server">
+        <div class="col-md-12">
+            <div id="outer-lines" class="col-centered" style="overflow: auto; height: 60%;">
+                <div class="table-responsive fixed-header">
+                    <div class="control-Height">
+                        <table id="gvwAMCDetails" class="table table-striped table-bordered table-hover" style="Width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="">Client</th>
+                                    <th style="">AMC Title</th>
+                                    <th style="">Invoice Dispatch No.</th>
+                                    <th style="">Invoice Sent</th>
+                                    <th style="">Payment Received</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.PR)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.AMCTitle</td>
+                                        <td>@item.InvoiceDispatchNo</td>
+                                        <td>@item.InvoiceSentDate</td>
+                                        <td>@item.PaymentReceivedDate</td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+
+                                    </tr>
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                        @*<asp:GridView ID="gvwpaymentDetails" Width="100%" CssClass="table table-striped table-bordered table-hover"
+                      runat="server" AutoGenerateColumns="False" EmptyDataText="There are no data records to display." OnRowDeleting="gvwpaymentDetails_RowDeleting"
+                      AllowPaging="True" OnRowCommand="gvwpaymentDetails_RowCommand" OnRowEditing="gvwpaymentDetails_RowEditing" OnRowUpdating="gvwpaymentDetails_RowUpdating"
+                      OnRowCancelingEdit="gvwpaymentDetails_RowCancelingEdit" DataKeyNames="InvoiceId">
+            <Columns>
+                <asp:BoundField DataField="InvoiceId" HeaderText="ID" readonly="true" Visible="false" />
+                <asp:BoundField DataField="Name" HeaderText="Client" readonly="true" />
+                <asp:BoundField DataField="AMCTitle" HeaderText="AMC Title" readonly="true" />
+                <asp:BoundField DataField="InvoiceDispatchNo" HeaderText="Invoice Dispatch No." readonly="true" />
+                <asp:BoundField DataField="InvoiceSentDate" HeaderText="Invoice Sent" readonly="true" />
+                <asp:BoundField DataField="PaymentReceivedDate" HeaderText="Payment Received" ControlStyle-CssClass="txtdate" />
+                <%--<asp:TemplateField HeaderText="Payment Date">
+                    <EditItemTemplate>
+                        <asp:TextBox runat="server" ID="txtPaymentDate" Text='' />
+                    </EditItemTemplate>
+                </asp:TemplateField>--%>
+
+                <asp:TemplateField ShowHeader="True" HeaderText="Edit" ItemStyle-CssClass="text-center" HeaderStyle-CssClass="text-center" ItemStyle-Width="80px">
+                    <ItemTemplate>
+                        <asp:LinkButton CssClass="" ID="Edit_Button" runat="server" CommandName="Edit"
+                                        Text="" CommandArgument='<%#Eval("InvoiceId")%>'>
+                            <%--<span class="glyphicon glyphicon-edit"></span>--%>
+                            <img src="image/edit.jpg" style="height: 20px; width: 16px;" />
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:LinkButton CssClass="" ID="btn_Update" ToolTip="Update" runat="server" CommandName="Update"
+                                        Text="" CommandArgument='<%#Eval("InvoiceId")%>'>
+                            <%--<span class="glyphicon glyphicon-edit"></span> OnClick="btn_Update_Click1"--%>
+                            <img src="image/update.png" style="height: 20px; width: 16px;" />
+                        </asp:LinkButton>
+                        <asp:LinkButton CssClass="" ID="btn_Cancel" runat="server" ToolTip="Cancel" CommandName="Cancel"
+                                        Text="" CommandArgument='<%#Eval("InvoiceId")%>'>
+                            <%--<span class="glyphicon glyphicon-edit"></span>--%>
+                            <img src="image/cancel%20(1).png" style="height: 20px; width: 16px;" />
+                        </asp:LinkButton>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ShowHeader="True" HeaderText="Delete" ItemStyle-CssClass="text-center" HeaderStyle-Width="20px">
+                    <ItemTemplate>
+                        <asp:LinkButton runat="server" CssClass="" ID="Delete_Button" CommandName="Delete" OnClientClick="if(!ConfirmDelete()) return false;" CommandArgument='<%#Eval("InvoiceId")%>'>
+                            <%--<span class="glyphicon glyphicon-trash"></span>--%>
+                            <img src="image/delete.jpg" style="height: 20px; width: 16px;" />
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+        function ConfirmDelete() {
+            //debugger;
+
+            if (confirm("This record will be deleted. Are you sure about deletion ?")) {
+                alert("Record Deletion Successfull");
+                return true;
+            }
+            else {
+                alert("Record Deletion Cancelled");
+                return false;
+            }
+        }
+</script>

@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>displayForm</title>
+    <script>
+        
+        const submitButton = document.querySelector("#click_me_123");
+
+        submitButton.addEventListener("click", async () => {
+            alert("Alert Called...");
+            const formData = {
+                input_field_1: document.querySelector("#sl_input").value,
+                input_field_2: document.querySelector("#ml_input").value
+            };
+
+            const response = await fetch("/Slack/SubmitForm", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
+</head>
+<body>
+    <div> 
+        <form method="post" action="DisplayForm">
+
+            <input type="text" name="name" id="name"/>
+            <button type="submit">Click</button>
+
+        </form>
+    </div>
+</body>
+</html>

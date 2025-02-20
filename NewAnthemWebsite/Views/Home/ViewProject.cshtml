@@ -1,0 +1,602 @@
+﻿@model AnthemEntites.Projects
+@{
+    var projectImages = (List<AnthemEntites.ProjectImages>)ViewBag.ProjectImages;
+    var projectCategory = (List<AnthemEntites.Projects>)ViewBag.ProjectCategory;
+    var projectTechnologies = Model.Technolgies.ToString().Split(',');
+    var duration = Model.EndDateofProject - Model.DateofProject;
+    var months = Math.Floor(Convert.ToDouble((duration.Days) / 30));
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <title>@Model.ProjectName</title>
+    <meta name="description" content="Anthem Infotech Provides Web Designing Services HTML 5 ASP.Net Development Custom Software Development Desktop Applications Windows Applications SEO and Android Application.">
+    <meta name="keywords" content="designing services, ASP.net Development, Search Engine Optimization, custom Software Development, Desktop Applications, windows applications, SQL Server, application development,web development,mobile application development,iOS mobile applications,custom business solutions,Australian web development, website development australia, web design company australia, web development company in australia, website designing company in sydney, SEO companies india, Mobile app development company india, web development companies india, web design company india, custom software development companies ">
+    <meta name="google-site-verification" content="google1674954ae57ea5d3.html" />
+    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
+   
+    @*<link href="~/css/fontfamily.css" rel="stylesheet" />
+    <link href="~/css/Roboto.css" rel="stylesheet" />
+    <link href="~/css/accordian.css" rel="stylesheet" />
+    <link href="~/css/animate.css" rel="stylesheet" />*@
+    <link href="~/css/backtotop.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+   
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    @*<link href="~/css/full-thumb-slider-hover-effect.css" rel="stylesheet" />
+    <link href="~/css/hover.css" rel="stylesheet" />*@
+    <link href="~/css/mega-dropdown.css" rel="stylesheet" />
+    @*<link href="~/css/layers.css" rel="stylesheet" />*@
+   
+    <link href="~/css/res-menu.css" rel="stylesheet" />
+    <link href="~/css/portfolio.css" rel="stylesheet" />
+    <link href="~/css/settings.css" rel="stylesheet" />
+    <link href="~/css/slick.css" rel="stylesheet" />
+    <link href="~/css/slick-theme.css" rel="stylesheet" />
+    <link href="~/css/stickyheader.css" rel="stylesheet" />
+    <link href="~/css/theme.css" rel="stylesheet" />
+    @*<link href="~/css/tooltip-viewport.css" rel="stylesheet" />*@
+
+    <style>
+
+        .work-item:hover .work-item-overlay {
+            -webkit-transition: 0.4s ease-out;
+            -moz-transition: 0.4s ease-out;
+            -o-transition: 0.4s ease-out;
+            transition: 0.4s ease-out;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+        }
+
+        .work-item:hover .inner {
+            top: 50%;
+            -webkit-transition: 0.6s ease-out;
+            -moz-transition: 0.6s ease-out;
+            -o-transition: 0.6s ease-out;
+            transition: 0.6s ease-out;
+        }
+
+        .btn-success {
+            color: #fff;
+            background-color: rgba(0,0,0,.4) !important;
+            border: none;
+            border-radius: 0;
+        }
+
+        div a h4 {
+            margin-top: 23px;
+        }
+
+        .span4 {
+            min-height: 410px;
+        }
+
+        label {
+            display: inline-block !important;
+        }
+
+        .col-6 {
+            width: 19%;
+            float: left;
+            margin-right: .5%;
+        }
+
+        .pwdbyanthmbtns1 {
+            background-color: white;
+            background-image: -moz-linear-gradient(center top, hsl(213, 100%, 45%) 0%, hsl(195, 56%, 19%) 100%);
+            border: 1px solid hsl(0, 0%, 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 2px hsl(0, 0%, 73%), 0 0 1px hsl(0, 0%, 100%) inset;
+            color: #009CFF;
+            font: bold 12px Arial, Helvetica, sans-serif;
+            padding: 2px 5px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .breadcrumb-6 {
+            background: none;
+        }
+
+        .modal-header {
+            min-height: 16.43px;
+            padding: 40px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #009cff;
+        }
+
+        .innerpagetitle {
+            padding: 0px 0 0px;
+        }
+    </style>
+</head>
+<body>
+    <header class="styleheader1">
+        <div class="col-md-offset-3 col-sm-offset-3 header-top header-top styleheader2">
+            <div class="container">
+                <div class="row">
+                    <div class="topinfo pull-left styleheader3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5"><i class="fa fa-phone fa-x icons-white"></i><a href="tel:+91 9815-34-0123">+91 9815-34-0123</a></div>
+                        <div class="col-md-6"><i class="fa fa-envelope fa-x icons-white"></i><a href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="header-white">
+            <div class="container">
+                <div class="row header-data">
+                    <div class="col-md-3 col-xs-2 logo">
+                        <a href="/Home/Index"><img src="/images/NewAnthemLogo.png" alt="Anthem Infotech Pvt Ltd" style="height:50px;"></a>
+                    </div>
+                    <div class="col-md-9 pull-right header-position" >
+                        <section class="top-bar-section">
+                            <ul id="menu-main-menu-2" class="right">
+                                <li><a href="/Home/Index">Home</a></li>
+                                <li class="megamenu has-children has-dropdown">
+                                    <a href="/Home/OurServices"><span>Services</span><i class=""></i></a>
+                                    <ul class="dropdown fullwidhtdropdown" style="width: 536px !important; right: -388px !important;">
+                                        <li class="fullwidth">
+                                            <ul>
+                                                <li><a href="/Home/AspDotnetApplication"><i class="fa fa-angle-right fa-2x-before"></i><span>Website Design </span></a></li>
+                                                <li><a href="/Home/SoftwareMaintenance"><i class="fa fa-angle-right fa-2x-before"></i><span>Web Software Maintenance</span></a></li>
+
+
+                                            </ul>
+                                            <ul>
+                                                <li><a href="/Home/SoftwareDevelopment"><i class="fa fa-angle-right fa-2x-before"></i><span>Custom Software</span></a></li>
+                                                <li><a href="/Home/MobileAppDevelopment"><i class="fa fa-angle-right fa-2x-before"></i><span>Mobile App & Development</span></a></li>
+                                            </ul>
+                                            <ul>
+
+                                                <li><a href="/Home/SearchEngineOptimization"><i class="fa fa-angle-right fa-2x-before"></i><span>Digital Marketing (SEO)</span></a></li>
+                                                <li><a href="/Home/WebsiteDesigningService"><i class="fa fa-angle-right fa-2x-before"></i><span>UI/UX </span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="megamenu has-children has-dropdown">
+                                    <a href="/Home/Industries"><span>Industries</span><i class=""></i></a>
+                                    <ul class="dropdown fullwidhtdropdown" style="width: 1140px; right: -556.922px;">
+                                        <li class="fullwidth">
+                                            <ul>
+                                                <li><a href="#" onclick="FoodOrdering()"><i class="fa fa-angle-right fa-2x-before"></i><span>Food Ordering</span></a></li>
+                                                <li><a href="#" onclick="HOAAutomation()"><i class="fa fa-angle-right fa-2x-before"></i><span>HOA Automation</span></a></li>
+                                                <li><a href="#l" onclick="FinancialAdvisory()"><i class="fa fa-angle-right fa-2x-before"></i><span>Financial Advisory</span></a></li>
+                                                <li><a href="#" onclick="Tourism()"><i class="fa fa-angle-right fa-2x-before"></i><span>Tourism</span></a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="#" onclick="InformationTechnology()"><i class="fa fa-angle-right fa-2x-before"></i><span>Information Technology</span></a></li>
+                                                <li><a href="#" onclick="Travel()"><i class="fa fa-angle-right fa-2x-before"></i><span>Travel</span></a></li>
+                                                <li><a href="#" onclick="Construction()"><i class="fa fa-angle-right fa-2x-before"></i><span>Construction</span></a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="#" onclick="BusinessPromotions()"><i class="fa fa-angle-right fa-2x-before"></i><span>Business Promotions</span></a></li>
+                                                <li><a href="#" onclick="Logistics()"><i class="fa fa-angle-right fa-2x-before"></i><span>Logistics</span></a></li>
+                                                <li><a href="#" onclick="HealthMedicines()"><i class="fa fa-angle-right fa-2x-before"></i><span>Health &amp; Medicines</span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="/Career">Career</a></li>
+                                <li><a href="/OurWork">Portfolio</a></li>
+                                <li><a href="/Brochure/Brochure">Brochure</a></li>
+                                <li><a href="/Home/AboutUs">About Us</a></li>
+                                <li><a href="/Home/ContactUs">Contact Us</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+        <div class="fix-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-xs-10 logo">
+                        <a class="logo1" href="/Home/Index"><img src="/images/Final-50-U.png" alt="Anthem Infotech Logo" style="height:50px;"></a>
+                        <a class="logo2" href="/Home/Index">
+                            <img src="/images/Final-50-Text.png" alt="Anthem Infotech Pvt Ltd" style="height:35px;">
+                        </a>
+                        <nav class="nav is-fixed nav-al" role="navigation">
+                            <button class="nav-toggle" style="background-color: #00609B;"> <span class="icon-menu"><span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span></span> </button>
+                            <div class="nav-container">
+                                <ul class="nav-menu menu">
+                                    <li><a href="/Home/Index">Home</a></li>
+                                    <li><a href="/Home/OurServices">Services</a></li>
+                                    <li class="megamenu has-children has-dropdown">
+                                        <a href="/Home/Industries"><span>Industries</span><i class=""></i></a>
+                                        <ul class="dropdown fullwidhtdropdown">
+                                            <li class="fullwidth">
+                                                <ul>
+                                                    <li><a href="#" onclick="FoodOrdering()"><i class="fa fa-angle-right fa-2x-before"></i><span>Food Ordering</span></a></li>
+                                                    <li><a href="#" onclick="HOAAutomation()"><i class="fa fa-angle-right fa-2x-before"></i><span>HOA Automation</span></a></li>
+                                                    <li><a href="#" onclick="FinancialAdvisory()"><i class="fa fa-angle-right fa-2x-before"></i><span>Financial Advisory</span></a></li>
+                                                    <li><a href="#" onclick="Tourism()"><i class="fa fa-angle-right fa-2x-before"></i><span>Tourism</span></a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#" onclick="InformationTechnology()"><i class="fa fa-angle-right fa-2x-before"></i><span>Information Technology</span></a></li>
+                                                    <li><a href="#" onclick="Travel()"><i class="fa fa-angle-right fa-2x-before"></i><span>Travel</span></a></li>
+                                                    <li><a href="#" onclick="Construction()"><i class="fa fa-angle-right fa-2x-before"></i><span>Construction</span></a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#" onclick="BusinessPromotions()"><i class="fa fa-angle-right fa-2x-before"></i><span>Business Promotions</span></a></li>
+                                                    <li><a href="#" onclick="Logistics()"><i class="fa fa-angle-right fa-2x-before"></i><span>Logistics</span></a></li>
+                                                    <li><a href="#" onclick="HealthMedicines()"><i class="fa fa-angle-right fa-2x-before"></i><span>Health &amp; Medicines</span></a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="/Career">Career</a></li>
+                                    <li><a href="/OurWork">Portfolio</a></li>
+                                    <li><a href="/Brochure/Brochure">Brochure</a></li>
+                                    <li><a href="/Home/AboutUs">About Us</a></li>
+                                    <li><a href="/Home/ContactUs">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-2 pull-right res-bar">
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="innerpagetitle styleinner1" style="">
+        <div class="container">
+            <div class="mar-btm styleinner2" style="">
+                <h1 class="styleinner3" style=""><span class="small-font">Project Details</span></h1>
+            </div>
+            <div class="innerbreadcrumb upper-font styleinner4" style=""> <a href="/Home/Index">Home</a> / <a href="/OurWork">Portfolio</a> / <a href="/Home/ViewProject" class="activelink">Portfolio Detail</a> </div>
+        </div>
+    </div>
+    @*<div class="innerpagetitle" style="background: #00609b;padding: 10px 0 10px;">
+            <div class="container">
+                <div class="mar-btm" style="margin-top:-10px;">
+                    <h1 style="margin-bottom: -12px;"><span class="small-font">Our Portfolio Detail</span></h1>
+                </div>
+                <div class="innerbreadcrumb upper-font" style="float:right;margin-top: -18px;"> <a href="/Home/Index">Home</a> / <a href="/OurWork">Portfolio</a> / <a href="/Home/ViewProject" class="activelink">Portfolio Detail</a> </div>
+            </div>
+        </div>*@
+<div class="middlecontent" style="padding:28px 0px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="skilldescription wow fadeInDown">
+                <div class="col-sm-4 col-md-3">
+
+                    <h3><span style="font-weight:600;">@Model.ProjectName</span></h3>
+
+                    <div class="skill">
+                        @foreach (var item in projectTechnologies)
+                        {
+                            <span class="skilltag">@item</span>
+                        }
+                    </div>
+
+                    @*@if (Model.URL.ToLower().Replace(" ", string.Empty) != "nolink")
+                        {
+                            <a href="@Model.URL" target="_blank" class="btn btn-link" style="background:#00609d;"><span>Live Preview</span> <i class="fa fa-angle-right fa-1x"></i></a>
+
+
+
+                         }*@
+
+                    @if (!string.IsNullOrWhiteSpace(Model.URL))
+                    {
+                        <a href="@Model.URL" id="livePreviewLink" target="_blank" class="btn btn-link" style="background:#00609d;">
+                            <span>Live Preview</span> <i class="fa fa-angle-right fa-1x"></i>
+                        </a>
+                    }
+
+
+
+
+
+
+
+                    @*@if (!string.IsNullOrWhiteSpace(Model.URL) && Model.URL.Trim().ToLower() != "nolink")
+                        {
+                            if (Uri.IsWellFormedUriString(Model.URL, UriKind.Absolute))
+                            {
+                                <a href="@Model.URL" target="_blank" class="btn btn-link" style="background:#00609d;">
+                                    <span>Live Preview</span>
+                                    <i class="fa fa-angle-right fa-1x"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="https://antheminfotech.com/#" target="_blank" class="btn btn-link" style="background:#00609d;">
+                                    <span>Fallback Link</span>
+                                    <i class="fa fa-angle-right fa-1x"></i>
+                                </a>
+                            }
+                        }*@
+
+
+
+
+
+
+
+                </div>
+
+                <div class="col-sm-8 col-md-9 description" style="text-align: justify;position:relative;left:-4px;">
+                    <div class="portfolioslider wow fadeInDown " id="gal1">
+                        @foreach (var item in projectImages)
+                        {
+                            <div>
+                                <img class="fs-gal" data-url="http://antheminfotech.com/PortfolioImages/@item.ImageURL" src="~/PortfolioImages/@item.ImageURL" style="height:400px;max-width:100%;">
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <div class="col-md-12">
+                    <h3><span>Description</span></h3>
+                    <p style="text-align:justify;">
+                        @Html.Raw(Model.Description)
+                    </p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class=" wow fadeInDown">
+                    <h1 style="text-align: left; MARGIN-LEFT: 1%; ">Related Portfolio</h1>
+
+                    <div class="span12" style="margin: 0;width: 100%;display: inline-block;">
+                        <div id="portfolio" class="row prt" style="position: relative; left: 12px; margin: 0;  width: 97.5%; display: flex;display: -ms-flex; display: -webkit-flex; flex-wrap: wrap;">
+
+                            @foreach (var item in projectCategory)
+                            {
+
+                                <div class=" app hover-bg col-md-3  work-item" style="flex:1 0 23%;position:relative;padding: 6px;text-align: justify;">
+                                    <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                                    <p class="pd-5" style="height:auto;text-align:justify;">
+                                        @item.SmallDesciption
+                                    </p>
+                                    <center>
+                                        <div class="sample work-item-image-container" style="width:fit-Content;">
+
+                                            <img src="~/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" style="height:auto;max-height:200px;" />
+                                        </div>
+                                    </center>
+                                    <div class="hover-text work-item-overlay">
+                                        <div class="port-hover">
+                                            <h4 style="font-size:18px;">@item.ProjectName</h4>
+                                            <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-black-bg">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-map-marker fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="height:153px;">
+                                <p style="">
+                                    #11, Floor 11, Sushma Infinium,
+                                    Chandigarh - Ambala Highway,
+                                    Near Best Price
+                                </p>
+                                <p>Zirakpur, Punjab – 140603 India.</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-user fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="height:153px;">
+                                <p>Phone - <a href="tel:+91 9815-34-0123">+91 9815-34-0123</a></p>
+                                <p>Email - <a href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 wow fadeInDown animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <fieldset class="the-fieldset" style="border: 1px solid #E0E0E0;padding-left: 120px;height: 150px;">
+                            <legend class="the-legend" style="border-style: none;border-width: 0;font-size: 14px;line-height: 20px;margin-bottom: 0;color: aliceblue;width: auto;padding: 0 30px;">
+                                <i class="footerinfo-icn fa fa-share-alt fa-2x icons-white"></i>
+                            </legend>
+                            <div class="footerinfo" style="margin-left:-100px;">
+                                <div class="icn-social">
+                                    <a href="https://www.facebook.com/AnthemInfotech" target="_blank" class="facebook"></a>
+                                    <a href="https://twitter.com/antheminfotech" target="_blank" class="twitter"></a>
+                                     
+                                    <a href="https://www.linkedin.com/company/anthem-infotech-pvt-ltd-" target="_blank" class="youtube"></a>
+                                    <a target="_blank" href="https://wa.me/919815340123/?text=Hi Anthem Team." title="Share on whatsapp" class="whatsapp" style="background-position: -118px 0px;"></a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" style="padding: 0px 0;border-top: 1px solid;background:#00609B;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 text">
+                    <p style="font-size:12px;margin: 0px; padding: 5px;color:white;">© @DateTime.Now.Year Anthem Infotech Private Limited. All rights reserved.</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 text-1">
+                    <p class="fcompany" style=" margin: 0px; padding: 5px; float: right; font-size: 12px;color:white">Powered by <span class="pwdbyanthmbtns1"><a href="/Home/Index" style="color: #00609B;">Anthem Infotech Pvt. Ltd.</a></span></p>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </div>
+    <div class="fs-gal-view">
+
+        <h1></h1>
+
+        <img class="fs-gal-prev fs-gal-nav" src="~/images/prev.svg" alt="Previous picture" title="Previous picture" />
+
+        <img class="fs-gal-next fs-gal-nav" src="~/images/next.svg" alt="Next picture" title="Next picture" />
+
+        <img class="fs-gal-close" src="~/images/close.svg" alt="Close gallery" title="Close gallery" />
+
+        <img class="fs-gal-main" src="" alt="">
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <link href="~/css/fs-gal.css" rel="stylesheet" />
+    <script src="~/js/fs-gal.js"></script>
+    <script type="text/javascript" src="~/js/jquery-1.11.2.js"></script>
+    <link href="~/css/prettycs1.css" rel="stylesheet" />
+    <link href="~/css/Doc.css" rel="stylesheet" />
+    <link href="~/tf-free-no.3/css/myyy.css" rel="stylesheet" />
+    <div class="backtotop"><a href="#0" class="cd-top">Top</a></div>
+    <script type="text/javascript" src="~/js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="~/js/function.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <script type="text/javascript" src="~/js/slick.js"></script>
+    <script type="text/javascript" src="~/js/stickyheader.js"></script>
+    <script type="text/javascript" src="~/js/mega-dropdown.js"></script>
+    <script type="text/javascript" src="~/js/backtotop.js"></script>
+    <script type="text/javascript" src="~/js/parallax.js"></script>
+    <script type="text/javascript" src="~/js/animation.js"></script>
+    <script type="text/javascript" src="~/js/counter.js"></script>
+    <script type="text/javascript" src="~/js/number-counter.js"></script>
+    @*<script type="text/javascript" src="~/js/jquery.portfolio.js"></script>
+        <script type="text/javascript" src="~/js/bootstrapValidator.js"></script>
+        <script type="text/javascript" src="~/js/formValidation.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.migration.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.parallax.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="~/js/revoluation/revoluationfunction.js"></script>*@
+
+
+    <script>
+
+    $(document).ready(function() {
+        var url = "@Model.URL";
+        var linkElement = $("#livePreviewLink");
+        if (url !== "nolink") {
+            if (url !== null) {
+                // URL is valid, enable the link
+                linkElement.removeClass("disabled");
+            } else {
+                // URL is not valid or not reachable, handle accordingly
+                // For example, you can disable the link or show an error message
+                linkElement.addClass("disabled");
+                console.log("Invalid or unreachable URL");
+            }
+        }
+
+        //if (url.toLowerCase().replace(" ", "") !== "nolink") {
+        //    $.ajax({
+        //        url: url,
+        //        type: "HEAD",
+        //        success: function () {
+        //            console.log('work');
+        //            // URL is valid, enable the link
+        //            linkElement.removeClass("disabled");
+        //        },
+        //        error: function () {
+        //            console.log('not work');
+
+        //            // URL is not valid, disable the link
+        //            linkElement.addClass("disabled");
+        //        }
+        //    });
+        //}
+    });
+    </script>
+
+
+    <script>
+        function FoodOrdering() {
+            var Industrytype = 'Food Ordering'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function HOAAutomation() {
+            var Industrytype = 'HOA Automation'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function FinancialAdvisory() {
+            var Industrytype = 'Financial Advisory'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function Tourism() {
+            var Industrytype = 'Tourism'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function Travel() {
+            var Industrytype = 'Travel'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function Construction() {
+            var Industrytype = 'Construction'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function BusinessPromotions() {
+            var Industrytype = 'Business Promotions'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function Logistics() {
+            var Industrytype = 'Logistics'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function HealthMedicines() {
+            var Industrytype = 'Health & Medicines'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+        function InformationTechnology() {
+            var Industrytype = 'Information Technology'
+            window.location.href = "/Home/Industries?Industrytype=" + Industrytype
+
+        }
+
+    </script>
+
+</body>
+</html>
+
+

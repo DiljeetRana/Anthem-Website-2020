@@ -1,0 +1,476 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeesHome";
+    Layout = "~/Views/Shared/_EmployeeLogin.cshtml";
+}
+
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<link href="~/cssStyle/style.css" rel="stylesheet" />
+<link href="~/TimePicker/Customizable-jQuery-Timepicker-Plugin-timepicker/jquery.timepicker.css" rel="stylesheet" />
+<link href="~/css/mui.css" rel="stylesheet" />
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/Information/ticker.css" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script src="~/js/mui.js"></script>
+<script src="~/TimePicker/Customizable-jQuery-Timepicker-Plugin-timepicker/jquery.timepicker.js"></script>
+<script src="~/Information/ticker.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.txttime').timepicker({
+            'minTime': '9:00am',
+            'maxTime': '9:00pm',
+            'step': 5
+        });
+    });
+</script>
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+
+
+    .blink {
+        animation-duration: 1s;
+        animation-name: blink;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(2, start);
+    }
+
+    .blink001 {
+        /*background: -webkit-linear-gradient(#006295, #b3b1b5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
+        animation-duration: 1s;
+        animation-name: blink;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(2, start);
+    }
+
+
+
+    table td, table th {
+        padding-left: 10px;
+    }
+</style>
+<style>
+    .red {
+        color: red;
+    }
+
+    table {
+        background-color: White;
+        font-size: small;
+        text-decoration: none;
+        border-collapse: collapse;
+    }
+
+    th {
+        font-size: 15px;
+    }
+
+    tr {
+        height: 25px;
+    }
+
+    span {
+        font-size: 15px;
+        color: rgb(51, 51, 51);
+    }
+
+    .width {
+        width: 94%;
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    label {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-weight: 400;
+        margin-left: 5px;
+        margin-top: 2px;
+        font-size: 15px;
+    }
+
+    .blink {
+        animation-duration: 2s;
+        animation-delay: 1s;
+        animation-name: blink;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(2, start);
+        font-size: 15px;
+    }
+</style>
+<style type="text/css">
+    .carousel {
+        margin-top: 20px;
+    }
+
+        .carousel .item img {
+            margin: 0 auto; /* Align slide image horizontally center */
+        }
+
+    .bs-example {
+        margin: 20px;
+    }
+
+    h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 15px;
+    }
+
+    .popup {
+        height: 270px;
+        width: 500px;
+        padding: 0;
+        background-color: white;
+    }
+
+    .background {
+        background-color: black;
+        filter: alpha(opacity=90);
+        opacity: 0.8;
+    }
+
+    .modal-header {
+        padding: 15px 16px;
+        color: black;
+        text-align: center;
+    }
+
+    .modal-body {
+        padding: 15px 16px;
+    }
+
+    .modal-footer {
+        padding: 15px 16px;
+        color: black;
+        text-align: center;
+    }
+
+    .txtbxWorkStatus {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .txtbStatus {
+        background-color: white;
+        margin: 0px;
+        /*box-shadow: 10px 10px 5px lightgrey;*/
+        padding: 10px;
+        font-weight: 500;
+        word-wrap: break-word;
+        border: solid 1px;
+        border-color: #dff0d8;
+        text-align: left;
+    }
+
+    .checkButton {
+        cursor: pointer;
+        border: none;
+        background-image: url(../../images/generic-button-1357005_640.png);
+    }
+
+    .checkdiv {
+        /*margin-top:17px;*/
+        padding-top: 12px;
+        text-align: center;
+    }
+
+    .birthdaylbl {
+        margin-top: 21px;
+    }
+
+    .birthdaylblfalse {
+        margin-top: 0px;
+    }
+
+    .btn-checkInOutWidth {
+        width: 140px;
+    }
+
+    .success-alert {
+        width: 100%;
+        text-align: center;
+    }
+
+    #ContentPlaceHolder_imgbtnCheckIn:active {
+        background-image: url("~/Images/generic-button-1357004_640.png");
+    }
+
+    .ui-datepicker-trigger {
+        background-color: white;
+        border: none;
+        margin: 0px;
+    }
+</style>
+<div class="row">
+    <div class="container" style="width: 100%;">
+        <div class="col-md-12" style="width: 100%; text-align: center; box-shadow: 10px 10px 5px lightgray; margin-top: 0px; padding: 0px;">
+            <div>
+                <div class="ticker-container" style="background-color: WhiteSmoke">
+                    <div class="ticker-caption">
+                        <p style="font-size: 18px;">Message board</p>
+                    </div>
+                    @foreach (var item in @ViewBag.News)
+                    {
+                        <div>
+                            <label id="lblnews" style="font-size:18px; color:@item.Color">@item.Message</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 checkdiv">
+        <div class="col-md-4" style="padding-top: 0px; padding-right: 5px;">
+            <div>
+                <p style="text-align: left; margin: 1px 0 0 22px; color: #626262">Holidays List</p>
+            </div>
+            <div style="min-height: 489px;">
+
+                <div class="form-group" style="margin-left: 20px; float: left">
+                    <table id="example" ForeColor="#333333" Font-Size="Small">
+                        <thead>
+                            <tr>
+                                <th style="width:200px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Holiday Date</th>
+                                <th style="width:220px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Holiday</th>
+                                <th style="width:100px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Day</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @ViewBag.HolidayList)
+                            {
+                                @if (Convert.ToDateTime(item.FestivalDate) < DateTime.Now)
+                                {
+                                    <tr style="text-decoration:line-through;">
+                                        <td>@item.FestivalDate</td>
+                                        <td>@item.FestivalName</td>
+                                        <td>@item.FestivalDay</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr style="font-weight:bold;">
+                                        <td>@item.FestivalDate</td>
+                                        <td>@item.FestivalName</td>
+                                        <td>@item.FestivalDay</td>
+                                    </tr>
+                                }
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label ID="lbloccassion" style="color:SeaGreen;font-weight:bold;" CssClass="blink001"></label>
+            <div style="height: 417px; padding-left: 0px; background: rgb(234, 234, 234);" id="birthdaydiv" runat="server">
+                <div style="background-color: #3A5795; font-weight: bold; padding: 9.5px 0;">
+                    <span style="text-align: center; vertical-align: central; color: white; font: bold;">Check In/Check Out</span>
+                </div>
+                <div style="margin-top: 35px;">
+                    @*<asp:ImageButton AlternateText="Check In" runat="server" ID="imgbtnCheckIn" ToolTip="Please click to check your In Time for the day." ImageUrl="~/Images/generic-button-1357004_640.png" OnClick="imgbtnCheckIn_Click" data-toggle="modal" data-target="#myModal" />*@
+                    <a ID="imgbtnCheckIn" ToolTip="Please click to check your In Time for the day." data-toggle="modal" data-target="#myModal">
+                        <img src="~/Images/generic-button-1357004_640.png" />
+                    </a>
+
+                </div>
+                <div style="margin-top: 35px;" hidden>
+                    @*<asp:ImageButton AlternateText="CheckOut" runat="server" ID="imgbtnCheckOut" ToolTip="Please click to check your Out Time for the day." ImageUrl="~/Images/generic-button-1357005_640.png" OnClick="imgbtnCheckOut_Click" />*@
+                    <a ID="imgbtnCheckOut" ToolTip="Please click to check your Out Time for the day.">
+                        <img src="~/Images/generic-button-1357005_640.png" />
+                    </a>
+                </div>
+
+                <div hidden>
+                    <h3 style="font-weight: bold; margin-bottom: 10px;">Work Report</h3>
+                    <div style="margin-bottom: 0px;" class="alert alert-success success-alert">You have checked out successfully.</div>
+
+                    <div class="modal-body" style="width: 100%; padding: 15px 0 0 0;">
+
+                        <label ID="txtStatus1" CssClass="txtbStatus" Width="100%" Height="220px"></label>
+                    </div>
+                </div>
+
+                <div hidden>
+                    <div class="modal-header" style="padding-bottom: 0px; padding-top: 0px;">
+                        <h3 style="color: red; font-weight: bold;" class="blink">You havn't yet Checked Out. Please fill status report for today and press Button below.</h3>
+                        <h2 style="color: black;">Daily Work Report</h2>
+                    </div>
+                    <div class="modal-body" style="height: 202px;">
+                        <textarea id="txtWorkStatus1" maxlength="500" style="height: 182px;" rows="4" runat="server" onkeyup="return CountCharacter(this);" placeholder="Please enter work status for today(minimum 50 characters and maximum 500 characters)." class="form-control txtbxWorkStatus"></textarea>
+
+                        <div style="text-align: right"><span id="charcount">0</span></div>
+                    </div>
+                    <div class="modal-footer" style="padding-top: 0px">
+                        <asp:Button runat="server" ID="btnCheckOutSubmit" CssClass="btn btn-primary btn-checkInOutWidth" OnClientClick="return CheckCharacterLength();" Text="Check Out" OnClick="btnCheckOutSubmit_Click" />
+                        <asp:Button runat="server" ID="btnCheckOutClose" CssClass="btn btn-primary btn-checkInOutWidth" Text="Cancel" OnClick="btnCheckOutClose_Click" />
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3" style="padding-top: 0px; text-align: left">
+            <div>
+                <p style="text-align: left; margin: 1px 0 0 0; color: #626262">Upcoming Occassions</p>
+            </div>
+            <div style="min-height: 487px;">
+                <div style="float: left">
+                    <table id="example" ForeColor="#333333" Font-Size="Small">
+                        <thead>
+                            <tr>
+                                <th style="width:180px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Name</th>
+                                <th style="width:130px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Occassion</th>
+                                <th style="width:100px;background-color:#3A5795;font-weight:bold;text-align:center;height:40px;color:white;">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @ViewBag.occasionlist)
+                            {
+                                @if (Convert.ToDateTime(item.Date) < DateTime.Now)
+                                {
+                                    <tr style="text-decoration:line-through;">
+                                        <td>@item.Name</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.Date</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    ;
+                                    <tr style="font-weight:bold;">
+                                        <td>@item.Name</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.Date</td>
+                                    </tr>
+                                }
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div style="float: left; border: 1px #cccccc solid; margin-top: 0px; margin-left: 60px; margin-right: 0px; margin-bottom: 20px; background-color: #3A5795;" id="dvtodayoccasions" runat="server">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
+<script>
+    var js = $.noConflict();
+    js(document).ready(function () {
+        startTime();
+
+    })
+    js(document).ready(function () {
+
+        js("#btndatepicker").click(function () {
+            window.location.href = 'Calendar.aspx';
+        })
+        //js("#btndatepicker").datepicker({
+
+        //        showOn: 'button',
+        //        buttonText: 'Mark on leave',
+
+        //        beforeShowDay: js.datepicker.noWeekends,
+        //        buttonImage: '../../images/markonleave.png', dateFormat: 'yy-mm-dd', changeYear: true, changeMonth: true, maxDate: 0, onSelect: function (dateText, inst) {
+        //            debugger;
+        //            var date = $(this).val();
+
+        //            js("#mdlReasonforleave").modal('show');
+        //            js("#txtReason").val('');
+        //            js("#charcount1").text("0");
+        //            js("#lbldate").val(date);
+        //            //js.ajax({
+        //            //    async: false,
+        //            //    type: "POST",
+        //            //    url: "employeeshome.aspx/MarkOnLeave",
+        //            //    data: '{date: "' + date + '"}',
+        //            //    contentType: "application/json; charset=utf-8",
+        //            //    dataType: "Json",
+        //            //    success: OnSuccess,
+        //            //    failure: function (response) {
+        //            //        alert(response.d);
+        //            //    }
+
+
+        //            //})
+
+        //        }
+        //    });
+        //function OnSuccess(response) {
+        //    alert(response.d);
+        //}
+
+
+        js("#btnReason").click(function () {
+            var date = js("#lbldate").val();
+            var reason = js("#txtReason").val();
+            if (reason.length <= 0) {
+                alert("Please enter reason for leave.");
+                return false;
+            }
+            else if (reason.length < 20) {
+                alert("Please enter reason for leave (minimum characters 20).");
+                return false;
+            }
+            //else if (reason.length > 500) {
+            //    alert("Please enter reason for leave(maximum characters 500).");
+            //    return false;
+            //}
+            else {
+                js.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "employeeshome.aspx/MarkOnLeave",
+                    //data: '{date: "' + date + '"}',
+                    data: '{"date":"' + date + '","reason":"' + reason + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "Json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                        js("#mdlReasonforleave").modal('hide');
+                    }
+
+
+                })
+
+                function OnSuccess(response) {
+                    alert(response.d);
+                    js("#mdlReasonforleave").modal('hide');
+                }
+
+            }
+        })
+
+
+
+    })
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+

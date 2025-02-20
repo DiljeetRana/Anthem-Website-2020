@@ -1,0 +1,51 @@
+2023-03-06 13:24:42.8861|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 13:25:44.6221|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  
+2023-03-06 13:27:18.0842|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 13:28:29.2701|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 13:28:34.6398|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySlackApp.Controllers.SlackController.<MySlashCommand>d__3.MoveNext() in D:\Anthem Project\Test Slack Connect\anthemworks_anthem2020\NewAnthemWebsite\Controllers\SlackController.cs:line 178
+2023-03-06 13:48:30.5124|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 13:59:43.1830|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySlackApp.Controllers.SlackController.<MySlashCommand>d__3.MoveNext()
+2023-03-06 14:00:25.8084|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 14:03:44.4942|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 15:18:11.9918|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 16:35:37.1395|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 16:37:51.8603|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySlackApp.Controllers.SlackController.<MySlashCommand>d__3.MoveNext() in D:\Anthem Project\Test Slack Connect\anthemworks_anthem2020\NewAnthemWebsite\Controllers\SlackController.cs:line 119
+2023-03-06 16:41:19.0954|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 16:58:16.9370|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySlackApp.Controllers.SlackController.<MySlashCommand>d__3.MoveNext() in D:\Anthem Project\Test Slack Connect\anthemworks_anthem2020\NewAnthemWebsite\Controllers\SlackController.cs:line 119
+2023-03-06 17:53:48.8527|INFO|MySlackApp.Controllers.SlackController|MySlashCommand
+2023-03-06 17:55:13.2891|ERROR|MySlackApp.Controllers.SlackController|MySlashCommand-  System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySlackApp.Controllers.SlackController.<MySlashCommand>d__3.MoveNext() in D:\Anthem Project\Test Slack Connect\anthemworks_anthem2020\NewAnthemWebsite\Controllers\SlackController.cs:line 120

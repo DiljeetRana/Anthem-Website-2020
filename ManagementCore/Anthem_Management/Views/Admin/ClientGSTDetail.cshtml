@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "ClientGSTDetail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+        .searchbar {
+            padding: 1%;
+            width: 95.6%;
+            height: 60px;
+            background-color: lavender;
+            margin: 5px;
+            left: 28px;
+        }
+
+        .medium-container {
+            width: 96%;
+            position: relative;
+            left: 32px;
+            /*max-height: 50%;*/
+        }
+
+        .control-Height {
+            /*height: 400px !important;*/
+        }
+
+        .searchbutton {
+            position: relative;
+            left: -22px;
+        }
+
+        .AddButton {
+        }
+
+       
+</style>
+
+<form style="min-height: 555px;">
+    <div class="">
+        <div class="col-md-12 searchbar">
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <select name="ctl00$ContentPlaceHolder$ddlName" id="ContentPlaceHolder_ddlName" class="form-control align textbox firstCapital Common-class" style="display:inline-block;">
+                        <option selected="selected" value="0">--Please Select Name--</option>
+                        <option value="1">Gursharanjit Singh Hoti</option>
+                        <option value="2">HIL</option>
+                        <option value="3">KPMG</option>
+                        <option value="4">INDRAPRASTHA</option>
+                        <option value="5">Graycell</option>
+                        <option value="6">HCL</option>
+                        <option value="7">Avtec</option>
+                        <option value="8">Diljeet</option>
+                        <option value="9">OYO Rooms</option>
+                        <option value="10">pallavi</option>
+                        <option value="11">Mohit Aggarwal</option>
+                        <option value="12">New Client</option>
+                        <option value="13">ONGC</option>
+
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="button" class="btn btn-primary searchbutton" value="Submit" />
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="\Admin\AddGstDetail" class="btn btn-primary AddButton" style="color: white;">Add New GST Detail</a>
+            </div>
+        </div>
+    </div>
+    <div class="medium-container">
+        <div class="col-md-12">
+            <div id="outer-lines" class="col-centered" style="overflow: auto; height: 60%;">
+                <div class="table-responsive fixed-header">
+                    <div class="control-Height">
+                        <table id="grdClientsGst" class="table table-striped table-bordered table-hover" style="Width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="">Entity Name</th>
+                                    <th style="">GST No</th>
+                                    <th style="">Vendor Code</th>
+                                    <th style="">PO Number</th>
+                                    <th style="">GST Address</th>
+                                    <th>View</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.RecordList)
+                                {
+                                    <tr>
+                                        <td>@item.ClientName</td>
+                                        <td>@item.GstNo</td>
+                                        <td>@item.VendorCode</td>
+                                        <td>@item.PONumber</td>
+                                        <td>@item.GstAddress</td>
+                                        <td>
+                                            <a href="\Admin\GSTDetailView?GstId=@item.GstId">
+                                                <img src="~/image/view.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

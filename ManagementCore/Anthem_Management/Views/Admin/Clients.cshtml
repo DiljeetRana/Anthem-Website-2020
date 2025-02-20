@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewData["Title"] = "Clients";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .searchbar {
+        padding: 1%;
+        width: 95.6%;
+        height: 60px;
+        background-color: lavender;
+        margin: 5px;
+        left: 28px;
+    }
+
+    .medium-container {
+        width: 96%;
+        position: relative;
+        left: 32px;
+        /*max-height: 50%;*/
+    }
+
+    .control-Height {
+        /*height: 400px !important;*/
+    }
+
+    .searchbutton {
+        position: relative;
+        left: -22px;
+    }
+
+    .AddButton {
+    }
+</style>
+
+<form style="min-height: 83%;">
+    <div class="">
+        <div class="col-md-12 searchbar">
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    @*<asp:TextBox runat="server" placeholder="Search Client name or Project" ID="SearchString" CssClass="form-control" Style="left: 38px; position: relative; height: 35px;" OnTextChanged="SearchString_TextChanged1"></asp:TextBox>*@
+                    <input type="text" placeholder="Search Client name or Project" id="SearchString" class="form-control" Style="left: 38px; position: relative; height: 35px;" />
+                </div>
+                <div class="col-md-6">
+                    @*<asp:Button ID="Button1" runat="server" CssClass="btn btn-primary searchbutton" Text="Search" CausesValidation="False" />*@
+                    <input type="button" class="btn btn-primary searchbutton" value="Search" />
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="\Admin\ManageClients" class="btn btn-primary AddButton" style="color: white;">Add New Client</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="medium-container">
+        <div class="col-md-12">
+            <div id="outer-lines" class="col-centered" style="overflow: auto; height: 60%;">
+                <div class="table-responsive fixed-header">
+                    <div class="control-Height">
+                        <table id="ViewClients" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="">Name</th>
+                                    <th style="">Project</th>
+                                    <th style="">Birthday</th>
+                                    <th style="">Anniversary</th>
+                                    <th style="">City</th>
+                                    <th style="">Timezone</th>
+                                    <th style="">IsActive</th>
+                                    <th style="">Send Email</th>
+                                    <th>View</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.ClientList)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Project</td>
+                                        <td>@item.Date_OfBirth</td>
+                                        <td>@item.Anniversary</td>
+                                        <td>@item.City</td>
+                                        <td>@item.Timezone</td>
+                                        @if (@item.IsActive == true)
+                                        {
+                                            <td>
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>
+                                        }
+
+                                        <td>
+                                            <a href="" class="btn btn-primary" id="Mail_Button" style="color:white;">Send Mail</a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/view.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                        @*<asp:GridView ID="ViewClients" Width="100%" CssClass="table table-striped table-bordered table-hover"
+                                          runat="server" AutoGenerateColumns="False" EmptyDataText="There are no data records to display."
+                                          OnRowCommand="ViewClients_RowCommand" OnRowCancelingEdit="ViewClients_RowCancelingEdit"
+                                          OnRowCreated="ViewClients_RowCreated" OnRowEditing="ViewClients_RowEditing" OnRowUpdating="ViewClients_RowUpdating" OnRowDataBound="ViewClients_RowDataBound">
+                                <Columns>
+                                    <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                                    <%--<asp:BoundField DataField="Name" HeaderText="Name" />--%>
+                                    <asp:TemplateField HeaderText="Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Name" runat="server" Text='<%# Eval("Name") %>' Style="text-transform: capitalize;">
+                                            </asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Project" HeaderText="Project" />
+                                    <asp:TemplateField HeaderText="Birthday">
+                                        <ItemTemplate>
+                                            <asp:Label ID="DateOfBirth" runat="server" Text='<%# Eval("Date_OfBirth", "{0:dd/MM/yyyy}") %>'>
+                                            </asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Anniversary">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Anniversary" runat="server" Text='<%# Eval("Anniversary") %>'>
+                                            </asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="City">
+                                        <ItemTemplate>
+                                            <asp:Label ID="City" runat="server" Text='<%# Eval("City") %>' Style="text-transform: capitalize;">
+                                            </asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:BoundField DataField="Email" HeaderText="Send Email" Visible="False" />
+                                    <asp:BoundField DataField="Timezone" HeaderText="Time Zone" />
+                                    <asp:TemplateField ShowHeader="True" HeaderText="IsActive">
+                                        <ItemTemplate>
+                                            <asp:Label ID="label1" runat="server" Text='<%#Bind("IconBinder") %>'>
+                                            </asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Send Mail">
+                                        <ItemTemplate>
+                                            <asp:LinkButton CssClass="btn btn-primary" ID="Mail_Button" runat="server" CommandName="SendMail"
+                                                            Text="Send Mail" CommandArgument='<%#Eval("Email") + "," + Eval("Name") + "," + Eval("Contact") + "," + Eval("Project") + "," + Eval("DateOfBirth") + "," + Eval("Timezone") + "," + Eval("City")+ "," + Eval("Address")%>' ToolTip="Get Client Information" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="True" HeaderText="View" ItemStyle-CssClass="text-center">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CssClass="" ID="View_Button" CommandName="View" CommandArgument='<%#Eval("ID")%>'>
+                                                <img src="image/view.jpg" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Delete" ItemStyle-CssClass="text-center">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CssClass="" ID="Delete_Button" CommandName="DeleteRecord" OnClientClick="if(!ConfirmDelete()) return false;" CommandArgument='<%#Eval("ID")%>'>
+                                                <%--<span class="glyphicon glyphicon-trash"></span>--%>
+                                                <img src="image/delete.jpg" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="True" HeaderText="Edit" ItemStyle-CssClass="text-center">
+                                        <ItemTemplate>
+                                            <asp:LinkButton CssClass="" ID="Edit_Button" runat="server" CommandName="Edit"
+                                                            Text="" CommandArgument='<%#Eval("ID")%>'>
+
+                                                <img src="image/edit.jpg" style="height: 20px; width: 16px;" />
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="MessagePopup" style="visibility: hidden;">
+        @* <div id="EmailResult"><%=EmailResult%></div>*@
+    </div>
+</form>
+<script>
+
+    function ConfirmDelete() {
+        //debugger;
+        if (confirm("This record will be deleted. Are you sure about deletion ?")) {
+            alert("Record Deletion Successfull");
+            return true;
+        }
+        else {
+            alert("Record Deletion Cancelled");
+            return false;
+        }
+    }
+</script>
+

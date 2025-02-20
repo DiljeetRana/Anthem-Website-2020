@@ -1,0 +1,252 @@
+﻿
+@{
+    ViewData["Title"] = "Dynamic";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<style>
+    .common-padding {
+        width: auto;
+        height: 40px;
+    }
+
+    .val {
+        margin-left: -144px;
+        padding-left: 40px;
+    }
+
+    .drpo {
+        margin-left: 112px;
+    }
+
+    .drp {
+        width: 283px !important;
+        margin-left: -238px !important;
+    }
+
+    .width {
+        padding: 30px;
+    }
+
+    .grd {
+        margin-left: 130px;
+        margin-right: 120px;
+    }
+
+    /*.AddButton{
+        margin-left: 80px;
+    }*/
+
+    th {
+        padding-left: 3px;
+    }
+
+    .dynamicp {
+        font-size: 20px;
+        color: #626262;
+        margin-left: 138px;
+    }
+
+    .AddButton {
+        padding: 4px 10px;
+    }
+</style>
+
+
+
+<form runat="server">
+
+    <div class="panel-body">
+        <div class="col-md-4" style="margin-top: 10px;">
+            <label id="lblDynamicPage" class="dynamicp">Dynamic Page</label>
+        </div>
+        <div class="col-md-10 text-right" style="margin-left: 207px;margin-top: -5px;">
+            <a href="\Admin\DynamicPage" class="btn btn-primary AddButton" title="Add Page" style="color: white;">Add Page</a>
+
+        </div>
+
+    </div>
+    <div class="container-fluid" style="text-align:center; margin-bottom:50px; margin-top: 6px;">
+        <div class="form-group">
+            <table id="example" ForeColor="#333333" Font-Size="Small">
+                <thead>
+                    <tr>
+                        <th style="width:190px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Page Name</th>
+                        <th style="width:370px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Description</th>
+                        <th style="width:340px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Public Url</th>
+                        <th style="width:186px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Created On</th>
+                        <th style="width:68px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Public</th>
+                        <th style="width:50px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">View</th>
+                        <th style="width:50px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Edit</th>
+                        <th style="width:56px;background-color:#3A5795;font-weight:bold;height:40px;color:white;text-align:center;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.PageList)
+                    {
+
+                    <tr>
+                        <td>@item.PageName</td>
+                        @*<td title="@item.Description">
+                            @item.Description.Substring(0, 40)<text>...</text>
+                        </td>*@
+                        <td>@Html.Raw(@item.Description)</td>
+                        <td>@item.PublicUrl</td>
+                        <td>@item.CreatedOn</td>
+                        <td>@item.IsPublic</td>
+                        <td>
+                            <a>
+                                <img src="~/image/view.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img src="~/image/edit.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img src="~/image/delete.jpg" style="height: 20px; width: 16px;" />
+                            </a>
+                        </td>
+                    </tr>
+
+
+                    }
+
+                </tbody>
+            </table>
+
+            @*<asp:GridView ID="GridDynamicPages" runat="server" BorderWidth="0px" AutoGenerateColumns="False" CellPadding="4" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333" CssClass="grd" OnRowCommand="cmdDynamicPages" OnRowDataBound="cmdPages">
+
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+
+
+                        <asp:BoundField DataField="PageName" HeaderText="Page Name">
+                            <ItemStyle />
+                            <HeaderStyle Width="190px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Description" HeaderText="Description">
+                            <ItemStyle />
+                            <HeaderStyle Width="370px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="PublicUrl" HeaderText="Public Url">
+                            <ItemStyle />
+                            <HeaderStyle Width="340px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="CreatedOn" HeaderText="Created On">
+                            <%--dataformatstring="{0:dd/MM/yyyy}"--%>
+                            <ItemStyle />
+                            <HeaderStyle Width="186px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="IsPublic" HeaderText="Public">
+                            <ItemStyle />
+                            <HeaderStyle Width="68px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:BoundField>
+
+                        <asp:TemplateField HeaderText="View">
+                            <ItemTemplate>
+                                <asp:HiddenField ID="HiddenField1" runat="server" Value='<%#Eval("PageName")%>' />
+                                <%--<asp:LinkButton CssClass="" ID="btnView" runat="server" CommandName="View"
+                                                    Text="" CommandArgument='<%#Eval("PageName")%>' OnClientClick="SetTarget();">
+
+                                    <img src="image/view.jpg" style="height: 20px; width: 20px; margin-left:4px;" />
+                                </asp:LinkButton>--%>
+
+                                <%--                                             <a href="<%# String.Format(" http: //localhost:56771/Dynamic/Index")%>
+                                    " target="_blank">--%>
+                                    <a href="<%# String.Format(" http: //localhost:56771//{0}", Eval("PageName")) %>
+                                        " target="_blank" title="View Page">
+
+
+                                        <img src="image/view.jpg" style="height: 20px; width: 20px; margin-left:4px;" />
+
+                                    </a>
+
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Edit">
+                            <ItemTemplate>
+                                <asp:LinkButton CssClass="" ID="btnEdit" runat="server" CommandName="Edit" ToolTip="Update Page"
+                                                Text="" CommandArgument='<%#Eval("PageId")%>'>
+                                    <img src="image/edit.jpg" style="height: 20px; width: 20px; margin-left:4px;" />
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <HeaderStyle Width="50px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
+                            <ItemTemplate>
+                                <asp:LinkButton runat="server" CssClass="" ID="lblDelete_Button" ToolTip="Delete Page" CommandName="DeleteRecord" OnClientClick="return deletealert(this, event);" CommandArgument='<%#Eval("PageId")%>'>
+
+                                    <img src="image/delete.jpg" style="height: 20px; width: 20px; margin-left:14px;" />
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <HeaderStyle Width="56px" HorizontalAlign="Center" Font-Size="Small" />
+                        </asp:TemplateField>
+
+                    </Columns>
+                    <EditRowStyle BackColor="WhiteSmoke" />
+                    <EmptyDataRowStyle BackColor="#B3D9D9" Font-Size="Small" ForeColor="Black" HorizontalAlign="Center" BorderStyle="None" />
+                    <EmptyDataTemplate>No Records Found</EmptyDataTemplate>
+                    <FooterStyle ForeColor="White" BackColor="#507CD1" Font-Bold="True" />
+                    <HeaderStyle BackColor="#3A5795" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Height="40px" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" Wrap="True" HorizontalAlign="Center" />
+                    <RowStyle BackColor="WhiteSmoke" HorizontalAlign="Left" />
+                    <SelectedRowStyle BackColor="WhiteSmoke" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedAscendingHeaderStyle BackColor="#3A5795" />
+                    <SortedDescendingCellStyle BackColor="WhiteSmoke" />
+                    <SortedDescendingHeaderStyle BackColor="#3A5795" />
+                </asp:GridView>*@
+        </div>
+    </div>
+</form>
+
+<link rel="stylesheet" type="text/css" href="~/dist/sweetalert.css" />
+<script src="~/dist/sweetalert.min.js"></script>
+<script src="~/dist/sweetalert-dev.js"></script>
+
+
+<script>
+    var s = $.noConflict();
+
+    //$("#lblDelete_Button").click
+    function deletealert(ctl, event) {
+        debugger;
+        // STORE HREF ATTRIBUTE OF LINK CTL (THIS) BUTTON
+        var defaultAction = s(ctl).prop("href");
+        // CANCEL DEFAULT LINK BEHAVIOUR
+        event.preventDefault();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this record!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal({ title: "Deleted!", text: "Your record has been deleted.", type: "success", confirmButtonText: "OK!", closeOnConfirm: false },
+                        function () {
+                            // RESUME THE DEFAULT LINK ACTION
+                            window.location.href = defaultAction;
+                            return true;
+                        });
+                } else {
+                    swal("Cancelled", "Your record is safe :)", "error");
+                    return false;
+                }
+            });
+    }
+
+</script>
+
+

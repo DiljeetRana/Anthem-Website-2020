@@ -1,0 +1,45 @@
+.cd-top {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background: url(../images/backtotop.png) center center no-repeat rgba(0,156,255,1);
+	border: 1px solid #009cff;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: opacity .3s 0s, visibility 0 .3s;
+	-moz-transition: opacity .3s 0s, visibility 0 .3s;
+	transition: opacity .3s 0s, visibility 0 .3s
+}
+.cd-top.cd-fade-out, .cd-top.cd-is-visible, .no-touch .cd-top:hover {
+	-webkit-transition: opacity .3s 0s, visibility 0 0;
+	-moz-transition: opacity .3s 0s, visibility 0 0;
+	transition: opacity .3s 0s, visibility 0 0
+}
+.cd-top.cd-is-visible {
+	visibility: visible;
+	opacity: 1
+}
+.cd-top.cd-fade-out {
+	opacity: 1
+}
+.no-touch .cd-top:hover {
+	background-color: #000;
+	border: 1px solid #000;
+	opacity: 1
+}
+@media (max-width:480px) {
+.cd-top {
+	display: none
+}
+}
+@media (max-width:320px) {
+.cd-top {
+	display: none
+}
+}

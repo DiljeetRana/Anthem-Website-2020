@@ -1,0 +1,11 @@
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\obj\Debug\AnthermBLL.csproj.CoreCompileInputs.cache
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthermBLL.dll
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthermBLL.pdb
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthemDLL.dll
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthemEntities.dll
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthemEntities.pdb
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\obj\Debug\AnthermBLL.csproj.CopyComplete
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\obj\Debug\AnthermBLL.dll
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\obj\Debug\AnthermBLL.pdb
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\bin\Debug\AnthemDLL.pdb
+E:\Sahil works\New Version Of Anthem Website\NewAnthemWebsite\AnthermBLL\obj\Debug\AnthermBLL.csprojAssemblyReference.cache

@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "AddHoliday";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$.datepicker.setDefaults({
+            //showOn: "both",
+            //buttonImageOnly: true,
+            //buttonImage: "image/calendar.png",
+            //buttonText: "Calendar",
+
+        //});
+        $('.dropdown a.test').on("click", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+        $(".txtdate").datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, changeMonth: true, yearRange: '1920:2040' });
+
+    });
+</script>
+<script type="text/javascript">
+
+
+    $(function () {
+        $('#btnclear').click(function () {
+            $('input[type=text]').each(function () {
+                $(this).val('');
+            })
+        })
+    })
+
+
+
+</script>
+<style type="text/css">
+    table th, table td {
+        padding-left: 0px;
+    }
+</style>
+<div style="min-height: 537px;">
+    <h3 style="margin-left: 115px; color: #626262; float: left" runat="server" id="heading">Add Holiday</h3>
+    <div style="margin-left: 1170px; margin-top: 10px; height: 40px;">
+        <p runat="server" id="puser" style="font-size: medium; color: #003366; font-weight: 600;"></p>
+    </div>
+    <div>
+        <form class="form-horizontal" runat="server" style="margin: 10px 0 0 115px;" id="addemployeeform" defaultbutton="btnsubmit" method="post">
+            <div style="float: left">
+                <p id="pmessage" style="color: red; font-family: Arial; margin-left: 155px; font-weight: 600" runat="server"></p>
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <td style="width: 113px">
+                            @*<asp:Label runat="server" Style="font-size: 15px;" Text="Holiday" Font-Bold="True"></asp:Label>*@
+                            <label style="font-size: 15px;font-weight:bold;">Holiday</label>
+                        </td>
+                        <td>
+                            <input type="text" runat="server" id="txtfestivalname" class="form-control" style="float: left;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 113px">
+                            <label id="Label1" Style="font-size: 15px;font-weight:bold;">Holiday Date</label>
+                        </td>
+                        <td>
+                            <input id="txtfestivaldate" type="text" style="width: 210px; float: left" runat="server" class="form-control txtdate" />
+                            <img src="~/image/calendar.png" />
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin: 10px 0 0 106px">
+                    <button type="button" id="btnsubmit" class="btn btn-primary" Style="margin-left: 40px; margin-top: 10px; margin-bottom: 20px; width: 100px; float: left; height: 35px; font-size: 16px; font-family: Verdana">Submit</button>
+                    <button type="button" id="btnclear" class="btn btn-primary" style="margin-left: 10px; margin-top: 10px; margin-bottom: 20px; width: 100px; height: 35px; font-size: 16px; font-family: Verdana" tabindex="20">Clear</button>
+                    <button type="submit" id="btnBack" class="btn btn-primary" style="margin-left: 10px; margin-top: 10px; margin-bottom: 20px; width: 100px; height: 35px; font-family: Verdana; font-size: 16px" tabindex="20">Back</button>
+                </div>
+                <div style="margin-top: 90px;">
+                    <img src="~/image/anthem-infotech-logo-2.png" height="200" width="400" />
+                </div>
+            </div>
+            <div style="margin-left: 530px;">
+                <img src="~/image/main-slider.jpg" height="450" width="685" />
+            </div>
+        </form>
+    </div>
+</div>

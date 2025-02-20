@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "SendEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:20px;">
+
+    @if(ViewBag.ShowMessage == "Success")
+    { 
+    <p class="alert alert-success" id="success"><strong>Thanks for submitting your resume, we will get back to you if we have a suitable opening for you in our organization.</strong> </p>
+    }
+    else
+    {
+        <p class="alert alert-danger" id="success"><strong>Due to an server error your email can not be sent at this moment. Please try after some time or send direct email referring to this job to <i>jobs@antheminfotech.com</i> .</strong> </p>
+    }
+</div>

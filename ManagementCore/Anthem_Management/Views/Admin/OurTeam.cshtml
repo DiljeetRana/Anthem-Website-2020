@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "OurTeam";
+    Layout = "~/Views/Shared/AdminLoginLayout.cshtml";
+}
+<div style="min-height:512px;max-height:100%;">
+    <div>
+        @foreach (var item in @ViewBag.Team)
+        {
+            <div style="float:left;padding:20px 0px 20px 20px;">
+                <div class="grid__img grid__img--border">
+                    @*<asp:Image ID="Image1" runat="server" CssClass="grayscale tilt-effect" data-tilt-options='{ "extraImgs" : false, "bgfixed" : false, "movement": { "perspective" : 1000, "translateX" : 30, "translateY" : 30, "translateZ" : -50, "rotateX" : 3, "rotateY" : 3, "rotateZ" : 10 } }' Height="200px" Width="180px" ImageUrl='<%# "image.ashx?id="+ Eval("EmployeeId") %>' ImageAlign="Left" />*@
+                    @*<img id="Image1" class="grayscale tilt-effect" data-tilt-options='{ "extraImgs" : false, "bgfixed" : false, "movement": { "perspective" : 1000, "translateX" : 30, "translateY" : 30, "translateZ" : -50, "rotateX" : 3, "rotateY" : 3, "rotateZ" : 10 } }' Height="200px" Width="180px" src="image.ashx?id= + @item.EmployeeId" />*@
+
+                    <div class="hovup" style="text-align:center; width:100%; height:50px; bottom:-50px; background:rgba(255,255,255,.6);">
+                        <label runat="server" ID="lblname" style="font-size:18px;color:black;">@item.Name</label><br />
+
+                        <label runat="server" ID="lbldesignation" style="font-size:14px;color:black;">@item.Designation</label>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+
+<style>
+
+    /*Title styles*/
+    .title {
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        bottom: 15px;
+        z-index: 1;
+        padding: 5px 7px;
+        background: rgb(149, 151, 151);
+    }
+
+    .grayscale:hover {
+        -webkit-filter: none;
+    }
+
+    /*Filter styles*/
+
+    .grayscale {
+        -webkit-filter: grayscale(100%);
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="~/css/tilteffect.css" />
+<link rel="stylesheet" type="text/css" href="~/css/demo.css" />
+
+<script src="js/tiltfx.js"></script>
+<script>
+    $(".tilt").addClass("grayscale");
+        //$(".tilt").hover().css("webkit-filter","none");
+
+</script>
+

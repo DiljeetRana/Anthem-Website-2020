@@ -1,0 +1,57 @@
+﻿@model List<AnthemEntites.Projects>
+
+    @{
+        int count = 1;
+        int maxRender = 0;
+
+    }
+    @if (Model.Count <= 8)
+    {
+        maxRender = 8;
+    }
+
+
+    @foreach (var item in Model)
+    {
+        if (count <= maxRender)
+        {
+            <div class=" web hover-bg col-md-3  work-item" style="flex:1 0 23%;position:relative;margin: 20px 0px 20px 10px;max-height: 244px;padding:6px;text-align:justify;">
+                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                <p>
+                    @item.SmallDesciption
+                </p>
+
+                <div class="sample work-item-image-container">
+
+                    <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" style="height: 150px;" />
+                </div>
+                <div class="hover-text work-item-overlay">
+                    <div class="port-hover">
+                        <h4 style="font-size:18px;">@item.ProjectName</h4>
+                        <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                    </div>
+                </div>
+
+            </div>
+            count++;
+        }
+
+    }
+    @*<div class=" web text-center col-sm-6 col-md-4 col-lg-3 col-xs-12" style="border: 0.5px solid lightgray;">
+            <div class="row">
+                <div class="hover-bg">
+                    <div class="hover-text">
+                        <div class="port-hover">
+                            <h4 style="font-size:18px;">@item.ProjectName</h4>
+                            <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                        </div>
+                    </div>
+                    <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" class="img-responsive" alt="@item.ProjectName" style="height:200px;width:350px;">
+                </div>
+            </div>
+        </div>*@
+
+
+    <script type="text/javascript" src="~/js/function.js"></script>
+

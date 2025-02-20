@@ -1,0 +1,71 @@
+﻿@model List<AnthemEntites.Projects>
+
+    @{
+        int count = 1;
+        int maxRender = 0;
+    }
+
+    @if (Model.Count <= 8)
+    {
+        maxRender = 8;
+    }
+
+
+    @foreach (var item in Model)
+    {
+        if (count <= maxRender)
+        {
+            <div class=" TopEight hover-bg col-md-3  work-item" style="flex:1 0 23%;position:relative;margin: 20px 0px 20px 10px;max-height: 244px;padding:6px;text-align:justify;">
+                <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory"><h4 style="font-size: 16px; margin-top: 3px; margin-bottom: 0px; margin-left: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px;font-weight:normal;text-align:center;color:#009cff;">@item.ProjectName</h4></a>
+
+                <p>
+                    @item.SmallDesciption
+                </p>
+               
+                    <div class="sample work-item-image-container">
+
+                        <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" style="height: 150px;" />
+                    </div>
+                    <div class="hover-text work-item-overlay">
+                        <div class="port-hover">
+                            <h4 style="font-size:18px;">@item.ProjectName</h4>
+                            <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">Open Project</a>
+                        </div>
+                    </div>
+                </div>
+               
+          
+
+
+            count++;
+        }
+
+    }
+    @*<a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">
+            <div class="homepageportfolio2" >
+                <img src="http://management.antheminfotech.net/PortfolioImages/@item.ProjectImage" alt="@item.ProjectName" style="width:350px;height:200px;" />
+                <div class="mask-img" style="background:rgba(0,0,0,.85);">
+                    <div class="zoomicon">
+                        <img src="~/images/zoom-icn.png" alt="Zoom">
+                    </div>
+                    <h4 style="font-size:20px;">@item.ProjectName</h4>
+                </div>
+            </div>
+
+        </a>*@
+     @*<div class="work-item-overlay">
+                        <div class="inner" style="margin-left: 10%; margin-top:-10%;">
+                            <ul>
+                                <li style="margin: -5px 0 10px 0;">
+                                    <a class="detail-link" style="font-size:20px;font-weight:normal;" href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory">@item.ProjectName</a>
+                                </li>
+                                <li>
+                                    <a href="/Home/ViewProject?projectname=@item.ProjectName,@item.ProjectSubCategory" class="gallery-btn">
+                                        View Project Details
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+
+

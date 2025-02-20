@@ -1,0 +1,1 @@
+$(window).scroll(function () { if ($(window).scrollTop() >= 40) { $('.header-white').addClass('fixed-header') } else { $('.header-white').removeClass('fixed-header') } })

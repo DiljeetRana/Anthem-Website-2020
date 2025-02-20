@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewData["Title"] = "AddGstDetail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .Label-design {
+        width: 10%;
+    }
+
+    .background-designer {
+        /*margin-top: 95px;*/
+        /*box-shadow: 0px 0px 20px 0px black;*/
+        border-width: 1px;
+        border-color: lightgrey;
+    }
+</style>
+<style>
+    .Label-design {
+        width: 10%;
+        font-weight: bold;
+    }
+
+    .background-designer {
+        /*margin-top: 95px;*/
+        /*margin-bottom: 37%;*/
+        /*box-shadow: 0px 0px 20px 0px black;*/
+        margin-right: 70px;
+        margin-left: 70px;
+    }
+
+    .inner-background {
+        border-width: 1px;
+        border-color: grey;
+        border: solid;
+    }
+
+    .borderfordiv {
+        border: solid;
+        border-color: grey;
+        border-width: 1px;
+        padding-bottom: 30px;
+        padding-left: 0;
+        padding-right: 30px;
+        padding-top: 30px;
+    }
+
+    .common-padding {
+        padding: 10px;
+    }
+</style>
+<link href="~/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<form id="AddGstForm" runat="server" style="min-height:533px;">
+    <div style="margin-top:10px;margin-left:115px;">
+   
+    <label id="lblheader" style="font-weight:bold;">Add GST Detail</label>
+    </div>
+
+    <div class="row" style="margin-top:30px;margin-left:90px;margin-right:90px;border:1px solid black;padding-bottom:20px;">
+        <div class="col-md-6">
+            <div class="col-md-3 text-right common-padding">
+                <label id="lblName" class="Label-design" style="width:100%">Entity Name:</label>
+            </div>
+            <div class="col-md-9 common-padding">
+                <input type="hidden" id="hfgstId" />
+                <select name="ddlName" id="ddlName" class="form-control align textbox firstCapital Common-class" style="display:inline-block;">
+                    <option value="0">--Please Select Entity--</option>
+                    <option value="1">Gursharanjit Singh Hoti</option>
+                    <option value="2">HIL</option>
+                    <option value="3">KPMG</option>
+                    <option value="4">INDRAPRASTHA</option>
+                    <option value="5">Graycell</option>
+                    <option value="6">HCL</option>
+                    <option value="7">Avtec</option>
+                    <option value="8">Diljeet</option>
+                    <option value="9">OYO Rooms</option>
+                    <option value="10">pallavi</option>
+                    <option value="11">Mohit Aggarwal</option>
+                    <option value="12">New Client</option>
+                    <option value="13">ONGC</option>
+                    <option value="14">Test</option>
+
+                </select>
+                
+            </div>
+
+            <div class="col-md-3 text-right common-padding">
+                <label id="lblGstNo" class="Label-design" style="width:100%">GST No:</label>
+            </div>
+            <div class="col-md-9 common-padding">
+                <input type="text" style="display:inline-block;" name="GstNo" maxlength="200" class="form-control align textbox firstCapital Common-class" />
+               
+            </div>
+            <div class="col-md-3 text-right common-padding">
+                
+                <label id="lblGstAddress" class="Label-design" style="width:100%">GST Address:</label>
+            </div>
+            <div class="col-md-9 common-padding">
+                <textarea id="txtGstAddress" name="GstAddress" onkeypress="if (this.value.length > 600) { return false; }" class="form-control align textbox firstCapital Common-class" style="height:200px;"></textarea>
+               
+            </div>
+
+            <div class="col-md-3 text-right common-padding">
+
+
+            </div>
+            <div class="col-md-9 common-padding">
+
+                @*<asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmit_Click" />*@
+                <input type="button" id="btnSubmit" class="btn btn-primary" value="Submit" />
+                <input type="button" id="btnUpdate" class="btn btn-primary" value="Update" />
+                <input type="button" id="btnClear" class="btn btn-primary" value="Clear" style="margin-left:10px;"  />
+                <input type="button" id="btnCancel" class="btn btn-primary" value="Cancel" style="margin-left:10px;"  />
+                @*<asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdate_Click" />
+                <asp:Button ID="btnClear" runat="server" style="margin-left:10px;" CssClass="btn btn-primary" Text="Clear" CausesValidation="false" OnClick="btnClear_Click" />
+                <asp:Button ID="btnCancel" CssClass="btn btn-primary" style="margin-left:10px;" CausesValidation="false" runat="server" Text="Cancel" OnClick="btnCancel_Click" />*@
+               
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="col-md-3 text-right common-padding">
+               
+                <label id="Label1" class="Label-design" style="width:100%">Vendor Code:</label>
+
+            </div>
+            <div class="col-md-9 common-padding">
+
+              
+               <input type="text" id="txtVendorCode" name="VendorCode" class="form-control align textbox firstCapital Common-class" maxlength="300" />
+            </div>
+
+            <div class="col-md-3 text-right common-padding">
+                <label id="Label2" class="Label-design" style="width:100%">PO Number:</label>
+
+            </div>
+            <div class="col-md-9 common-padding">
+                <textarea id="txtPONumber" name="PONumber" onkeypress="if (this.value.length > 600) { return false; }" class="form-control align textbox firstCapital Common-class" style="height:200px;"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnUpdate").hide();
+    });
+
+        //$('#txtPONumber').keypress(function (e) {
+        //    debugger;
+        //    var MaxLength = 10;
+        //        if ($(this).val().length >= MaxLength) {
+        //            e.preventDefault();
+        //        }
+        //    });
+
+        //$('#txtGstAddress').keypress(function (e) {
+        //    debugger;
+        //    var MaxLength = 10;
+        //        if ($(this).val().length >= MaxLength) {
+        //            e.preventDefault();
+        //        }
+        //    });
+
+
+</script>
